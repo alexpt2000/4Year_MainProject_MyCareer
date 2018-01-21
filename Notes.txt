@@ -36,3 +36,10 @@ Heroku
     - Git commit -m "Descr"
     - Git push heroku master
     - Ver o Log (heroku logs --tail)
+
+
+
+Typs of Autentications
+=======================================================
+spring.profiles.active=basic-security
+spring.profiles.active=oauth-security
