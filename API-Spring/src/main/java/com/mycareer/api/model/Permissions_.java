@@ -5,11 +5,11 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
-@StaticMetamodel(Permissao.class)
-public abstract class Permissao_ {
+@StaticMetamodel(Permissions.class)
+public abstract class Permissions_ {
 
-	public static volatile SingularAttribute<Permissao, Long> codigo;
-	public static volatile SingularAttribute<Permissao, String> descricao;
+	public static volatile SingularAttribute<Permissions, Long> permissionID;
+	public static volatile SingularAttribute<Permissions, String> permissionDescription;
 
 }
 

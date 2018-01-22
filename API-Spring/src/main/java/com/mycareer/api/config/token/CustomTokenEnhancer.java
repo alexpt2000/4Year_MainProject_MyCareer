@@ -8,16 +8,16 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
-import com.mycareer.api.security.UsuarioSistema;
+import com.mycareer.api.security.UserSystem;
 
 public class CustomTokenEnhancer implements TokenEnhancer {
 
 	@Override
 	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-		UsuarioSistema usuarioSistema = (UsuarioSistema) authentication.getPrincipal();
+		UserSystem userSystem = (UserSystem) authentication.getPrincipal();
 		
 		Map<String, Object> addInfo = new HashMap<>();
-		addInfo.put("nome", usuarioSistema.getUsuario().getNome());
+		addInfo.put("userName", userSystem.getUser().getUserName());
 		
 		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(addInfo);
 		return accessToken;
