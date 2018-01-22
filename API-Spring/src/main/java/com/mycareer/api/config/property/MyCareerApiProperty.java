@@ -2,7 +2,7 @@ package com.mycareer.api.config.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("algamoney")
+@ConfigurationProperties("mycareer")
 public class MyCareerApiProperty {
 
 	private String originPermitida = "http://localhost:8000";

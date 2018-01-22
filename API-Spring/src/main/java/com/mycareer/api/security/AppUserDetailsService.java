@@ -25,14 +25,14 @@ public class AppUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Optional<Users> usuarioOptional = userRepository.findByUserEmail(email);
-		Users user = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Incorrect username or password"));
+		Optional<Users> userOptional = userRepository.findByEmail(email);
+		Users user = userOptional.orElseThrow(() -> new UsernameNotFoundException("Incorrect username or password"));
 		return new UserSystem(user, getPermission(user));
 	}
 
 	private Collection<? extends GrantedAuthority> getPermission(Users user) {
 		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-		user.getPermission().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getPermissionDescription().toUpperCase())));
+		user.getPermission().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getDescription().toUpperCase())));
 		return authorities;
 	}
 

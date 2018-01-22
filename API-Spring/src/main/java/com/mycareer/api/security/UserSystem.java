@@ -14,7 +14,7 @@ public class UserSystem extends User {
 	private Users user;
 
 	public UserSystem(Users user, Collection<? extends GrantedAuthority> authorities) {
-		super(user.getUserEmail(), user.getUserPassword(), authorities);
+		super(user.getEmail(), user.getPassword(), authorities);
 		this.user = user;
 	}
 

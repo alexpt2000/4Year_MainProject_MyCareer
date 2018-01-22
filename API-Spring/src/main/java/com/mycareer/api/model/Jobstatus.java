@@ -1,18 +1,23 @@
 package com.mycareer.api.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotNull;
+
 @Entity
-@Table(name = "permissions")
-public class Permissions {
+@Table(name = "jobstatus")
+public class Jobstatus {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long code;
-	private String description;
 
-
+	@NotNull
+	private String status;
 
 	public Long getCode() {
 		return code;
@@ -22,20 +27,18 @@ public class Permissions {
 		this.code = code;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		// result = prime * result + ((permissionDescription == null) ? 0 :
-		// permissionDescription.hashCode());
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		return result;
 	}
@@ -48,7 +51,7 @@ public class Permissions {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Permissions other = (Permissions) obj;
+		Jobstatus other = (Jobstatus) obj;
 		if (code == null) {
 			if (other.code != null)
 				return false;

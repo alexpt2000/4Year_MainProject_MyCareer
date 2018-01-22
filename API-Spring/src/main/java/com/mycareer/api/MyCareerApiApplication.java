@@ -15,3 +15,9 @@ public class MyCareerApiApplication {
 	}
 	
 }
+
+
+//spring.profiles.active=basic-security
+//spring.profiles.active=oauth-security
+
+// https://github.com/alexpt2000gmit/4Year_MainProject_MyCareer

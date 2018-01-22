@@ -15,50 +15,49 @@ import javax.persistence.Table;
 public class Users {
 
 	@Id
-	private Long userID;
+	private Long code;
 
-	private String userName;
-	private String userEmail;
-	private String userPassword;
+	private String name;
+	private String email;
+	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "users_permission", joinColumns = @JoinColumn(name = "userID")
-		, inverseJoinColumns = @JoinColumn(name = "permissionID"))
+	@JoinTable(name = "users_permission", joinColumns = @JoinColumn(name = "code_user")
+		, inverseJoinColumns = @JoinColumn(name = "code_permission"))
 	
 	private List<Permissions> permission;
 
 
-
-	public Long getUserID() {
-		return userID;
+	public Long getCode() {
+		return code;
 	}
 
-	public void setUserID(Long userID) {
-		this.userID = userID;
+	public void setCode(Long code) {
+		this.code = code;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getUserPassword() {
-		return userPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<Permissions> getPermission() {
@@ -73,7 +72,7 @@ public class Users {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((userID == null) ? 0 : userID.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		return result;
 	}
 
@@ -86,10 +85,10 @@ public class Users {
 		if (getClass() != obj.getClass())
 			return false;
 		Users other = (Users) obj;
-		if (userID == null) {
-			if (other.userID != null)
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!userID.equals(other.userID))
+		} else if (!code.equals(other.code))
 			return false;
 		return true;
 	}
