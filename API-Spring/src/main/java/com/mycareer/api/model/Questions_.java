@@ -22,6 +22,5 @@ public abstract class Questions_ {
 	public static volatile SingularAttribute<Questions, String> note;
 	public static volatile SingularAttribute<Questions, Long> score;
 
-
 }
 

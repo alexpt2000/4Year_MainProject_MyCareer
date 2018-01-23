@@ -18,6 +18,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ResourceServerConfig.
+ */
 @Profile("oauth-security")
 @Configuration
 @EnableWebSecurity
@@ -28,31 +32,55 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	/**
+	 * Configure.
+	 *
+	 * @param auth the auth
+	 * @throws Exception the exception
+	 */
 	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
+	// http://www.baeldung.com/security-none-filters-none-access-permitAll
+	/* (non-Javadoc)
+	 * @see org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)
+	 */
+	// Get values from API address /jobsweb/** , ignore security in this resource.
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/categorias").permitAll()
+				.antMatchers("/jobsweb/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.csrf().disable();
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter#configure(org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer)
+	 */
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.stateless(true);
 	}
 	
+	/**
+	 * Password encoder.
+	 *
+	 * @return the password encoder
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
+	/**
+	 * Creates the expression handler.
+	 *
+	 * @return the method security expression handler
+	 */
 	@Bean
 	public MethodSecurityExpressionHandler createExpressionHandler() {
 		return new OAuth2MethodSecurityExpressionHandler();

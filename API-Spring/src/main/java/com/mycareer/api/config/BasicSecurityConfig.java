@@ -12,6 +12,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BasicSecurityConfig.
+ */
 @Profile("basic-security")
 @EnableWebSecurity
 public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -24,20 +28,28 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
+	/**
+	 * Password encoder.
+	 *
+	 * @return the password encoder
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
+	// http://www.baeldung.com/security-none-filters-none-access-permitAll
+	// Get values from API address /jobsweb/** , ignore security in this resource.
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+			.antMatchers("/jobsweb/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.httpBasic()
 			.and()
 			.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.csrf().disable();
 	}

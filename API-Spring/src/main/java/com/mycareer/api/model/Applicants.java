@@ -1,15 +1,19 @@
 package com.mycareer.api.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "alerts")
+@Table(name = "applicants")
 public class Applicants {
 
 	@Id
@@ -17,14 +21,49 @@ public class Applicants {
 	private Long code;
 
 	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "code_job")
+	private Jobs job;
+
+	@NotNull
+	private String full_name;
+	@NotNull
 	private String email;
+	private String cover_letter;
+	@NotNull
+	private String phone_number;
+	private String profile_url;
+	private String upload_cv;
+	private String status;
+	private long score_question;
+	private long score_test;
+	private long score_other;
+	@NotNull
+	private LocalDate applicant_date;
+	private String hr_notes;
 
 	public Long getCode() {
 		return code;
 	}
 
-	public void setCode(Long codigo) {
-		this.code = codigo;
+	public void setCode(Long code) {
+		this.code = code;
+	}
+
+	public Jobs getJob() {
+		return job;
+	}
+
+	public void setJob(Jobs job) {
+		this.job = job;
+	}
+
+	public String getFull_name() {
+		return full_name;
+	}
+
+	public void setFull_name(String full_name) {
+		this.full_name = full_name;
 	}
 
 	public String getEmail() {
@@ -33,6 +72,86 @@ public class Applicants {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getCover_letter() {
+		return cover_letter;
+	}
+
+	public void setCover_letter(String cover_letter) {
+		this.cover_letter = cover_letter;
+	}
+
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+
+	public String getProfile_url() {
+		return profile_url;
+	}
+
+	public void setProfile_url(String profile_url) {
+		this.profile_url = profile_url;
+	}
+
+	public String getUpload_cv() {
+		return upload_cv;
+	}
+
+	public void setUpload_cv(String upload_cv) {
+		this.upload_cv = upload_cv;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public long getScore_question() {
+		return score_question;
+	}
+
+	public void setScore_question(long score_question) {
+		this.score_question = score_question;
+	}
+
+	public long getScore_test() {
+		return score_test;
+	}
+
+	public void setScore_test(long score_test) {
+		this.score_test = score_test;
+	}
+
+	public long getScore_other() {
+		return score_other;
+	}
+
+	public void setScore_other(long score_other) {
+		this.score_other = score_other;
+	}
+
+	public LocalDate getApplicant_date() {
+		return applicant_date;
+	}
+
+	public void setApplicant_date(LocalDate applicant_date) {
+		this.applicant_date = applicant_date;
+	}
+
+	public String getHr_notes() {
+		return hr_notes;
+	}
+
+	public void setHr_notes(String hr_notes) {
+		this.hr_notes = hr_notes;
 	}
 
 	@Override

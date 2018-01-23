@@ -19,6 +19,10 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import com.mycareer.api.config.token.CustomTokenEnhancer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AuthorizationServerConfig.
+ */
 @Profile("oauth-security")
 @Configuration
 @EnableAuthorizationServer
@@ -27,6 +31,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter#configure(org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer)
+	 */
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
@@ -45,6 +52,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 				.refreshTokenValiditySeconds(3600 * 24);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter#configure(org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer)
+	 */
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
@@ -57,6 +67,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			.authenticationManager(authenticationManager);
 	}
 	
+	/**
+	 * Access token converter.
+	 *
+	 * @return the jwt access token converter
+	 */
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
@@ -64,11 +79,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		return accessTokenConverter;
 	}
 
+	/**
+	 * Token store.
+	 *
+	 * @return the token store
+	 */
 	@Bean
 	public TokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());
 	}
 	
+	/**
+	 * Token enhancer.
+	 *
+	 * @return the token enhancer
+	 */
 	@Bean
 	public TokenEnhancer tokenEnhancer() {
 	    return new CustomTokenEnhancer();

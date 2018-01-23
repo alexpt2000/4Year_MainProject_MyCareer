@@ -19,13 +19,13 @@ import com.mycareer.api.config.property.MyCareerApiProperty;
 public class TokenResource {
 	
 	@Autowired
-	private MyCareerApiProperty algamoneyApiProperty;
+	private MyCareerApiProperty mycareerApiProperty;
 
 	@DeleteMapping("/revoke")
 	public void revoke(HttpServletRequest req, HttpServletResponse resp) {
 		Cookie cookie = new Cookie("refreshToken", null);
 		cookie.setHttpOnly(true);
-		cookie.setSecure(algamoneyApiProperty.getSeguranca().isEnableHttps());
+		cookie.setSecure(mycareerApiProperty.getSeguranca().isEnableHttps());
 		cookie.setPath(req.getContextPath() + "/oauth/token");
 		cookie.setMaxAge(0);
 		
