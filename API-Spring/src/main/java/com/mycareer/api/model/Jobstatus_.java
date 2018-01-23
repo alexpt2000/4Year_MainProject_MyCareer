@@ -8,8 +8,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Jobstatus.class)
 public abstract class Jobstatus_ {
 
-	public static volatile SingularAttribute<Alerts, Long> code;
-	public static volatile SingularAttribute<Alerts, String> status;
+	public static volatile SingularAttribute<Jobstatus, Long> code;
+	public static volatile SingularAttribute<Jobstatus, String> status;
 
 }
 
