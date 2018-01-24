@@ -5,23 +5,23 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("mycareer")
 public class MyCareerApiProperty {
 
-	private String originPermitida = "http://localhost:8000";
+	private String originAllowed = "http://localhost:8000";
 
-	private final Seguranca seguranca = new Seguranca();
+	private final Security security = new Security();
 
-	public Seguranca getSeguranca() {
-		return seguranca;
+	public Security getSecurity() {
+		return security;
 	}
 
-	public String getOriginPermitida() {
-		return originPermitida;
+	public String getOriginAllowed() {
+		return originAllowed;
 	}
 
-	public void setOriginPermitida(String originPermitida) {
-		this.originPermitida = originPermitida;
+	public void setOriginAllowed(String originAllowed) {
+		this.originAllowed = originAllowed;
 	}
 
-	public static class Seguranca {
+	public static class Security {
 
 		private boolean enableHttps;
 
