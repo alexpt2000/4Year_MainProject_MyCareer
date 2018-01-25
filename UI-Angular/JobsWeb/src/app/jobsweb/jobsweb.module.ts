@@ -14,6 +14,8 @@ import {PanelModule} from 'primeng/components/panel/panel';
 import {CaptchaModule} from 'primeng/components/captcha/captcha';
 import {SidebarModule} from 'primeng/components/sidebar/sidebar';
 import {EditorModule} from 'primeng/components/editor/editor';
+import {GrowlModule} from 'primeng/components/growl/growl';
+import { CustomFormsModule } from 'ng2-validation'
 
 
 
@@ -32,7 +34,8 @@ import {EditorModule} from 'primeng/components/editor/editor';
     CaptchaModule,
     SidebarModule,
     EditorModule,
-
+    GrowlModule,
+    CustomFormsModule,
     SharedModule
   ],
   declarations: [

@@ -6,6 +6,7 @@ import { JobswebFilter, JobswebService } from './../jobsweb.service';
 
 
 
+
 @Component({
   selector: 'app-jobsweb-search',
   templateUrl: './jobsweb-search.component.html',
@@ -19,13 +20,14 @@ export class JobswebSearchComponent {
   jobTitle;
   jobDescription = '';
   display;
+  email = null;
 
   constructor(private jobswebService: JobswebService) {
 
   }
 
 
-  search (page = 0) {
+  search(page = 0) {
     this.filter.page = page;
 
     this.jobswebService.search(this.filter)
@@ -44,6 +46,15 @@ export class JobswebSearchComponent {
     this.jobTitle = job.title;
     this.jobDescription = job.description;
     this.display = true;
+  }
+
+
+  addAlert(email: any) {
+    this.jobswebService.addAlert({ email })
+      .then(() => {
+        alert(`Email "${email}" now will receive alerts from MyCareer.`);
+        this.email = null
+      })
   }
 
 }

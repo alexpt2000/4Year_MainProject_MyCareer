@@ -11,6 +11,8 @@ import { CoreModule } from './core/core.module';
 import { JobswebService } from './jobsweb/jobsweb.service';
 import { JobswebModule } from 'app/jobsweb/jobsweb.module';
 
+import { CustomFormsModule } from 'ng2-validation'
+
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import { JobswebModule } from 'app/jobsweb/jobsweb.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    CustomFormsModule,
 
     CoreModule,
     JobswebModule
   ],
   providers: [
-    JobswebService
+    JobswebService,
+    CustomFormsModule
   ],
   bootstrap: [AppComponent]
 })

@@ -21,22 +21,24 @@
         <p-column>
           <ng-template let-job="rowData" pTemplate="body">
             <button pButton icon="fa-search-plus" pTooltip="More details" tooltipPosition="top" (click)="showJobDetails(job)"></button>
-            <button pButton type="submit" label="Apply Now" icon="fa-plus" pTooltip={{job.title}} class="ui-button-success"></button>
+            <button pButton type="submit" label="Apply Now" icon="fa-plus" tooltipPosition="top" pTooltip={{job.title}} class="ui-button-success"></button>
           </ng-template>
         </p-column>
       </p-dataTable>
     </div>
   </div>
 
-  <form autocomplete="off" align="center">
+  <form autocomplete="off" align="center" #alertForm="ngForm" >
     <div class="ui-g">
       <div class="ui-g-12">
         <h3 align="center">Sign Up for Alerts</h3>
         <p> Join our talent community and get MyCareer news and job alerts delivered to your inbox.</p>
         <div align="center">
           <label>Email</label>
-          <input pInputText type="email" name="nome" placeholder="name@domain.com">
-          <button pButton type="submit" label="Sign Up"></button>
+          <input pInputText type="text" [(ngModel)]="email" name="email" placeholder="name@domain.com" #emailAlert1="ngModel" #emailAlert>
+          <p *ngIf="emailAlert1.errors?.emailAlert">error message</p>
+
+          <button pButton type="submit" label="Sign Up" [disabled]="addAlert.valid" (click)="addAlert(emailAlert.value)"></button>
 
         </div>
       </div>
@@ -49,4 +51,7 @@
       <p innerHtml="{{ jobDescription }}">
   </p-sidebar>
 
+  <p-growl [(value)]="msgs"></p-growl>
+
 </div>
+

@@ -12,7 +12,8 @@ export class JobswebFilter {
 @Injectable()
 export class JobswebService {
 
-  apiUrl = 'http://localhost:8080/jobsweb';
+  apiUrl = 'http://localhost:8080';
+  // http://localhost:8080/alertsweb
 
   constructor(private http: Http) { }
 
@@ -29,7 +30,7 @@ export class JobswebService {
       params.set('title', filter.title);
     }
 
-    return this.http.get(`${this.apiUrl}`, { search: params })
+    return this.http.get(`${this.apiUrl}/jobsweb`, { search: params })
       .toPromise()
       .then(response => {
         const responseJson = response.json();
@@ -42,6 +43,16 @@ export class JobswebService {
 
         return result;
       })
+  }
+
+  addAlert(email: any): Promise<any> {
+    const headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(`${this.apiUrl}/alertsweb`, JSON.stringify(email), { headers })
+      .toPromise()
+      .then(response => response.json());
   }
 
 }
