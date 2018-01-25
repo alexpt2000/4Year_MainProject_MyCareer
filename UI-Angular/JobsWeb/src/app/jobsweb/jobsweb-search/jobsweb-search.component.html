@@ -20,15 +20,27 @@
         <p-column>
           <ng-template pTemplate="body">
             <button pButton icon="fa-search-plus" pTooltip="More details" tooltipPosition="top"></button>
-            <button pButton type="submit" label="Apply Now" class="ui-button-success"></button>
+            <button pButton type="submit" label="Apply Now" icon="fa-plus" class="ui-button-success"></button>
           </ng-template>
         </p-column>
       </p-dataTable>
     </div>
-
-    <div class="ui-g-12">
-      <a pButton label="Nova Pessoa"></a>
-    </div>
   </div>
+
+  <form autocomplete="off" align="center">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h3 align="center">Sign Up for Alerts</h3>
+        <p> Join our talent community and get MyCareer news and job alerts delivered to your inbox.</p>
+        <div align="center">
+          <label>Email</label>
+          <input pInputText type="email" name="nome" placeholder="alexanderSouza@domain.com">
+          <button pButton type="submit" label="Sign Up"></button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+
 
 </div>

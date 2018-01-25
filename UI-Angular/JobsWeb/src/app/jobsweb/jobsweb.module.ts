@@ -10,6 +10,10 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
 import { SharedModule } from './../shared/shared.module';
 import { JobswebSearchComponent } from 'app/jobsweb/jobsweb-search/jobsweb-search.component';
+import {PanelModule} from 'primeng/components/panel/panel';
+import {CaptchaModule} from 'primeng/components/captcha/captcha';
+import { JobswebDetailsComponent } from './jobsweb-details/jobsweb-details.component';
+
 
 
 
@@ -23,14 +27,18 @@ import { JobswebSearchComponent } from 'app/jobsweb/jobsweb-search/jobsweb-searc
     DataTableModule,
     TooltipModule,
     InputMaskModule,
+    PanelModule,
+    CaptchaModule,
 
     SharedModule
   ],
   declarations: [
-    JobswebSearchComponent
+    JobswebSearchComponent,
+    JobswebDetailsComponent
   ],
   exports: [
-    JobswebSearchComponent
+    JobswebSearchComponent,
+    JobswebDetailsComponent
   ]
 })
 export class JobswebModule { }
