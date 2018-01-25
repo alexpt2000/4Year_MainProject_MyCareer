@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mycareer.api.event.RecursoCriadoEvent;
+import com.mycareer.api.event.ResourceCreatedEvent;
 import com.mycareer.api.model.Jobs;
 import com.mycareer.api.model.Pessoa;
 import com.mycareer.api.repository.JobRepository;
@@ -46,7 +46,7 @@ public class JobResource {
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Jobs> create(@Valid @RequestBody Jobs job, HttpServletResponse response) {
 		Jobs saveJob = jobRepository.save(job);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, saveJob.getCode()));
+		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveJob.getCode()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveJob);
 	}
 

@@ -44,6 +44,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/jobsweb/**").permitAll()
+			.antMatchers("/alertsweb/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.httpBasic()

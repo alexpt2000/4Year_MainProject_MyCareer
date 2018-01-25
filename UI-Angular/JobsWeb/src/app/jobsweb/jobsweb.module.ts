@@ -12,7 +12,8 @@ import { SharedModule } from './../shared/shared.module';
 import { JobswebSearchComponent } from 'app/jobsweb/jobsweb-search/jobsweb-search.component';
 import {PanelModule} from 'primeng/components/panel/panel';
 import {CaptchaModule} from 'primeng/components/captcha/captcha';
-import { JobswebDetailsComponent } from './jobsweb-details/jobsweb-details.component';
+import {SidebarModule} from 'primeng/components/sidebar/sidebar';
+import {EditorModule} from 'primeng/components/editor/editor';
 
 
 
@@ -29,16 +30,16 @@ import { JobswebDetailsComponent } from './jobsweb-details/jobsweb-details.compo
     InputMaskModule,
     PanelModule,
     CaptchaModule,
+    SidebarModule,
+    EditorModule,
 
     SharedModule
   ],
   declarations: [
-    JobswebSearchComponent,
-    JobswebDetailsComponent
+    JobswebSearchComponent
   ],
   exports: [
-    JobswebSearchComponent,
-    JobswebDetailsComponent
+    JobswebSearchComponent
   ]
 })
 export class JobswebModule { }

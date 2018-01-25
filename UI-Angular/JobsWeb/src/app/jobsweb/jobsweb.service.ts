@@ -3,54 +3,45 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
 
-export class PessoaFiltro {
-  nome: string;
-  pagina = 0;
-  itensPorPagina = 5;
+export class JobswebFilter {
+  title: string;
+  page = 0;
+  itensPage = 20;
 }
 
 @Injectable()
 export class JobswebService {
 
-  pessoasUrl = 'http://localhost:8080/jobsweb';
+  apiUrl = 'http://localhost:8080/jobsweb';
 
   constructor(private http: Http) { }
 
-  pesquisar(filtro: PessoaFiltro): Promise<any> {
+  search(filter: JobswebFilter): Promise<any> {
     const params = new URLSearchParams();
     // const headers = new Headers();
 
     // headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    params.set('page', filtro.pagina.toString());
-    params.set('size', filtro.itensPorPagina.toString());
+    params.set('page', filter.page.toString());
+    params.set('size', filter.itensPage.toString());
 
-    if (filtro.nome) {
-      params.set('nome', filtro.nome);
+    if (filter.title) {
+      params.set('title', filter.title);
     }
 
-    return this.http.get(`${this.pessoasUrl}`, { search: params })
+    return this.http.get(`${this.apiUrl}`, { search: params })
       .toPromise()
       .then(response => {
         const responseJson = response.json();
-        const pessoas = responseJson.content;
+        const jobsweb = responseJson.content;
 
-        const resultado = {
-          pessoas,
+        const result = {
+          jobsweb,
           total: responseJson.totalElements
         };
 
-        return resultado;
+        return result;
       })
-  }
-
-  listarTodas(): Promise<any> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
-    return this.http.get(this.pessoasUrl, { headers })
-      .toPromise()
-      .then(response => response.json().content);
   }
 
 }

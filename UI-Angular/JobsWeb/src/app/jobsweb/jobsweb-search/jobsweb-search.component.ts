@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/components/common/api';
 
-import { PessoaFiltro, JobswebService } from './../jobsweb.service';
+import { JobswebFilter, JobswebService } from './../jobsweb.service';
 
 
 
@@ -13,27 +13,37 @@ import { PessoaFiltro, JobswebService } from './../jobsweb.service';
 })
 export class JobswebSearchComponent {
 
-  totalRegistros = 0;
-  filtro = new PessoaFiltro();
-  pessoas = [];
+  totalRecords = 0;
+  filter = new JobswebFilter();
+  jobsweb = [];
+  jobTitle;
+  jobDescription = '';
+  display;
 
-  constructor(private pessoaService: JobswebService) {
+  constructor(private jobswebService: JobswebService) {
 
   }
 
-  pesquisar (pagina = 0) {
-    this.filtro.pagina = pagina;
 
-    this.pessoaService.pesquisar(this.filtro)
-      .then(resultado => {
-        this.totalRegistros = resultado.total;
-        this.pessoas = resultado.pessoas;
+  search (page = 0) {
+    this.filter.page = page;
+
+    this.jobswebService.search(this.filter)
+      .then(result => {
+        this.totalRecords = result.total;
+        this.jobsweb = result.jobsweb;
       });
   }
 
-  aoMudarPagina(event: LazyLoadEvent) {
-    const pagina = event.first / event.rows;
-    this.pesquisar(pagina);
+  changePage(event: LazyLoadEvent) {
+    const page = event.first / event.rows;
+    this.search(page);
+  }
+
+  showJobDetails(job: any) {
+    this.jobTitle = job.title;
+    this.jobDescription = job.description;
+    this.display = true;
   }
 
 }
