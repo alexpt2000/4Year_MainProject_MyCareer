@@ -7,14 +7,15 @@ import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { ButtonModule } from 'primeng/components/button/button';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
-
-import { SharedModule } from './../shared/shared.module';
-import { JobswebSearchComponent } from 'app/jobsweb/jobsweb-search/jobsweb-search.component';
 import {PanelModule} from 'primeng/components/panel/panel';
 import {CaptchaModule} from 'primeng/components/captcha/captcha';
 import {SidebarModule} from 'primeng/components/sidebar/sidebar';
 import {EditorModule} from 'primeng/components/editor/editor';
 import {GrowlModule} from 'primeng/components/growl/growl';
+
+import { SharedModule } from './../shared/shared.module';
+import { JobswebSearchComponent } from 'app/jobsweb/jobsweb-search/jobsweb-search.component';
+
 import { CustomFormsModule } from 'ng2-validation'
 
 
