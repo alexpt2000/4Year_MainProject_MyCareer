@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/components/common/api';
 
 import { JobswebFilter, JobswebService } from './../jobsweb.service';
 
-
+import {BrowserModule} from '@angular/platform-browser'
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 
 
 @Component({
@@ -12,7 +14,10 @@ import { JobswebFilter, JobswebService } from './../jobsweb.service';
   templateUrl: './jobsweb-search.component.html',
   styleUrls: ['./jobsweb-search.component.css']
 })
+
+
 export class JobswebSearchComponent {
+
 
   totalRecords = 0;
   filter = new JobswebFilter();

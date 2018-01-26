@@ -28,17 +28,18 @@
     </div>
   </div>
 
-  <form autocomplete="off" align="center" #alertForm="ngForm" >
+  <form autocomplete="off" align="center" #alertForm="ngForm" (ngSubmit)="addAlert(emailAlert.value)">
     <div class="ui-g">
       <div class="ui-g-12">
         <h3 align="center">Sign Up for Alerts</h3>
         <p> Join our talent community and get MyCareer news and job alerts delivered to your inbox.</p>
         <div align="center">
           <label>Email</label>
+
           <input pInputText type="text" [(ngModel)]="email" name="email" placeholder="name@domain.com" #emailAlert1="ngModel" #emailAlert>
           <p *ngIf="emailAlert1.errors?.emailAlert">error message</p>
 
-          <button pButton type="submit" label="Sign Up" [disabled]="addAlert.valid" (click)="addAlert(emailAlert.value)"></button>
+          <button pButton type="submit" label="Sign Up" [disabled]="!alertForm.valid" required email></button>
 
         </div>
       </div>
