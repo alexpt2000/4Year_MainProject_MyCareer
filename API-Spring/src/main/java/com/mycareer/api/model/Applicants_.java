@@ -23,11 +23,7 @@ public abstract class Applicants_ {
 	public static volatile SingularAttribute<Applicants, String> profile_url;
 	public static volatile SingularAttribute<Applicants, String> cover_letter;
 	public static volatile SingularAttribute<Applicants, String> status;
-	public static volatile SingularAttribute<Applicants, Long> score_question;
-	public static volatile SingularAttribute<Applicants, Long> score_test;
-	public static volatile SingularAttribute<Applicants, Long> score_other;
 	public static volatile SingularAttribute<Applicants, LocalDate> applicant_date;
-	public static volatile SingularAttribute<Applicants, String> hr_notes;
 	public static volatile SingularAttribute<Applicants, Jobs> job;
 }
 

@@ -34,16 +34,7 @@ public class Applicants {
 
 	private String status;
 
-	private long score_question;
-
-	private long score_test;
-
-	private long score_other;
-
-	@NotNull
 	private LocalDate applicant_date;
-
-	private String hr_notes;
 
 	@NotNull
 	@ManyToOne
@@ -114,29 +105,6 @@ public class Applicants {
 		this.status = status;
 	}
 
-	public long getScore_question() {
-		return score_question;
-	}
-
-	public void setScore_question(long score_question) {
-		this.score_question = score_question;
-	}
-
-	public long getScore_test() {
-		return score_test;
-	}
-
-	public void setScore_test(long score_test) {
-		this.score_test = score_test;
-	}
-
-	public long getScore_other() {
-		return score_other;
-	}
-
-	public void setScore_other(long score_other) {
-		this.score_other = score_other;
-	}
 
 	public LocalDate getApplicant_date() {
 		return applicant_date;
@@ -144,14 +112,6 @@ public class Applicants {
 
 	public void setApplicant_date(LocalDate applicant_date) {
 		this.applicant_date = applicant_date;
-	}
-
-	public String getHr_notes() {
-		return hr_notes;
-	}
-
-	public void setHr_notes(String hr_notes) {
-		this.hr_notes = hr_notes;
 	}
 
 	@Override

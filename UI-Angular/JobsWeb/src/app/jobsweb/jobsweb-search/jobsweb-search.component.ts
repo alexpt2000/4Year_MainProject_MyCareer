@@ -7,6 +7,8 @@ import { JobswebFilter, JobswebService } from './../jobsweb.service';
 import {BrowserModule} from '@angular/platform-browser'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
+import { ToastyService } from 'ng2-toasty';
+
 
 
 @Component({
@@ -27,9 +29,10 @@ export class JobswebSearchComponent {
   display;
   email = null;
 
-  constructor(private jobswebService: JobswebService) {
-
-  }
+  constructor(
+    private jobswebService: JobswebService,
+    private toasty: ToastyService
+  ) {  }
 
 
   search(page = 0) {
@@ -57,7 +60,8 @@ export class JobswebSearchComponent {
   addAlert(email: any) {
     this.jobswebService.addAlert({ email })
       .then(() => {
-        alert(`Email "${email}" now will receive alerts from MyCareer.`);
+        this.toasty.success(`Email "${email}" now will receive alerts from MyCareer.`);
+        // alert(`Email "${email}" now will receive alerts from MyCareer.`);
         this.email = null
       })
   }

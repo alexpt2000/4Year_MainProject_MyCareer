@@ -1,5 +1,5 @@
 <div class="container">
-  <form #f autocomplete="off">
+  <form autocomplete="off" #applicantForm="ngForm" (ngSubmit)="addApplicant(applicantForm)">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -7,17 +7,18 @@
       </div>
 
       <div class="ui-g-12 ui-md-8 ui-fluid">
-          <br>
+        <br>
         <span class="ui-float-label">
-          <input pInputText type="text" id="float-input" name="logradouro" #logradouro required>
+          <input pInputText type="text" id="float-input" name="fullname" #fullname="ngModel" [(ngModel)]="applicant.fullname" required>
           <label for="float-input">Name</label>
         </span>
       </div>
 
-      <div class="ui-g-12 ui-md-4 ui-fluid">
-          <br>
+
+     <div class="ui-g-12 ui-md-4 ui-fluid">
+        <br>
         <span class="ui-float-label">
-          <input pInputText type="email" id="float-input" name="logradouro" #logradouro required>
+          <input pInputText type="text" id="float-input" name="email" #email="ngModel" [(ngModel)]="applicant.email" required>
           <label for="float-input">Email</label>
         </span>
       </div>
@@ -25,32 +26,34 @@
 
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-          <br>
+        <br>
         <span class="ui-float-label">
-          <input pInputText type="email" id="float-input" name="logradouro" #logradouro required>
+          <input pInputText type="text" id="float-input" name="phonenumber" #phonenumber="ngModel" [(ngModel)]="applicant.phone_number" required>
           <label for="float-input">Phone number</label>
         </span>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-          <br>
+        <br>
         <span class="ui-float-label">
-          <input pInputText type="email" id="float-input" name="logradouro" #logradouro required>
+          <input pInputText type="text" id="float-input" name="profileurl" #profileurl="ngModel" [(ngModel)]="applicant.profile_url">
           <label for="float-input">URL Profile</label>
         </span>
       </div>
 
+      <!--
       <div class="ui-g-12 ui-md-4 ui-fluid">
-          <h3>Upload CV</h3>
+        <h3>Upload CV</h3>
         <p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
       </div>
+    -->
 
 
 
-      <!-- Text are for cover letter-->
+
       <div class="ui-g-12">
         <h3>Cover Letter</h3>
-        <p-editor [style]="{'height':'320px'}">
+        <p-editor name="coverletter" #coverletter="ngModel" [(ngModel)]="applicant.cover_letter" [style]="{'height':'320px'}">
           <p-header>
             <span class="ql-formats">
               <select class="ql-size">
@@ -85,28 +88,11 @@
 
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Back" [disabled]="f.invalid"></button>
-        <button pButton type="button" label="Apply" class="ui-button-info"></button>
+        <button pButton type="button" label="Back" (click)="backClicked()"></button>
+        <button pButton type="submit" label="Apply" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
       </div>
 
     </div>
 
   </form>
 </div>
-
-<!--
-  public static volatile SingularAttribute<Applicants, Long> codigo;
-	public static volatile SingularAttribute<Applicants, Jobs> job;
-	public static volatile SingularAttribute<Applicants, String> full_name;
-	public static volatile SingularAttribute<Applicants, String> email;
-	public static volatile SingularAttribute<Applicants, String> cover_letter;
-	public static volatile SingularAttribute<Applicants, String> phone_number;
-	public static volatile SingularAttribute<Applicants, String> profile_url;
-	public static volatile SingularAttribute<Applicants, String> upload_cv;
-	public static volatile SingularAttribute<Applicants, String> status;
-	public static volatile SingularAttribute<Applicants, Long> score_question;
-	public static volatile SingularAttribute<Applicants, Long> score_test;
-	public static volatile SingularAttribute<Applicants, Long> score_other;
-	public static volatile SingularAttribute<Applicants, LocalDate> applicant_date;
-	public static volatile SingularAttribute<Applicants, String> hr_notes;
--->

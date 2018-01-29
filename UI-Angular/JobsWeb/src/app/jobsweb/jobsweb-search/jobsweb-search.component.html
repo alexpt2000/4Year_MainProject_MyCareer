@@ -21,7 +21,7 @@
         <p-column>
           <ng-template let-job="rowData" pTemplate="body">
             <button pButton icon="fa-search-plus" pTooltip="More details" tooltipPosition="top" (click)="showJobDetails(job)"></button>
-            <button pButton type="submit" label="Apply Now" icon="fa-plus" tooltipPosition="top" pTooltip={{job.title}} class="ui-button-success"></button>
+            <button pButton type="submit" label="Apply Now" icon="fa-plus" tooltipPosition="top" pTooltip={{job.title}} class="ui-button-success" [routerLink]="['/applicantadd', job.code]"></button>
           </ng-template>
         </p-column>
       </p-dataTable>
