@@ -38,12 +38,14 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
+	
 	// http://www.baeldung.com/security-none-filters-none-access-permitAll
 	// Get values from API address /jobsweb/** , ignore security in this resource.
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/jobsweb/**").permitAll()
+			.antMatchers("/applicantsweb/**").permitAll()
 			.antMatchers("/alertsweb/**").permitAll()
 			.anyRequest().authenticated()
 			.and()

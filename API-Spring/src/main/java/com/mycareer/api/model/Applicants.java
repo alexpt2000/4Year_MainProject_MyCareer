@@ -21,26 +21,34 @@ public class Applicants {
 	private Long code;
 
 	@NotNull
+	private String fullname;
+
+	@NotNull
+	private String email;
+
+	private String phone_number;
+
+	private String profile_url;
+
+	private String cover_letter;
+
+	private String status;
+
+	private long score_question;
+
+	private long score_test;
+
+	private long score_other;
+
+	@NotNull
+	private LocalDate applicant_date;
+
+	private String hr_notes;
+
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "code_job")
 	private Jobs job;
-
-	@NotNull
-	private String fullname;
-	@NotNull
-	private String email;
-	private String cover_letter;
-	@NotNull
-	private String phone_number;
-	private String profile_url;
-	private String upload_cv;
-	private String status;
-	private long score_question;
-	private long score_test;
-	private long score_other;
-	@NotNull
-	private LocalDate applicant_date;
-	private String hr_notes;
 
 	public Long getCode() {
 		return code;
@@ -96,14 +104,6 @@ public class Applicants {
 
 	public void setProfile_url(String profile_url) {
 		this.profile_url = profile_url;
-	}
-
-	public String getUpload_cv() {
-		return upload_cv;
-	}
-
-	public void setUpload_cv(String upload_cv) {
-		this.upload_cv = upload_cv;
 	}
 
 	public String getStatus() {
