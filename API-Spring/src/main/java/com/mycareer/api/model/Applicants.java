@@ -26,7 +26,7 @@ public class Applicants {
 	private Jobs job;
 
 	@NotNull
-	private String full_name;
+	private String fullname;
 	@NotNull
 	private String email;
 	private String cover_letter;
@@ -58,12 +58,12 @@ public class Applicants {
 		this.job = job;
 	}
 
-	public String getFull_name() {
-		return full_name;
+	public String getFullname() {
+		return fullname;
 	}
 
-	public void setFull_name(String full_name) {
-		this.full_name = full_name;
+	public void setFull_name(String fullname) {
+		this.fullname = fullname;
 	}
 
 	public String getEmail() {

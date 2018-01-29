@@ -23,12 +23,7 @@ public class AlertsService {
 		return alertsRepository.save(saveAlert);
 	}
 
-//	public void updatePropertyEnable(Long code, Boolean ativo) {
-//		Jobs saveJob = findByCode(code);
-//		saveJob.setAtivo(ativo);
-//		jobRepository.save(saveJob);
-//	}
-	
+
 	public Alerts findByCode(Long code) {
 		Alerts saveAlert = alertsRepository.findOne(code);
 		if (saveAlert == null) {
