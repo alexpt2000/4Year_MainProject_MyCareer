@@ -21,7 +21,8 @@
         <p-column>
           <ng-template let-job="rowData" pTemplate="body">
             <button pButton icon="fa-search-plus" pTooltip="More details" tooltipPosition="top" (click)="showJobDetails(job)"></button>
-            <button pButton type="submit" label="Apply Now" icon="fa-plus" tooltipPosition="top" pTooltip={{job.title}} class="ui-button-success" [routerLink]="['/applicantadd', job.code, job.title]"></button>
+            <button pButton type="submit" label="Apply Now" icon="fa-plus" tooltipPosition="top" pTooltip={{job.title}} class="ui-button-success"
+              [routerLink]="['/applicantadd', job.code, job.title]"></button>
           </ng-template>
         </p-column>
       </p-dataTable>
@@ -36,7 +37,15 @@
         <div align="center">
           <label>Email</label>
 
+
+          <!--
           <input pInputText type="email" [(ngModel)]="email" name="email" placeholder="name@domain.com" #emailAlert="ngModel">
+          -->
+
+
+          <input pInputText type="text" class="form-control" [(ngModel)]="email" name="emailf" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            #emailAlert="ngModel">
+
           <button pButton type="submit" label="Sign Up" [disabled]="alertForm.invalid"></button>
 
         </div>
@@ -45,12 +54,11 @@
   </form>
 
   <p-sidebar [(visible)]="display" [fullScreen]="true" [baseZIndex]="10000" #title>
-      <h1 style="font-weight:normal">{{jobTitle}}</h1>
-      <hr>
-      <p innerHtml="{{ jobDescription }}">
+    <h1 style="font-weight:normal">{{jobTitle}}</h1>
+    <hr>
+    <p innerHtml="{{ jobDescription }}">
   </p-sidebar>
 
   <p-growl [(value)]="msgs"></p-growl>
 
 </div>
-

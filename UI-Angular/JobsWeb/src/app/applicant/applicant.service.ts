@@ -19,7 +19,7 @@ export class ApplicantService {
 
     headers.append('Content-Type', 'application/json');
 
-    console.log(JSON.stringify(applicant));
+    // console.log(JSON.stringify(applicant));
 
     return this.http.post(`${this.apiUrl}/applicantsweb`, JSON.stringify(applicant), { headers })
       .toPromise()

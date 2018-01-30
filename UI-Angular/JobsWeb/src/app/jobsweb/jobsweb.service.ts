@@ -46,10 +46,11 @@ export class JobswebService {
   }
 
   addAlert(email: any): Promise<any> {
+    // console.log(email);
     const headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
-
+    // return this.http.post(`${this.apiUrl}/alertsweb`, JSON.stringify(email), { headers })
     return this.http.post(`${this.apiUrl}/alertsweb`, JSON.stringify(email), { headers })
       .toPromise()
       .then(response => response.json());

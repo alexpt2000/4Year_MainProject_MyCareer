@@ -8,10 +8,9 @@ import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 import { Location } from '@angular/common';
-import { Form } from '@angular/forms';
+import { Form, EmailValidator } from '@angular/forms';
 
-
-
+import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
 
 
 @Component({

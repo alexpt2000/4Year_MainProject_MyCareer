@@ -8,6 +8,11 @@ import {BrowserModule} from '@angular/platform-browser'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { ToastyService } from 'ng2-toasty';
+import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Form, EmailValidator } from '@angular/forms';
+
 
 
 
@@ -27,7 +32,7 @@ export class JobswebSearchComponent {
   jobTitle;
   jobDescription = '';
   display;
-  email = null;
+  email = '';
 
   constructor(
     private jobswebService: JobswebService,
@@ -58,13 +63,14 @@ export class JobswebSearchComponent {
 
 
   addAlert(email: any) {
-    this.jobswebService.addAlert({ email })
+    this.jobswebService.addAlert( {email} )
       .then(() => {
         this.toasty.success(`Email "${email}" now will receive alerts from MyCareer.`);
+        this.email = '';
         // alert(`Email "${email}" now will receive alerts from MyCareer.`);
-        this.email = null
       })
       .catch(erro => this.toasty.error(`Email "${email}" is already registered.`));
+      this.email = '';
   }
 
 }

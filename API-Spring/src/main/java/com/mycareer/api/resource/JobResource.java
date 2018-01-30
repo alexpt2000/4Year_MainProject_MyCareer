@@ -81,5 +81,7 @@ public class JobResource {
 	public Page<Jobs> find(@RequestParam(required = false, defaultValue = "%") String title, Pageable pageable) {
 		return jobRepository.findByTitleContaining(title, pageable);
 	}
+	
+	
 
 }

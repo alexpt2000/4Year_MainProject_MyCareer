@@ -1,14 +1,9 @@
-import { AlgamoneyUiPage } from './app.po';
+import { OmegaPage } from './app.po';
 
-describe('algamoney-ui App', () => {
-  let page: AlgamoneyUiPage;
+describe('omega App', function() {
+  let page: OmegaPage;
 
   beforeEach(() => {
-    page = new AlgamoneyUiPage();
-  });
-
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!!');
+    page = new OmegaPage();
   });
 });

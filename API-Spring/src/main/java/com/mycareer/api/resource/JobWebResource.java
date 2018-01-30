@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycareer.api.model.Jobs;
+import com.mycareer.api.model.Lancamento;
 import com.mycareer.api.repository.JobRepository;
+import com.mycareer.api.repository.filter.JobsFilter;
+import com.mycareer.api.repository.filter.LancamentoFilter;
 import com.mycareer.api.service.JobService;
 
 @RestController
@@ -29,16 +32,17 @@ public class JobWebResource {
 	private ApplicationEventPublisher publisher;
 
 
-	@GetMapping("/{code}") // @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
-	public ResponseEntity<Jobs> findByCode(@PathVariable Long code) {
-		Jobs job = jobRepository.findOne(code);
-		return job != null ? ResponseEntity.ok(job) : ResponseEntity.notFound().build();
-	}
-	
-	
+//	@GetMapping("/{code}") // @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
+//	public ResponseEntity<Jobs> findByCode(@PathVariable Long code) {
+//		Jobs job = jobRepository.findOne(code);
+//		return job != null ? ResponseEntity.ok(job) : ResponseEntity.notFound().build();
+//	}
+
 	@GetMapping //@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
 	public Page<Jobs> find(@RequestParam(required = false, defaultValue = "%") String title, Pageable pageable) {
 		return jobRepository.findByTitleContaining(title, pageable);
+
 	}
+	
 
 }

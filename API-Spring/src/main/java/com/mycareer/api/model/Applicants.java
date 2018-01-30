@@ -7,10 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotNull;
+
+import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(name = "applicants")
@@ -29,6 +32,9 @@ public class Applicants {
 	private String phone_number;
 
 	private String profile_url;
+	
+	@Lob
+	private Blob upload_cv;
 
 	private String cover_letter;
 
