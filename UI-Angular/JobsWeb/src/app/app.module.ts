@@ -22,7 +22,7 @@ import { JobswebSearchComponent } from 'app/jobsweb/jobsweb-search/jobsweb-searc
 
 const routes: Routes = [
   {path: '', component: JobswebSearchComponent},
-  {path: 'applicantadd/:code', component: ApplicantAddComponent}
+  {path: 'applicantadd/:code/:title', component: ApplicantAddComponent}
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 CREATE TABLE alerts (
 	code BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-	email VARCHAR(50) NOT NULL
+	email VARCHAR(50) NOT NULL,
+	UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO alerts (code, email) values (1, 'admin@mycareer.com');

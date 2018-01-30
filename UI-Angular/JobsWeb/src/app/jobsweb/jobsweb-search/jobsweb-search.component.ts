@@ -64,6 +64,7 @@ export class JobswebSearchComponent {
         // alert(`Email "${email}" now will receive alerts from MyCareer.`);
         this.email = null
       })
+      .catch(erro => this.toasty.error(`Email "${email}" is already registered.`));
   }
 
 }
