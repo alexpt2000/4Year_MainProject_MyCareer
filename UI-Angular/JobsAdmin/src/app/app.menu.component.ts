@@ -33,21 +33,6 @@ export class AppMenuComponent implements OnInit {
               ]
           },
             {
-              label: 'Components', icon: 'fa-home', badge: '2',
-              items: [
-                  {label: 'Sample Page', icon: 'fa-columns', routerLink: ['/sample']},
-                  {label: 'Forms', icon: 'fa-code', routerLink: ['/forms']},
-                  {label: 'Data', icon: 'fa-table', routerLink: ['/data']},
-                  {label: 'Panels', icon: 'fa-list-alt', routerLink: ['/panels']},
-                  {label: 'Overlays', icon: 'fa-square', routerLink: ['/overlays']},
-                  {label: 'Menus', icon: 'fa-minus-square-o', routerLink: ['/menus']},
-                  {label: 'Messages', icon: 'fa-circle-o-notch', routerLink: ['/messages']},
-                  {label: 'Charts', icon: 'fa-area-chart', routerLink: ['/charts']},
-                  {label: 'File', icon: 'fa-columns', routerLink: ['/file']},
-                  {label: 'Misc', icon: 'fa-arrow-circle-o-up', routerLink: ['/misc']}
-              ]
-          },
-            {
                 label: 'Template Pages', icon: 'fa-life-saver', badge: '8', badgeStyleClass: 'green-badge',
                 items: [
                     {label: 'Empty Page', icon: 'fa-square-o', routerLink: ['/empty']},

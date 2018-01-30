@@ -1,3 +1,5 @@
+
+
 <div class="wrapper" [ngClass]="{'sidebar-inactive-l':menuInactiveDesktop, 'sidebar-active-m':menuActiveMobile}">
     <div class="topbar clearfix">
         <a id="omega-menu-button" href="#" (click)="toggleMenu($event)">
@@ -36,7 +38,7 @@
                 <div class="profile">
                     <img src="assets/layout/images/profile.png" alt="" />
                     <a id="profile-button" href="#" (click)="toggleProfile($event)">
-                        <span class="username">Peggy Olson</span>
+                        <span class="username">Alexander Souza</span>
                         <i class="fa fa-fw fa-cog"></i>
                     </a>
                     <ul [@submenu]="profileActive ? 'visible' : 'hidden'">
@@ -50,7 +52,9 @@
         </div>
     </div>
     <div class="main">
+        <ng2-toasty></ng2-toasty>
         <router-outlet></router-outlet>
+
     </div>
     <div class="footer">
         <img src="assets/layout/images/logo-colored.png" alt="" width="32">
