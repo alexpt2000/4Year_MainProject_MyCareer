@@ -1,7 +1,11 @@
-import { browser} from 'protractor';
+import { browser, by, element } from 'protractor';
 
-export class OmegaPage {
+export class AlgamoneyUiPage {
   navigateTo() {
     return browser.get('/');
+  }
+
+  getParagraphText() {
+    return element(by.css('app-root h1')).getText();
   }
 }
