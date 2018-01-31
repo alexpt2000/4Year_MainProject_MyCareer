@@ -6,7 +6,6 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
 import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { JobswebSearchComponent } from './jobsweb/jobsweb-search/jobsweb-search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },

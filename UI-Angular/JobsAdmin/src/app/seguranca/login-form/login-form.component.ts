@@ -27,4 +27,14 @@ export class LoginFormComponent {
       });
   }
 
+  loginPass() {
+    this.auth.login('admin@mycareer.com', 'admin')
+      .then(() => {
+        this.router.navigate(['/lancamentos']);
+      })
+      .catch(erro => {
+        this.errorHandler.handle(erro);
+      });
+  }
+
 }

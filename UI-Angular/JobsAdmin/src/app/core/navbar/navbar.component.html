@@ -1,4 +1,15 @@
-<nav class="navbar">
+
+<p-menubar [model]="items">
+    <div>
+        <!--<input type="text" pInputText placeholder="Search">-->
+        <a>Hi, Admin </a>
+        <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
+    </div>
+</p-menubar>
+
+
+<!--
+  <nav class="navbar">
 
   <div class="container">
     <div class="ui-g">
@@ -18,3 +29,4 @@
   </ul>
 
 </nav>
+-->

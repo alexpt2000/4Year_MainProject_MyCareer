@@ -17,13 +17,17 @@ import { CategoriaService } from './../categorias/categoria.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
-import { JobswebService } from 'app/jobsweb/jobsweb.service';
+import {MenubarModule} from 'primeng/components/menubar/menubar';
+
+import {MenuModule} from 'primeng/components/menu/menu';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
     RouterModule,
+    MenubarModule,
+    MenuModule,
 
     ToastyModule.forRoot(),
     ConfirmDialogModule,
@@ -41,7 +45,6 @@ import { JobswebService } from 'app/jobsweb/jobsweb.service';
   providers: [
     LancamentoService,
     PessoaService,
-    JobswebService,
     CategoriaService,
     ErrorHandlerService,
     AuthService,
