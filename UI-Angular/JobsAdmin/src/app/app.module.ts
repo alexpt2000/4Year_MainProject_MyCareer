@@ -9,11 +9,14 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SecurityModule } from './security/security.module';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {ScheduleModule} from 'primeng/components/schedule/schedule';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
     LancamentosModule,
     PessoasModule,
     SecurityModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ScheduleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,7 +20,7 @@ export class LoginFormComponent {
   login(user: string, password: string) {
     this.auth.login(user, password)
       .then(() => {
-        this.router.navigate(['/lancamentos']);
+        this.router.navigate(['/dashboard']);
       })
       .catch(erro => {
         this.errorHandler.handle(erro);
@@ -31,7 +31,7 @@ export class LoginFormComponent {
   loginPass() {
     this.auth.login('admin@mycareer.com', 'admin')
       .then(() => {
-        this.router.navigate(['/lancamentos']);
+        this.router.navigate(['/dashboard']);
       })
       .catch(erro => {
         this.errorHandler.handle(erro);

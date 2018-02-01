@@ -1,11 +1,29 @@
 
-<p-menubar [model]="items">
-    <div>
-        <!--<input type="text" pInputText placeholder="Search">-->
-        <a>Hi, Admin </a>
-        <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
+  <nav class="navbar">
+
+    <div class="container">
+      <div class="ui-g">
+        <div class="ui-g-12">
+
+          <img src="assets/layout/images/logo.png">
+
+        </div>
+      </div>
     </div>
-</p-menubar>
+
+  </nav>
+
+  <div class="container">
+    <p-menubar [model]="items">
+      <div>
+          <!--<input type="text" pInputText placeholder="Search">-->
+          <a>Hi, Admin </a>
+          <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
+      </div>
+  </p-menubar>
+
+  </div>
+
 
 
 <!--
