@@ -1,0 +1,136 @@
+body {
+
+  background: #edf0f5;
+}
+
+/* Dashboard */
+.dashboard {
+  margin-top: 16px; }
+  .dashboard .card {
+    margin-top: 0px;
+    background: #f8f6f6; }
+  .dashboard .summary {
+    height: 75px;
+    position: relative; }
+    .dashboard .summary .title {
+      font-size: 20px; }
+    .dashboard .summary .detail {
+      color: #a4a4a4;
+      display: block;
+      margin-top: 10px; }
+    .dashboard .summary .count {
+      color: #ffffff;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      padding: 5px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px; }
+      .dashboard .summary .count.visitors {
+        background-color: #20d077; }
+      .dashboard .summary .count.purchases {
+        background-color: #f9c851; }
+      .dashboard .summary .count.revenue {
+        background-color: #007be5; }
+  .dashboard .task-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .dashboard .task-list li {
+      padding: 8px 4px;
+      border-bottom: 1px solid #e3e3e3; }
+    .dashboard .task-list .ui-chkbox {
+      vertical-align: middle;
+      margin-right: 5px; }
+    .dashboard .task-list .task-name {
+      vertical-align: middle; }
+    .dashboard .task-list .ui-button {
+      width: 50px;
+      float: right; }
+      .dashboard .task-list .ui-button .ui-button-text {
+        padding: .1em; }
+  .dashboard .highlight-box {
+    height: 100px; }
+    .dashboard .highlight-box .initials {
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
+      height: 100%;
+      font-size: 54px;
+      padding-top: 20px;
+      text-align: center; }
+    .dashboard .highlight-box .card {
+      color: #a4a4a4;
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
+      height: 100%; }
+      .dashboard .highlight-box .card .count {
+        font-size: 36px;
+        display: block;
+        margin-top: 15px; }
+  .dashboard .activity-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+    .dashboard .activity-list li {
+      border-bottom: 1px solid #e3e3e3;
+      padding: 15px 0 9px 9px; }
+      .dashboard .activity-list li .count {
+        font-size: 24px;
+        color: #ffffff;
+        background-color: #007be5;
+        font-weight: bold;
+        width: 60px;
+        padding: 5px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px; }
+      .dashboard .activity-list li:first-child {
+        border-top: 1px solid #d9d9d9; }
+      .dashboard .activity-list li:last-child {
+        border: 0; }
+      .dashboard .activity-list li .ui-g-6:first-child {
+        font-size: 18px;
+        padding-left: 0; }
+      .dashboard .activity-list li .ui-g-6:last-child {
+        text-align: right;
+        color: #a4a4a4; }
+  .dashboard .contacts {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+    .dashboard .contacts li {
+      border-bottom: 1px solid #e3e3e3; }
+      .dashboard .contacts li a {
+        padding: 9px;
+        width: 100%;
+        box-sizing: border-box;
+        text-decoration: none;
+        position: relative;
+        display: block;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        -moz-transition: background-color 0.2s;
+        -o-transition: background-color 0.2s;
+        -webkit-transition: background-color 0.2s;
+        transition: background-color 0.2s; }
+        .dashboard .contacts li a .name {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          font-size: 18px; }
+        .dashboard .contacts li a .email {
+          position: absolute;
+          right: 10px;
+          top: 30px;
+          font-size: 14px;
+          color: #a4a4a4; }
+        .dashboard .contacts li a:hover {
+          cursor: pointer;
+          background-color: #eeeeee; }
+      .dashboard .contacts li:last-child {
+        border: 0; }

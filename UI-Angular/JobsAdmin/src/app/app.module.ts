@@ -10,7 +10,10 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SecurityModule } from './security/security.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {ScheduleModule} from 'primeng/components/schedule/schedule';
+import {ScheduleModule} from 'primeng/primeng';
+
+import {PanelModule} from 'primeng/primeng';
+
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import {ScheduleModule} from 'primeng/components/schedule/schedule';
     PessoasModule,
     SecurityModule,
     AppRoutingModule,
-    ScheduleModule
+    ScheduleModule,
+    PanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

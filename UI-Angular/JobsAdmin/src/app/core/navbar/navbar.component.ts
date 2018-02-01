@@ -36,25 +36,30 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        label: 'File',
-        items: [{
-          label: 'New',
-          icon: 'fa-plus',
-          items: [
-            { label: 'Project' },
-            { label: 'Other' },
-          ]
-        },
-        { label: 'Open' },
-        { label: 'Quit' }
-        ]
+        label: 'Home', icon: 'fa-home', routerLink: ['/dashboard']
       },
       {
         label: 'Applicant',
+        icon: 'fa-users',
+        items: [
+          { label: 'List applicant', icon: 'fa-users', routerLink: ['/'] },
+          { label: 'Evaluate applicant', icon: 'fa-address-card', routerLink: ['/'] }
+        ]
+      },
+      {
+        label: 'Jobs',
+        icon: 'fa-briefcase',
+        items: [
+          { label: 'List jobs', icon: 'fa-briefcase', routerLink: ['/'] },
+          { label: 'New job ', icon: 'fa-plus-circle', routerLink: ['/'] }
+        ]
+      },
+      {
+        label: 'Test',
         icon: 'fa-edit',
         items: [
-          { label: 'List applicant', icon: 'fa-mail-forward', routerLink: ['/lancamentos'] },
-          { label: 'Evaluate', icon: 'fa-mail-reply', routerLink: ['/pessoas'] }
+          { label: 'Lancamentos', icon: 'fa-mail-forward', routerLink: ['/lancamentos'] },
+          { label: 'Pessoas', icon: 'fa-mail-reply', routerLink: ['/pessoas'] }
         ]
       }
     ];

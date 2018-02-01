@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   scheduleHeader: any;
+  events: any[];
 
   constructor() { }
 
@@ -16,7 +17,23 @@ export class DashboardComponent implements OnInit {
       left: 'prev,next today',
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
-  };
+    };
+
+
+    this.events = [
+      {
+        'id': 1,
+        'title': 'Alex',
+        'start': '2018-02-05'
+      },
+      {
+        'id': 2,
+        'title': 'Project',
+        'start': '2018-02-15'
+      }
+
+    ]
+
   }
 
 }

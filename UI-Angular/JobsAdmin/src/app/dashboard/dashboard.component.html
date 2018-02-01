@@ -1,31 +1,40 @@
 
-
 <div class="container">
 
 
 <div class="ui-g ui-fluid dashboard">
   <div class="ui-g-12 ui-md-4">
       <div class="card clearfix summary">
-          <span class="title">Users OO</span>
-          <span class="detail">Number of visitors</span>
-          <span class="count visitors">12</span>
+          <span class="title">Applicants</span>
+          <span class="detail">New applicants</span>
+          <span class="count visitors">10</span>
       </div>
   </div>
   <div class="ui-g-12 ui-md-4">
       <div class="card clearfix summary">
-          <span class="title">Sales</span>
-          <span class="detail">Number of purchases</span>
-          <span class="count purchases">534</span>
+          <span class="title">Applicants</span>
+          <span class="detail">Total applicants</span>
+          <span class="count purchases">30</span>
       </div>
   </div>
   <div class="ui-g-12 ui-md-4">
       <div class="card clearfix summary">
-          <span class="title">Revenue</span>
-          <span class="detail">Income for today</span>
-          <span class="count revenue">$3,200</span>
+          <span class="title">Jobs</span>
+          <span class="detail">Jobs published</span>
+          <span class="count revenue">9</span>
       </div>
   </div>
 
+
+
+  <div class="ui-g-12 ui-md-12">
+      <p-panel header="Schedule" [style]="{'height':'100%'}">
+          <p-schedule [events]="events" defaultDate="2018-02-10" [header]="scheduleHeader"></p-schedule>
+      </p-panel>
+  </div>
+
+
+  <!--
   <div class="ui-g-12 ui-md-6 ui-lg-3">
       <div class="highlight-box">
           <div class="initials" style="background-color:#007be5;color:#00448f">TV</div>
@@ -68,7 +77,7 @@
   </div>
 
 
-  <!--
+
   <div class="ui-g-12 ui-md-6 ui-lg-4">
       <p-panel header="Contact Us" [style]="{'text-align':'center','background':'#fff','height':'100%'}">
           <div class="ui-g">
