@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
         label: 'Jobs',
         icon: 'fa-briefcase',
         items: [
-          { label: 'List jobs', icon: 'fa-briefcase', routerLink: ['/'] },
+          { label: 'List jobs', icon: 'fa-briefcase', routerLink: ['/jobs'] },
           { label: 'New job ', icon: 'fa-plus-circle', routerLink: ['/'] }
         ]
       },

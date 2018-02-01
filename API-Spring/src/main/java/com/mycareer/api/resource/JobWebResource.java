@@ -32,13 +32,7 @@ public class JobWebResource {
 	private ApplicationEventPublisher publisher;
 
 
-//	@GetMapping("/{code}") // @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
-//	public ResponseEntity<Jobs> findByCode(@PathVariable Long code) {
-//		Jobs job = jobRepository.findOne(code);
-//		return job != null ? ResponseEntity.ok(job) : ResponseEntity.notFound().build();
-//	}
-
-	@GetMapping //@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
+	@GetMapping 
 	public Page<Jobs> find(@RequestParam(required = false, defaultValue = "%") String title, Pageable pageable) {
 		return jobRepository.findByTitleContaining(title, pageable);
 

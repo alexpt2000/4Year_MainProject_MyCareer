@@ -17,7 +17,7 @@
     <p-menubar [model]="items">
       <div>
           <!--<input type="text" pInputText placeholder="Search">-->
-          <a>Hi, Admin </a>
+          Hi, {{ auth.jwtPayload?.name }}
           <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
       </div>
   </p-menubar>

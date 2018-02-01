@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import {MenubarModule} from 'primeng/components/menubar/menubar';
 
 import {MenuModule} from 'primeng/components/menu/menu';
+import { JobsService } from 'app/jobs/jobs.service';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import {MenuModule} from 'primeng/components/menu/menu';
     LancamentoService,
     PessoaService,
     CategoriaService,
+    JobsService,
     ErrorHandlerService,
     AuthService,
 

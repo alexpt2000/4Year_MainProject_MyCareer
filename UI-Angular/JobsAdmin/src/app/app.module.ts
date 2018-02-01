@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {ScheduleModule} from 'primeng/primeng';
 
 import {PanelModule} from 'primeng/primeng';
+import { JobsModule } from 'app/jobs/jobs.module';
+
 
 
 
@@ -28,6 +30,7 @@ import {PanelModule} from 'primeng/primeng';
     CoreModule,
     LancamentosModule,
     PessoasModule,
+    JobsModule,
     SecurityModule,
     AppRoutingModule,
     ScheduleModule,

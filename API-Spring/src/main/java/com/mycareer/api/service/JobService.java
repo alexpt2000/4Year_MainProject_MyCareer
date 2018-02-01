@@ -21,12 +21,7 @@ public class JobService {
 		return jobRepository.save(saveJob);
 	}
 
-//	public void updatePropertyEnable(Long code, Boolean ativo) {
-//		Jobs saveJob = findByCode(code);
-//		saveJob.setAtivo(ativo);
-//		jobRepository.save(saveJob);
-//	}
-	
+
 	public Jobs findByCode(Long code) {
 		Jobs saveJob = jobRepository.findOne(code);
 		if (saveJob == null) {

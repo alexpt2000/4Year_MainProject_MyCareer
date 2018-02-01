@@ -32,6 +32,12 @@ INSERT INTO permissions (code, description) values (6, 'ROLE_CADASTRAR_LANCAMENT
 INSERT INTO permissions (code, description) values (7, 'ROLE_REMOVER_LANCAMENTO');
 INSERT INTO permissions (code, description) values (8, 'ROLE_PESQUISAR_LANCAMENTO');
 
+-- Jobs permissions
+INSERT INTO permissions (code, description) values (9, 'ROLE_READ_JOB');
+INSERT INTO permissions (code, description) values (10, 'ROLE_ADD_JOB');
+INSERT INTO permissions (code, description) values (11, 'ROLE_REMOVE_JOB');
+
+
 -- admin
 INSERT INTO users_permission (code_user, code_permission) values (1, 1);
 INSERT INTO users_permission (code_user, code_permission) values (1, 2);
@@ -41,8 +47,14 @@ INSERT INTO users_permission (code_user, code_permission) values (1, 5);
 INSERT INTO users_permission (code_user, code_permission) values (1, 6);
 INSERT INTO users_permission (code_user, code_permission) values (1, 7);
 INSERT INTO users_permission (code_user, code_permission) values (1, 8);
+-- admin JOBS
+INSERT INTO users_permission (code_user, code_permission) values (1, 9);
+INSERT INTO users_permission (code_user, code_permission) values (1, 10);
+INSERT INTO users_permission (code_user, code_permission) values (1, 11);
 
 -- alex
 INSERT INTO users_permission (code_user, code_permission) values (2, 2);
 INSERT INTO users_permission (code_user, code_permission) values (2, 5);
 INSERT INTO users_permission (code_user, code_permission) values (2, 8);
+-- alex JOBS
+INSERT INTO users_permission (code_user, code_permission) values (2, 9);
