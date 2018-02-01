@@ -4,8 +4,9 @@
       <form autocomplete="off" (ngSubmit)="search()">
         <div class="ui-g-12 ui-fluid" class="form-inline">
             <br/>
+            <button pButton type="submit" label="Add Job" icon="fa-plus" tooltipPosition="top" pTooltip="Add new Job" class="ui-button-success"></button>
           <input pInputText type="text" name="title" placeholder="Job Title" [(ngModel)]="filter.title">
-          <button pButton type="submit" label="Search"></button>
+          <button pButton type="submit" icon="fa-search" pTooltip="Search" tooltipPosition="top"></button>
         </div>
       </form>
 
@@ -18,12 +19,17 @@
           <p-column field="title" header="Title"></p-column>
           <p-column field="position" header="Position"></p-column>
           <p-column field="location" header="Location"></p-column>
-          <p-column field="publication" header="Posted"></p-column>
-          <p-column>
+          <p-column field="publication" header="Posted" styleClass="col-size"></p-column>
+          <p-column field="status" header="Status" styleClass="col-size"></p-column>
+          <p-column styleClass="col-size">
             <ng-template let-job="rowData" pTemplate="body">
+                <a pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" [routerLink]="['/jobs', job.code]"></a>
+                <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(job)" [disabled]="!auth.havePermission('ROLE_REMOVE_JOB')" class="ui-button-danger"></button>
+              <!--
               <button pButton icon="fa-search-plus" pTooltip="More details" tooltipPosition="top" (click)="showJobDetails(job)"></button>
               <button pButton type="submit" label="Apply Now" icon="fa-plus" tooltipPosition="top" pTooltip={{job.title}} class="ui-button-success"
                 [routerLink]="['/applicantadd', job.code, job.title]"></button>
+              -->
             </ng-template>
           </p-column>
         </p-dataTable>

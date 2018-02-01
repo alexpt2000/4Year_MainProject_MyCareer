@@ -38,4 +38,15 @@ export class LoginFormComponent {
       });
   }
 
+    // To be remove - used just to pass the user and password
+    loginPassAlex() {
+      this.auth.login('alex@mycareer.com', 'alex')
+        .then(() => {
+          this.router.navigate(['/dashboard']);
+        })
+        .catch(erro => {
+          this.errorHandler.handle(erro);
+        });
+    }
+
 }

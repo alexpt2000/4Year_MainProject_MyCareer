@@ -18,7 +18,7 @@ const routes: Routes = [
     data: { roles: ['ROLE_ADD_JOB'] }
   },
   {
-    path: 'pessoas/:codigo',
+    path: 'jobs/:code',
     component: JobsSearchComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_ADD_JOB'] }

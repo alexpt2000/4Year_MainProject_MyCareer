@@ -32,7 +32,10 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Login" [disabled]="!f.valid" (click)="login(user.value, pass.value); pass.value = '';"></button>
-        <button pButton type="submit" label="Pass Login" (click)="loginPass()"></button>
+        <br/>
+        <button pButton type="submit" label="Admin Login" (click)="loginPass()"></button>
+        <br/>
+        <button pButton type="submit" label="Alex Login" (click)="loginPassAlex()"></button>
       </div>
 
     </div>
