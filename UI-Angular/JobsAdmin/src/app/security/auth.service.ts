@@ -17,28 +17,28 @@ export class AuthService {
     private jwtHelper: JwtHelper
   ) {
     this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
-    this.carregarToken();
+    this.loadToken();
   }
 
-  login(usuario: string, senha: string): Promise<void> {
+  login(user: string, password: string): Promise<void> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
 
-    const body = `username=${usuario}&password=${senha}&grant_type=password`;
+    const body = `username=${user}&password=${password}&grant_type=password`;
 
     return this.http.post(this.oauthTokenUrl, body,
         { headers, withCredentials: true })
       .toPromise()
       .then(response => {
-        this.armazenarToken(response.json().access_token);
+        this.saveToken(response.json().access_token);
       })
       .catch(response => {
         if (response.status === 400) {
           const responseJson = response.json();
 
           if (responseJson.error === 'invalid_grant') {
-            return Promise.reject('Usuário ou senha inválida!');
+            return Promise.reject('Invalid user or password!');
           }
         }
 
@@ -46,7 +46,7 @@ export class AuthService {
       });
   }
 
-  obterNovoAccessToken(): Promise<void> {
+  getNewAccessToken(): Promise<void> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
@@ -57,36 +57,36 @@ export class AuthService {
         { headers, withCredentials: true })
       .toPromise()
       .then(response => {
-        this.armazenarToken(response.json().access_token);
+        this.saveToken(response.json().access_token);
 
-        console.log('Novo access token criado!');
+        console.log('New access token created!');
 
         return Promise.resolve(null);
       })
       .catch(response => {
-        console.error('Erro ao renovar token.', response);
+        console.error('Error renewing token.', response);
         return Promise.resolve(null);
       });
   }
 
-  limparAccessToken() {
+  cleanAccessToken() {
     localStorage.removeItem('token');
     this.jwtPayload = null;
   }
 
-  isAccessTokenInvalido() {
+  isAccessTokenInvalid() {
     const token = localStorage.getItem('token');
 
     return !token || this.jwtHelper.isTokenExpired(token);
   }
 
-  temPermissao(permissao: string) {
-    return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+  havePermission(permission: string) {
+    return this.jwtPayload && this.jwtPayload.authorities.includes(permission);
   }
 
-  temQualquerPermissao(roles) {
+  haveAnyPermission(roles) {
     for (const role of roles) {
-      if (this.temPermissao(role)) {
+      if (this.havePermission(role)) {
         return true;
       }
     }
@@ -94,16 +94,16 @@ export class AuthService {
     return false;
   }
 
-  private armazenarToken(token: string) {
+  private saveToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('token', token);
   }
 
-  private carregarToken() {
+  private loadToken() {
     const token = localStorage.getItem('token');
 
     if (token) {
-      this.armazenarToken(token);
+      this.saveToken(token);
     }
   }
 

@@ -9,14 +9,14 @@ import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdia
 import { ToastyModule } from 'ng2-toasty';
 import { JwtHelper } from 'angular2-jwt';
 
-import { AuthService } from './../seguranca/auth.service';
+import { AuthService } from './../security/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { PessoaService } from './../pessoas/pessoa.service';
 import { LancamentoService } from './../lancamentos/lancamento.service';
 import { CategoriaService } from './../categorias/categoria.service';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NaoAutorizadoComponent } from './nao-autorizado.component';
-import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { NotauthorizedComponent } from './not-authorized.component';
+import { PageNotFoundComponent } from './page-not-found.component';
 import {MenubarModule} from 'primeng/components/menubar/menubar';
 
 import {MenuModule} from 'primeng/components/menu/menu';
@@ -34,8 +34,8 @@ import {MenuModule} from 'primeng/components/menu/menu';
   ],
   declarations: [
     NavbarComponent,
-    PaginaNaoEncontradaComponent,
-    NaoAutorizadoComponent
+    PageNotFoundComponent,
+    NotauthorizedComponent
   ],
   exports: [
     NavbarComponent,

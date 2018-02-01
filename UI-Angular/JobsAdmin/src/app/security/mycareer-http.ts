@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 export class NotAuthenticatedError {}
 
 @Injectable()
-export class MoneyHttp extends AuthHttp {
+export class MycareerHttp extends AuthHttp {
 
   constructor(
     private auth: AuthService,
@@ -20,47 +20,47 @@ export class MoneyHttp extends AuthHttp {
   }
 
   public delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.fazerRequisicao(() => super.delete(url, options));
+    return this.makeRequisition(() => super.delete(url, options));
   }
 
   public patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.fazerRequisicao(() => super.patch(url, options));
+    return this.makeRequisition(() => super.patch(url, options));
   }
 
   public head(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.fazerRequisicao(() => super.head(url, options));
+    return this.makeRequisition(() => super.head(url, options));
   }
 
   public options(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.fazerRequisicao(() => super.options(url, options));
+    return this.makeRequisition(() => super.options(url, options));
   }
 
   public get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.fazerRequisicao(() => super.get(url, options));
+    return this.makeRequisition(() => super.get(url, options));
   }
 
   public post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.fazerRequisicao(() => super.post(url, body, options));
+    return this.makeRequisition(() => super.post(url, body, options));
   }
 
   public put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.fazerRequisicao(() => super.put(url, body, options));
+    return this.makeRequisition(() => super.put(url, body, options));
   }
 
-  private fazerRequisicao(fn: Function): Observable<Response> {
-    if (this.auth.isAccessTokenInvalido()) {
-      console.log('Requisição HTTP com access token inválido. Obtendo novo token...');
+  private makeRequisition(fn: Function): Observable<Response> {
+    if (this.auth.isAccessTokenInvalid()) {
+      console.log('HTTP request with invalid access token. Getting new token...');
 
-      const chamadaNovoAccessToken = this.auth.obterNovoAccessToken()
+      const callNewAccessToken = this.auth.getNewAccessToken()
         .then(() => {
-          if (this.auth.isAccessTokenInvalido()) {
+          if (this.auth.isAccessTokenInvalid()) {
             throw new NotAuthenticatedError();
           }
 
           return fn().toPromise();
         });
 
-      return Observable.fromPromise(chamadaNovoAccessToken);
+      return Observable.fromPromise(callNewAccessToken);
     } else {
       return fn();
     }

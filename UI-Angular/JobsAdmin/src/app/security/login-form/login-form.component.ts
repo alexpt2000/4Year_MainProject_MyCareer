@@ -17,8 +17,8 @@ export class LoginFormComponent {
     private router: Router
   ) { }
 
-  login(usuario: string, senha: string) {
-    this.auth.login(usuario, senha)
+  login(user: string, password: string) {
+    this.auth.login(user, password)
       .then(() => {
         this.router.navigate(['/lancamentos']);
       })
@@ -27,6 +27,7 @@ export class LoginFormComponent {
       });
   }
 
+  // To be remove - used just to pass the user and password
   loginPass() {
     this.auth.login('admin@mycareer.com', 'admin')
       .then(() => {

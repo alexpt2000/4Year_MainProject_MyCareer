@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { LogoutService } from './../../seguranca/logout.service';
+import { LogoutService } from './../../security/logout.service';
 import { ErrorHandlerService } from './../error-handler.service';
-import { AuthService } from './../../seguranca/auth.service';
+import { AuthService } from './../../security/auth.service';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import {MenubarModule} from 'primeng/components/menubar/menubar';
 

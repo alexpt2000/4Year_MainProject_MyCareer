@@ -17,7 +17,11 @@ export class AppComponent {
     this.toastyConfig.theme = 'bootstrap';
   }
 
-  exibindoNavbar() {
+  // exibindoNavbar() {
+  //   return this.router.url !== '/login';
+  // }
+
+  showNavbar() {
     return this.router.url !== '/login';
   }
 
