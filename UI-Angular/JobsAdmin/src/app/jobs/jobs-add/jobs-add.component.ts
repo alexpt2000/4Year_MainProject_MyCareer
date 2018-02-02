@@ -1,3 +1,4 @@
+import { Jobs } from './../../core/model';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { JobsService } from './../jobs.service';
 import { BrowserModule } from '@angular/platform-browser'
@@ -11,7 +12,6 @@ import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
 
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Jobs } from 'app/jobs/model';
 import { Title } from '@angular/platform-browser';
 
 

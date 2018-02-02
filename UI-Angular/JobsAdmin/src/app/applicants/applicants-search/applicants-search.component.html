@@ -1,52 +1,60 @@
 <div class="container">
-    <div class="ui-g">
 
-      <form autocomplete="off" (ngSubmit)="search()">
-        <div class="ui-g-12 ui-fluid" class="form-inline">
-            <br/>
-            <button pButton type="submit" label="Add Job" icon="fa-plus"  class="ui-button-success" [routerLink]="['/jobs/newjob']"></button>
-          <input pInputText type="text" name="title" placeholder="Job Title" [(ngModel)]="filter.title">
-          <button pButton type="submit" icon="fa-search" pTooltip="Search" tooltipPosition="top"></button>
-        </div>
-      </form>
+  <div class="ui-g">
+    <form autocomplete="off" (ngSubmit)="search()">
+      <div class="ui-g-12 ui-fluid" class="form-inline">
+        <br/>
+        <input pInputText type="text" name="fullname" placeholder="Applicant name" [(ngModel)]="filter.fullname">
+        <button pButton type="submit" icon="fa-search" pTooltip="Search" tooltipPosition="top"></button>
+      </div>
+    </form>
+  </div>
 
-    </div>
 
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <p-dataTable [value]="jobsweb" [responsive]="true" emptyMessage="No jobs available." [paginator]="true" [rows]="filter.itensPage"
-          [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="changePage($event)" #table>
-          <p-column field="title" header="Title"></p-column>
-          <p-column field="position" header="Position"></p-column>
-          <p-column field="location" header="Location"></p-column>
-          <p-column header="Publication" styleClass="col-size">
-              <ng-template let-job="rowData" pTemplate="body">
-                <span>{{ job.publication | date:'dd/MM/yyyy' }}</span>
-              </ng-template>
-            </p-column>
-          <p-column field="status" header="Status" styleClass="col-size"></p-column>
-          <p-column styleClass="col-size">
-            <ng-template let-job="rowData" pTemplate="body">
-                <button pButton icon="fa-user" pTooltip="Applicants" tooltipPosition="top" [routerLink]="['/jobs', job.code]"></button>
-                <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/jobs', job.code]" [disabled]="!auth.havePermission('ROLE_ADD_JOB')"></button>
-                <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(job)" [disabled]="!auth.havePermission('ROLE_REMOVE_JOB')" class="ui-button-danger"></button>
-              <!--
-              <button pButton icon="fa-search-plus" pTooltip="More details" tooltipPosition="top" (click)="showJobDetails(job)"></button>
-              <button pButton type="submit" label="Apply Now" icon="fa-plus" tooltipPosition="top" pTooltip={{job.title}} class="ui-button-success"
-                [routerLink]="['/applicantadd', job.code, job.title]"></button>
-              -->
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="applicants" [responsive]="true" emptyMessage="No applicants available." [paginator]="true" [rows]="filter.itensPage"
+        [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="changePage($event)" #table>
+        <p-column field="fullname" header="Name"></p-column>
+
+        <p-column field="email" header ="Email" >
+            <ng-template let-appl="rowData" pTemplate type="body">
+                <a target="_blank" href="mailto:{{appl.email}}">{{appl.email}}</a>
+            </ng-template>
+        </p-column>
+
+        <p-column field="phone_number" header="Phone number"></p-column>
+        <!--
+        <p-column field="profile_url" header ="Profile" >
+            <ng-template let-row="rowData" pTemplate type="body">
+                <a target="_blank" href="{{row.profile_url}}">{{row.profile_url}}</a>
+            </ng-template>
+        </p-column>
+      -->
+        <p-column field="status" header="Status" styleClass="col-size"></p-column>
+
+        <p-column header="Date" styleClass="col-size">
+            <ng-template let-appl="rowData" pTemplate="body">
+              <span>{{ appl.applicant_date | date:'dd/MM/yyyy' }}</span>
             </ng-template>
           </p-column>
+
+          <p-column styleClass="col-size">
+            <ng-template let-appl="rowData" pTemplate="body">
+                <button pButton icon="fa-user" pTooltip="Applicants" tooltipPosition="top" [routerLink]="['/applicants', appl.code]"></button>
+                <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', appl.code]" [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
+                <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(appl)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')" class="ui-button-danger"></button>
+            </ng-template>
+          </p-column>
+
         </p-dataTable>
-      </div>
     </div>
-
-    <p-sidebar [(visible)]="display" [fullScreen]="true" [baseZIndex]="10000" #title>
-      <h1 style="font-weight:normal">{{jobTitle}}</h1>
-      <hr>
-      <p innerHtml="{{ jobDescription }}">
-    </p-sidebar>
-
-    <p-growl [(value)]="msgs"></p-growl>
-
   </div>
+
+
+
+  <p-growl [(value)]="msgs"></p-growl>
+
+
+</div>

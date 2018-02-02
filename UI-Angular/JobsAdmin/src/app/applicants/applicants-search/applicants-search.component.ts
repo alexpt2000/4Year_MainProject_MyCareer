@@ -26,7 +26,7 @@ export class ApplicantsSearchComponent {
 
   totalRecords = 0;
   filter = new ApplicantsFilter();
-  applicantsweb = [];
+  applicants = [];
   applicantsFullname;
   display;
   email = '';
@@ -47,7 +47,7 @@ export class ApplicantsSearchComponent {
     this.applicantsService.search(this.filter)
       .then(result => {
         this.totalRecords = result.total;
-        this.applicantsweb = result.applicantsweb;
+        this.applicants = result.applicants;
       });
   }
 
@@ -62,17 +62,17 @@ export class ApplicantsSearchComponent {
   //   this.display = true;
   // }
 
-  confirmationDelete(applican: any) {
+  confirmationDelete(applicant: any) {
     this.confirmation.confirm({
       message: 'Are you sure you want to delete?',
       accept: () => {
-        this.delete(applican);
+        this.delete(applicant);
       }
     });
   }
 
-  delete(applican: any) {
-    this.applicantsService.delete(applican.code)
+  delete(applicant: any) {
+    this.applicantsService.delete(applicant.code)
       .then(() => {
         if (this.grid.first === 0) {
           this.search();

@@ -13,7 +13,7 @@ const routes: Routes = [
     data: { roles: ['ROLE_READ_APPLICANT'] }
   },
   {
-    path: 'applicants/newapplicants',
+    path: 'applicants/newapplicant',
     component: ApplicantsAddComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_ADD_APPLICANT'] }

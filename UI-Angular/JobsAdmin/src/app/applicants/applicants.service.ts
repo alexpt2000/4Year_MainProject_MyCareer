@@ -1,4 +1,4 @@
-import { Applicants } from './model';
+import { Applicants } from './../core/model';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
@@ -6,7 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import * as moment from 'moment';
 
 import 'rxjs/add/operator/toPromise';
-import { Jobs } from 'app/jobs/model';
+
 
 export class ApplicantsFilter {
   fullname: string;
@@ -38,10 +38,10 @@ export class ApplicantsService {
       .toPromise()
       .then(response => {
         const responseJson = response.json();
-        const applicantsweb = responseJson.content;
+        const applicants = responseJson.content;
 
         const result = {
-          applicantsweb,
+          applicants,
           total: responseJson.totalElements
         };
 
@@ -92,9 +92,9 @@ export class ApplicantsService {
       });
   }
 
-  private convertStringToDate(jobs: Jobs[]) {
-    for (const job of jobs) {
-      job.publication = moment(job.publication,
+  private convertStringToDate(applicants: Applicants[]) {
+    for (const applicant of applicants) {
+      applicant.applicant_date = moment(applicant.applicant_date,
         'YYYY-MM-DD').toDate();
 
     }

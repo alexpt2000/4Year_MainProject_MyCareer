@@ -1,3 +1,4 @@
+import { ApplicantsService } from './../applicants/applicants.service';
 import { Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -48,6 +49,7 @@ import { JobsService } from 'app/jobs/jobs.service';
     PessoaService,
     CategoriaService,
     JobsService,
+    ApplicantsService,
     ErrorHandlerService,
     AuthService,
 

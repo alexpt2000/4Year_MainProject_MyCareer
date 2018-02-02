@@ -1,3 +1,4 @@
+import { ApplicantsModule } from './applicants/applicants.module';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,9 +15,7 @@ import {ScheduleModule} from 'primeng/primeng';
 
 import {PanelModule} from 'primeng/primeng';
 import { JobsModule } from 'app/jobs/jobs.module';
-import { ApplicantsAddComponent } from './applicants/applicants-add/applicants-add.component';
-import { ApplicantsSearchComponent } from './applicants/applicants-search/applicants-search.component';
-import { ApplicantsModule } from 'app/applicants/applicants.module';
+
 
 
 
@@ -25,13 +24,12 @@ import { ApplicantsModule } from 'app/applicants/applicants.module';
   declarations: [
     AppComponent,
     DashboardComponent,
-    ApplicantsAddComponent,
-    ApplicantsSearchComponent
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
+    HttpModule,
     CoreModule,
     LancamentosModule,
     PessoasModule,
