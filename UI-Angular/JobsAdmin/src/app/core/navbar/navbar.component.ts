@@ -40,9 +40,9 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Applicant',
-        icon: 'fa-users',
+        icon: 'fa-user',
         items: [
-          { label: 'List applicant', icon: 'fa-users', routerLink: ['/'] },
+          { label: 'List applicant', icon: 'fa-user', routerLink: ['/'] },
           { label: 'Evaluate applicant', icon: 'fa-address-card', routerLink: ['/'] }
         ]
       },
@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
         icon: 'fa-briefcase',
         items: [
           { label: 'List jobs', icon: 'fa-briefcase', routerLink: ['/jobs'] },
-          { label: 'New job ', icon: 'fa-plus-circle', routerLink: ['/'] }
+          { label: 'New job ', icon: 'fa-plus-circle', routerLink: ['/jobs/newjob'] }
         ]
       },
       {

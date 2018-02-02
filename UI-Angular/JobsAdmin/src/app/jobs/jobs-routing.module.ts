@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AuthGuard } from './../security/auth.guard';
 import { JobsSearchComponent } from 'app/jobs/jobs-search/jobs-search.component';
+import { JobsAddComponent } from 'app/jobs/jobs-add/jobs-add.component';
 
 const routes: Routes = [
   {
@@ -13,13 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'jobs/newjob',
-    component: JobsSearchComponent,
+    component: JobsAddComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_ADD_JOB'] }
   },
   {
     path: 'jobs/:code',
-    component: JobsSearchComponent,
+    component: JobsAddComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_ADD_JOB'] }
   }

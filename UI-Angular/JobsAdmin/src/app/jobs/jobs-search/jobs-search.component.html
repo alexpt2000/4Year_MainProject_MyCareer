@@ -23,7 +23,8 @@
           <p-column field="status" header="Status" styleClass="col-size"></p-column>
           <p-column styleClass="col-size">
             <ng-template let-job="rowData" pTemplate="body">
-                <a pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" [routerLink]="['/jobs', job.code]"></a>
+                <a pButton icon="fa-user" pTooltip="Applicants" tooltipPosition="top" [routerLink]="['/jobs', job.code]"></a>
+                <a pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/jobs', job.code]"></a>
                 <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(job)" [disabled]="!auth.havePermission('ROLE_REMOVE_JOB')" class="ui-button-danger"></button>
               <!--
               <button pButton icon="fa-search-plus" pTooltip="More details" tooltipPosition="top" (click)="showJobDetails(job)"></button>

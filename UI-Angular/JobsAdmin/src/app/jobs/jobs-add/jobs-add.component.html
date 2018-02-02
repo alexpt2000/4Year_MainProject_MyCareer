@@ -1,0 +1,188 @@
+<div class="container">
+  <form autocomplete="off" #jobForm="ngForm" (ngSubmit)="addJob(jobForm)">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Job Form</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-8 ui-fluid">
+        <span class="ui-float-label">
+          <input pInputText type="text" id="float-input" name="title" #title="ngModel" [(ngModel)]="job.title" required>
+          <label for="float-input">Title</label>
+        </span>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <span class="ui-float-label">
+          <input pInputText type="text" id="float-input" name="position" #position="ngModel" [(ngModel)]="job.position" required>
+          <label for="float-input">Position</label>
+        </span>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <br/>
+        <span class="ui-float-label">
+          <input pInputText type="text" id="float-input" name="location" #position="ngModel" [(ngModel)]="job.location" required>
+          <label for="float-input">Location</label>
+        </span>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <br/>
+        <span class="ui-float-label">
+          <input pInputText type="text" id="float-input" name="publication" #publication="ngModel" [(ngModel)]="job.publication" required>
+          <label for="float-input">Publication</label>
+        </span>
+      </div>
+
+      <!--
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <br/>
+        <span class="ui-float-label">
+          <input pInputText type="text" id="float-input" name="status" #status="ngModel" [(ngModel)]="job.status" required>
+          <label for="float-input">Status</label>
+        </span>
+      </div>
+    -->
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Status</label>
+        <p-dropdown name="status" [options]="statusList" placeholder="Select status" [autoWidth]="false" [(ngModel)]="job.status"
+          required></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <br/>
+        <span class="ui-float-label">
+          <input pInputText type="text" id="float-input" name="organization" #organization="ngModel" [(ngModel)]="job.organization"
+            required>
+          <label for="float-input">Organization</label>
+        </span>
+      </div>
+
+      <div class="ui-g-12">
+        <h3>Description</h3>
+        <p-editor name="description" #description="ngModel" [(ngModel)]="job.description" [style]="{'height':'320px'}">
+          <p-header>
+            <span class="ql-formats">
+              <select class="ql-size">
+                <option value="small">Petit</option>
+                <option selected></option>
+                <option value="large">Sous-titre</option>
+                <option value="huge">Titre</option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-bold" aria-label="Bold"></button>
+              <button class="ql-italic" aria-label="Italic"></button>
+              <button class="ql-underline" aria-label="Underline"></button>
+            </span>
+
+            <span class="ql-formats">
+              <button class="ql-list" value="ordered"></button>
+              <button class="ql-list" value="bullet"></button>
+              <select title="Text Alignment" class="ql-align">
+                <option selected>Gauche</option>
+                <option value="center" label="Center"></option>
+                <option value="right" label="Right"></option>
+                <option value="justify" label="Justify"></option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button aria-label="Link" class="ql-link"></button>
+            </span>
+          </p-header>
+        </p-editor>
+      </div>
+
+      <!--
+        <div class="ui-g-12 ui-md-4 ui-fluid">
+          <br>
+          <span class="ui-float-label">
+            <input pInputText type="text" class="form-control" id="float-input" required [(ngModel)]="applicant.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              #email="ngModel">
+            <label for="float-input">Email</label>
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+              <div [hidden]="!email.hasError('required')">Email is required</div>
+              <div [hidden]="!email.hasError('pattern')">Email format should be
+                <small>
+                  <b>alex@abc.com</b>
+                </small>
+              </div>
+            </div>
+          </span>
+        </div>
+
+
+
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <br>
+          <span class="ui-float-label">
+            <input pInputText type="text" id="float-input" name="phonenumber" #phonenumber="ngModel" [(ngModel)]="applicant.phone_number"
+              required>
+            <label for="float-input">Phone number</label>
+          </span>
+        </div>
+
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <br>
+          <span class="ui-float-label">
+            <input pInputText type="text" id="float-input" name="profileurl" #profileurl="ngModel" [(ngModel)]="applicant.profile_url">
+            <label for="float-input">URL Profile</label>
+          </span>
+        </div>
+
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <h3>Upload CV</h3>
+          <span class="ui-float-label">
+            <input pInputText type="file" id="i_submit" accept="application/pdf">
+          </span>
+        </div>
+
+
+        <div class="ui-g-12">
+          <h3>Cover Letter</h3>
+          <p-editor name="coverletter" #coverletter="ngModel" [(ngModel)]="applicant.cover_letter" [style]="{'height':'320px'}">
+            <p-header>
+              <span class="ql-formats">
+                <select class="ql-size">
+                  <option value="small">Petit</option>
+                  <option selected></option>
+                  <option value="large">Sous-titre</option>
+                  <option value="huge">Titre</option>
+                </select>
+              </span>
+              <span class="ql-formats">
+                <button class="ql-bold" aria-label="Bold"></button>
+                <button class="ql-italic" aria-label="Italic"></button>
+                <button class="ql-underline" aria-label="Underline"></button>
+              </span>
+
+              <span class="ql-formats">
+                <button class="ql-list" value="ordered"></button>
+                <button class="ql-list" value="bullet"></button>
+                <select title="Text Alignment" class="ql-align">
+                  <option selected>Gauche</option>
+                  <option value="center" label="Center"></option>
+                  <option value="right" label="Right"></option>
+                  <option value="justify" label="Justify"></option>
+                </select>
+              </span>
+              <span class="ql-formats">
+                <button aria-label="Link" class="ql-link"></button>
+              </span>
+            </p-header>
+          </p-editor>
+        </div>
+      -->
+
+      <div class="ui-g-12">
+        <button pButton type="button" label="Back" (click)="backClicked()"></button>
+        <button pButton type="submit" label="Save job" class="ui-button-info" [disabled]="jobForm.invalid"></button>
+      </div>
+
+    </div>
+
+  </form>
+</div>
