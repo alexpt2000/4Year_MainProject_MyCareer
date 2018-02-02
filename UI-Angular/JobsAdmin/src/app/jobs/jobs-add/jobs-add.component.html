@@ -3,7 +3,7 @@
 
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Job Form</h1>
+        <h1>{{titlePage}}</h1>
       </div>
 
       <div class="ui-g-12 ui-md-8 ui-fluid">
@@ -20,7 +20,7 @@
         </span>
       </div>
 
-      <div class="ui-g-12 ui-md-4 ui-fluid">
+      <div class="ui-g-12 ui-md-6 ui-fluid">
         <br/>
         <span class="ui-float-label">
           <input pInputText type="text" id="float-input" name="location" #position="ngModel" [(ngModel)]="job.location" required>
@@ -28,6 +28,7 @@
         </span>
       </div>
 
+      <!--
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <br/>
         <span class="ui-float-label">
@@ -35,6 +36,15 @@
           <label for="float-input">Publication</label>
         </span>
       </div>
+    -->
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+          <br/>
+          <span class="ui-float-label">
+          <p-calendar dateFormat="dd/mm/yy" id="float-input" name="publication" #publication="ngModel" [showIcon]="true" [(ngModel)]="job.publication" required></p-calendar>
+          <label for="float-input">Publication</label>
+        </span>
+        </div>
 
       <!--
       <div class="ui-g-12 ui-md-4 ui-fluid">
@@ -46,9 +56,9 @@
       </div>
     -->
 
-      <div class="ui-g-12 ui-md-4 ui-fluid">
+      <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Status</label>
-        <p-dropdown name="status" [options]="statusList" placeholder="Select status" [autoWidth]="false" [(ngModel)]="job.status"
+        <p-dropdown name="status" id="float-input" [options]="statusList" placeholder="Select status" [autoWidth]="false" [(ngModel)]="job.status"
           required></p-dropdown>
       </div>
 

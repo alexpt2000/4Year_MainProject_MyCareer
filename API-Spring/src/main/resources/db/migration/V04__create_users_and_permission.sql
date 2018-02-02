@@ -37,6 +37,11 @@ INSERT INTO permissions (code, description) values (9, 'ROLE_READ_JOB');
 INSERT INTO permissions (code, description) values (10, 'ROLE_ADD_JOB');
 INSERT INTO permissions (code, description) values (11, 'ROLE_REMOVE_JOB');
 
+-- Applicants permissions
+INSERT INTO permissions (code, description) values (12, 'ROLE_READ_APPLICANT');
+INSERT INTO permissions (code, description) values (13, 'ROLE_ADD_APPLICANT');
+INSERT INTO permissions (code, description) values (14, 'ROLE_REMOVE_APPLICANT');
+
 
 -- admin
 INSERT INTO users_permission (code_user, code_permission) values (1, 1);
@@ -51,6 +56,10 @@ INSERT INTO users_permission (code_user, code_permission) values (1, 8);
 INSERT INTO users_permission (code_user, code_permission) values (1, 9);
 INSERT INTO users_permission (code_user, code_permission) values (1, 10);
 INSERT INTO users_permission (code_user, code_permission) values (1, 11);
+-- admin APPLICANTS
+INSERT INTO users_permission (code_user, code_permission) values (1, 12);
+INSERT INTO users_permission (code_user, code_permission) values (1, 13);
+INSERT INTO users_permission (code_user, code_permission) values (1, 14);
 
 -- alex
 INSERT INTO users_permission (code_user, code_permission) values (2, 2);
@@ -58,3 +67,6 @@ INSERT INTO users_permission (code_user, code_permission) values (2, 5);
 INSERT INTO users_permission (code_user, code_permission) values (2, 8);
 -- alex JOBS
 INSERT INTO users_permission (code_user, code_permission) values (2, 9);
+-- alex APPLICANTS
+INSERT INTO users_permission (code_user, code_permission) values (2, 12);
+

@@ -21,6 +21,7 @@ import { CustomFormsModule } from 'ng2-validation'
 import { JobsRoutingModule } from 'app/jobs/jobs-routing.module';
 import { JobsAddComponent } from './jobs-add/jobs-add.component';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
+import { CalendarModule } from 'primeng/components/calendar/calendar';
 
 
 
@@ -45,7 +46,8 @@ import {DropdownModule} from 'primeng/components/dropdown/dropdown';
     SharedModule,
     RouterModule,
     JobsRoutingModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
   ],
   declarations: [
     JobsSearchComponent,

@@ -1,3 +1,5 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { JobsService } from './../jobs.service';
 import { BrowserModule } from '@angular/platform-browser'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
@@ -10,11 +12,8 @@ import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Jobs } from 'app/jobs/model';
+import { Title } from '@angular/platform-browser';
 
-interface City {
-  name: string;
-  code: string;
-}
 
 @Component({
   selector: 'app-jobs-add',
@@ -24,7 +23,7 @@ interface City {
 export class JobsAddComponent implements OnInit {
 
   job = new Jobs();
-
+  titlePage = 'New Job';
 
   statusList = [
     { label: 'Open', value: 'Open' },
@@ -34,13 +33,49 @@ export class JobsAddComponent implements OnInit {
 
 
   constructor(
-    private _location: Location
+    private _location: Location,
+    private toasty: ToastyService,
+    private jobsService: JobsService,
+    private route: ActivatedRoute,
+    private title: Title,
+    private jobService: JobsService,
+    private errorHandler: ErrorHandlerService,
+
   ) {
 
 
   }
 
   ngOnInit() {
+    const codeJob = this.route.snapshot.params['code'];
+    this.title.setTitle('New Job');
+
+    if (codeJob) {
+      this.loadJobs(codeJob);
+      this.titlePage = 'Edit Job';
+    }
+  }
+
+  get editing() {
+    return Boolean(this.job.code)
+  }
+
+  loadJobs(code: number) {
+    this.jobService.findByCode(code)
+      .then(job => {
+        this.job = job;
+        this.updateTitle();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+
+  save(form: FormControl) {
+    if (this.editing) {
+      this.updateJob(form);
+    } else {
+      this.addJob(form);
+    }
   }
 
   backClicked() {
@@ -49,15 +84,30 @@ export class JobsAddComponent implements OnInit {
 
   addJob(form: FormControl) {
     // this.applicant.job.code = this.router.snapshot.params['code'];
-    // this.applicant.applicant_date = this.nowDate;
-    // // console.log(this.applicant.applicant_date);
-    // this.applicantService.addApplicant( this.applicant )
-    //   .then(() => {
-    //     this.toasty.success(`Hi ${this.applicant.fullname} your application has been successfully applied.`);
-    //     this.applicant = new Applicants();
-    //     this.backClicked ();
-    //     // alert(`Email "${email}" now will receive alerts from MyCareer.`);
-    //   })
+    // this.job.applicant_date = this.nowDate;
+    // console.log(this.applicant.applicant_date);
+    this.jobsService.add(this.job)
+      .then(() => {
+        this.toasty.success(`Hi the ${this.job.title} job has been successfully save.`);
+        this.job = new Jobs();
+        this.backClicked();
+        // alert(`Email "${email}" now will receive alerts from MyCareer.`);
+      })
+  }
+
+  updateJob(form: FormControl) {
+    this.jobService.update(this.job)
+      .then(job => {
+        this.job = job;
+
+        this.toasty.success('Successfully changed!');
+        this.updateTitle();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  updateTitle() {
+    this.title.setTitle(`Edit: ${this.job.title}`);
   }
 
 }

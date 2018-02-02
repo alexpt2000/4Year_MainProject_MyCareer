@@ -14,6 +14,9 @@ import {ScheduleModule} from 'primeng/primeng';
 
 import {PanelModule} from 'primeng/primeng';
 import { JobsModule } from 'app/jobs/jobs.module';
+import { ApplicantsAddComponent } from './applicants/applicants-add/applicants-add.component';
+import { ApplicantsSearchComponent } from './applicants/applicants-search/applicants-search.component';
+import { ApplicantsModule } from 'app/applicants/applicants.module';
 
 
 
@@ -21,7 +24,9 @@ import { JobsModule } from 'app/jobs/jobs.module';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    ApplicantsAddComponent,
+    ApplicantsSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,7 @@ import { JobsModule } from 'app/jobs/jobs.module';
     LancamentosModule,
     PessoasModule,
     JobsModule,
+    ApplicantsModule,
     SecurityModule,
     AppRoutingModule,
     ScheduleModule,

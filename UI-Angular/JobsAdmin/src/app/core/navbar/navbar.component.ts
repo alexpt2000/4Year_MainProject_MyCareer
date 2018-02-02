@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
         label: 'Applicant',
         icon: 'fa-user',
         items: [
-          { label: 'List applicant', icon: 'fa-user', routerLink: ['/'] },
+          { label: 'List applicant', icon: 'fa-user', routerLink: ['/applicants'] },
           { label: 'Evaluate applicant', icon: 'fa-address-card', routerLink: ['/'] }
         ]
       },

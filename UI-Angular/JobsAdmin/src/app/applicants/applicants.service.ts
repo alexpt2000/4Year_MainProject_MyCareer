@@ -1,3 +1,4 @@
+import { Applicants } from './model';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
@@ -7,40 +8,40 @@ import * as moment from 'moment';
 import 'rxjs/add/operator/toPromise';
 import { Jobs } from 'app/jobs/model';
 
-export class JobsFilter {
-  title: string;
+export class ApplicantsFilter {
+  fullname: string;
   page = 0;
   itensPage = 15;
 }
 
 @Injectable()
-export class JobsService {
+export class ApplicantsService {
 
   apiUrl: string;
 
 
   constructor(private http: AuthHttp) {
-    this.apiUrl = `${environment.apiUrl}/jobs`;
+    this.apiUrl = `${environment.apiUrl}/applicants`;
   }
 
-  search(filter: JobsFilter): Promise<any> {
+  search(filter: ApplicantsFilter): Promise<any> {
     const params = new URLSearchParams();
 
     params.set('page', filter.page.toString());
     params.set('size', filter.itensPage.toString());
 
-    if (filter.title) {
-      params.set('title', filter.title);
+    if (filter.fullname) {
+      params.set('fullname', filter.fullname);
     }
 
     return this.http.get(`${this.apiUrl}`, { search: params })
       .toPromise()
       .then(response => {
         const responseJson = response.json();
-        const jobsweb = responseJson.content;
+        const applicantsweb = responseJson.content;
 
         const result = {
-          jobsweb,
+          applicantsweb,
           total: responseJson.totalElements
         };
 
@@ -60,34 +61,34 @@ export class JobsService {
       .then(() => null);
   }
 
-  add(job: Jobs): Promise<Jobs> {
-    return this.http.post(this.apiUrl, JSON.stringify(job))
+  add(applicant: Applicants): Promise<Applicants> {
+    return this.http.post(this.apiUrl, JSON.stringify(applicant))
       .toPromise()
       .then(response => response.json());
   }
 
-  update(job: Jobs): Promise<Jobs> {
-    return this.http.put(`${this.apiUrl}/${job.code}`,
-      JSON.stringify(job))
+  update(applicant: Applicants): Promise<Applicants> {
+    return this.http.put(`${this.apiUrl}/${applicant.code}`,
+      JSON.stringify(applicant))
       .toPromise()
       .then(response => {
-        const jobChange = response.json() as Jobs;
+        const applicantChange = response.json() as Applicants;
 
-        this.convertStringToDate([jobChange]);
+        this.convertStringToDate([applicantChange]);
 
-        return jobChange;
+        return applicantChange;
       });
   }
 
-  findByCode(code: number): Promise<Jobs> {
+  findByCode(code: number): Promise<Applicants> {
     return this.http.get(`${this.apiUrl}/${code}`)
       .toPromise()
       .then(response => {
-        const job = response.json() as Jobs;
+        const applicant = response.json() as Applicants;
 
-        this.convertStringToDate([job]);
+        this.convertStringToDate([applicant]);
 
-        return job;
+        return applicant;
       });
   }
 
