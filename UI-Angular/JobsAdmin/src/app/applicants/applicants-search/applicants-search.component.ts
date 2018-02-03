@@ -30,6 +30,9 @@ export class ApplicantsSearchComponent {
   applicantsFullname;
   display;
   email = '';
+  codeJob = this.router.snapshot.params['code'];
+  title = this.router.snapshot.params['title'];
+
   @ViewChild('table') grid;
 
   constructor(
@@ -37,7 +40,8 @@ export class ApplicantsSearchComponent {
     private toasty: ToastyService,
     private auth: AuthService,
     private confirmation: ConfirmationService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private router: ActivatedRoute,
   ) {  }
 
 

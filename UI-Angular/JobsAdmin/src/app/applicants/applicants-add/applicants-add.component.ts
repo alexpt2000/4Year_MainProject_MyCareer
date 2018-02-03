@@ -24,6 +24,15 @@ export class ApplicantsAddComponent implements OnInit {
   applicant = new Applicants();
   titlePage = 'New Applicant';
 
+  statusList = [
+    { label: 'New applicant', value: 'New applicant' },
+    { label: 'In process', value: 'In process' },
+    { label: 'Did not pass', value: 'Did not pass' },
+    { label: 'Accepted', value: 'Accepted' },
+    { label: 'Did not accept', value: 'Did not accept' },
+    { label: 'Missing requirements', value: 'Missing requirements' },
+  ];
+
 
   constructor(
     private _location: Location,

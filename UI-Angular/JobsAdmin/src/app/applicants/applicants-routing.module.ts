@@ -23,7 +23,13 @@ const routes: Routes = [
     component: ApplicantsAddComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_ADD_APPLICANT'] }
-  }
+  },
+  {
+    path: 'applied/:code/:title',
+    component: ApplicantsSearchComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ADD_APPLICANT'] }
+  },
 ];
 
 

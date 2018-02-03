@@ -33,7 +33,7 @@
 
 
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
+      <div class="ui-g-12 ui-md-4 ui-fluid">
         <br>
         <span class="ui-float-label">
           <input pInputText type="text" id="float-input" name="phonenumber" #phonenumber="ngModel" [(ngModel)]="applicant.phone_number"
@@ -42,12 +42,18 @@
         </span>
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
+      <div class="ui-g-12 ui-md-4 ui-fluid">
         <br>
         <span class="ui-float-label">
           <input pInputText type="text" id="float-input" name="profileurl" #profileurl="ngModel" [(ngModel)]="applicant.profile_url">
           <label for="float-input">URL Profile</label>
         </span>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Status</label>
+        <p-dropdown name="status" id="float-input" [options]="statusList" placeholder="Select status" [autoWidth]="false" [(ngModel)]="applicant.status"
+          required></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
@@ -76,7 +82,6 @@
         });
 
       </script>
-
 
 
       <div class="ui-g-12">
