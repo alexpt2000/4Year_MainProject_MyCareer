@@ -1,14 +1,10 @@
-body {
-
-  background: #edf0f5;
-}
-
 /* Dashboard */
 .dashboard {
   margin-top: 16px; }
   .dashboard .card {
     margin-top: 0px;
-    background: #f8f6f6; }
+    padding: 1em;
+    background: #ffffff; }
   .dashboard .summary {
     height: 75px;
     position: relative; }
