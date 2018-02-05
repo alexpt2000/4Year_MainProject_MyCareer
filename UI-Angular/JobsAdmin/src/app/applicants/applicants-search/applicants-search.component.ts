@@ -22,7 +22,7 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
   styleUrls: ['./applicants-search.component.css']
 })
 
-export class ApplicantsSearchComponent {
+export class ApplicantsSearchComponent implements OnInit {
 
   totalRecords = 0;
   filter = new ApplicantsFilter();
@@ -32,6 +32,10 @@ export class ApplicantsSearchComponent {
   email = '';
   codeJob = this.router.snapshot.params['code'];
   title = this.router.snapshot.params['title'];
+
+  rating1 = 5;
+  rating2 = 1;
+  rating3 = 3;
 
   @ViewChild('table') grid;
 
@@ -44,6 +48,14 @@ export class ApplicantsSearchComponent {
     private router: ActivatedRoute,
   ) {  }
 
+  ngOnInit() {
+
+
+    if (this.codeJob) {
+      this.filterApplicantByCode ();
+    }
+
+  }
 
   search(page = 0) {
     this.filter.page = page;
@@ -55,16 +67,14 @@ export class ApplicantsSearchComponent {
       });
   }
 
+  filterApplicantByCode () {
+
+  }
+
   changePage(event: LazyLoadEvent) {
     const page = event.first / event.rows;
     this.search(page);
   }
-
-  // showJobDetails(job: any) {
-  //   this.jobTitle = job.title;
-  //   this.jobDescription = job.description;
-  //   this.display = true;
-  // }
 
   confirmationDelete(applicant: any) {
     this.confirmation.confirm({

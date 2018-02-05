@@ -23,6 +23,7 @@ import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 
 import { FormsModule } from '@angular/forms';
+import {RatingModule} from 'primeng/components/rating/rating';
 
 
 
@@ -48,6 +49,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     DropdownModule,
     CalendarModule,
+    RatingModule,
     ApplicantsRoutingModule
   ],
   declarations: [

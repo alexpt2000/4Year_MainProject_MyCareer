@@ -11,15 +11,32 @@
     </form>
   </div>
 
-
-
   <div class="ui-g">
     <div class="ui-g-12">
       <p-dataTable [value]="applicants" [responsive]="true" emptyMessage="No applicants available." [paginator]="true" [rows]="filter.itensPage"
         [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="changePage($event)" #table>
-        <p-column field="fullname" header="Name"></p-column>
 
-        <p-column field="phone_number" header="Phone number"></p-column>
+        <p-column header="Name">
+          <ng-template let-appl="rowData" pTemplate="body">
+            <span>
+              <strong> {{appl.fullname}}</strong>
+            </span>
+            <br>
+            <small>{{ appl.applicant_date | date:'dd/MM/yyyy' }}</small>
+          </ng-template>
+        </p-column>
+
+        <p-column header="Contact">
+          <ng-template let-appl="rowData" pTemplate="body">
+            <span>{{appl.phone_number}}</span>
+            <br>
+            <small>
+              <a target="_blank" href="mailto:{{appl.email}}">{{appl.email}}</a>
+            </small>
+          </ng-template>
+        </p-column>
+
+
         <!--
 
                   <p-column field="email" header ="Email" >
@@ -33,16 +50,26 @@
                 <a target="_blank" href="{{row.profile_url}}">{{row.profile_url}}</a>
             </ng-template>
         </p-column>
-      -->
-        <p-column field="status" header="Status" styleClass="col-size"></p-column>
 
-        <p-column header="Date" styleClass="col-size">
+                <p-column header="Date" styleClass="col-size">
           <ng-template let-appl="rowData" pTemplate="body">
             <span>{{ appl.applicant_date | date:'dd/MM/yyyy' }}</span>
           </ng-template>
         </p-column>
+      -->
+        <p-column field="status" header="Status" styleClass="col-size"></p-column>
+
+
 
         <p-column field="job.title" header="Applied position"></p-column>
+
+        <p-column styleClass="col-size" header="Rating">
+          <ng-template let-appl="rowData" pTemplate="body">
+            <p-rating [(ngModel)]="rating1" [cancel]="false" readonly="true" pTooltip="Evaluation of the candidate" tooltipPosition="top"></p-rating>
+            <p-rating [(ngModel)]="rating2" [cancel]="false" readonly="true" pTooltip="Evaluation of the candidate" tooltipPosition="top"></p-rating>
+            <p-rating [(ngModel)]="rating3" [cancel]="false" readonly="true" pTooltip="Evaluation of the candidate" tooltipPosition="top"></p-rating>
+          </ng-template>
+        </p-column>
 
         <p-column styleClass="col-size">
           <ng-template let-appl="rowData" pTemplate="body">

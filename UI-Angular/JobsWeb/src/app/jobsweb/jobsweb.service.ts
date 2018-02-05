@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 export class JobswebFilter {
   title: string;
   page = 0;
-  itensPage = 20;
+  itensPage = 15;
 }
 
 @Injectable()
