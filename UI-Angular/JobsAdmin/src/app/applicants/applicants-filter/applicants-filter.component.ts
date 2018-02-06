@@ -17,12 +17,12 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
 
 
 @Component({
-  selector: 'app-applicants-search',
-  templateUrl: './applicants-search.component.html',
-  styleUrls: ['./applicants-search.component.css']
+  selector: 'app-applicants-filter',
+  templateUrl: './applicants-filter.component.html',
+  styleUrls: ['./applicants-filter.component.css']
 })
 
-export class ApplicantsSearchComponent implements OnInit {
+export class ApplicantsFilterComponent implements OnInit {
 
   totalRecords = 0;
   filter = new ApplicantsFilter();
@@ -46,35 +46,22 @@ export class ApplicantsSearchComponent implements OnInit {
     private confirmation: ConfirmationService,
     private errorHandler: ErrorHandlerService,
     private router: ActivatedRoute,
+    private _location: Location,
   ) {  }
 
+
   ngOnInit() {
-
-
-    if (this.codeJob) {
-      this.filterJobByCode ();
-    }
-
+    this.search();
   }
 
-  search(page = 0) {
-    this.filter.page = page;
-
-    this.applicantsService.search(this.filter)
-      .then(result => {
-        this.totalRecords = result.total;
-        this.applicants = result.applicants;
+  search() {
+    this.applicantsService.findByJobCode(this.codeJob)
+      .then(applicants => {
+        this.applicants = applicants;
       });
+      console.log(this.applicants)
   }
 
-  filterJobByCode () {
-
-  }
-
-  changePage(event: LazyLoadEvent) {
-    const page = event.first / event.rows;
-    this.search(page);
-  }
 
   confirmationDelete(applicant: any) {
     this.confirmation.confirm({
@@ -99,6 +86,9 @@ export class ApplicantsSearchComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
+  backClicked() {
+    this._location.back();
+  }
 
 
 }

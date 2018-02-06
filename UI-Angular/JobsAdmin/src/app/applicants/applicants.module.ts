@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ApplicantsSearchComponent } from './applicants-search/applicants-search.component';
 import { ApplicantsAddComponent } from 'app/applicants/applicants-add/applicants-add.component';
+import { ApplicantsFilterComponent } from 'app/applicants/applicants-filter/applicants-filter.component';
 import { NgModule } from '@angular/core';
 import { ApplicantsRoutingModule } from 'app/applicants/applicants-routing.module';
 import { RouterModule } from '@angular/router';
@@ -54,10 +55,12 @@ import {RatingModule} from 'primeng/components/rating/rating';
   ],
   declarations: [
     ApplicantsSearchComponent,
-    ApplicantsAddComponent
+    ApplicantsAddComponent,
+    ApplicantsFilterComponent
   ],
   exports: [
-    ApplicantsSearchComponent
+    ApplicantsSearchComponent,
+    ApplicantsFilterComponent
   ]
 })
 export class ApplicantsModule { }

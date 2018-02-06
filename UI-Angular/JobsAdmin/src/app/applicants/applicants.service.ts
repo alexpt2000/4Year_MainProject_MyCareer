@@ -81,7 +81,21 @@ export class ApplicantsService {
   }
 
   findByCode(code: number): Promise<Applicants> {
+
     return this.http.get(`${this.apiUrl}/${code}`)
+      .toPromise()
+      .then(response => {
+        const applicant = response.json() as Applicants;
+
+        this.convertStringToDate([applicant]);
+
+        return applicant;
+      });
+  }
+
+  findByJobCode(code: number): Promise<any> {
+    console.log(code)
+      return this.http.get(`${this.apiUrl}/job/${code}`)
       .toPromise()
       .then(response => {
         const applicant = response.json() as Applicants;
