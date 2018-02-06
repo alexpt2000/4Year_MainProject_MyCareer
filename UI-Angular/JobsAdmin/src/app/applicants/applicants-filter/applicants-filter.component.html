@@ -19,15 +19,15 @@
       <p-dataTable [value]="applicants" [responsive]="true" emptyMessage="No applicants available." [globalFilter]="gb" #table>
 
 
-          <p-column field="fullname" header="Name" styleClass="col-size"></p-column>
+          <p-column field="fullname" header="Name" [sortable]="true" styleClass="col-size"></p-column>
 
-        <p-column header="Applied" styleClass="col-size">
+        <p-column header="Applied" styleClass="col-size" [sortable]="true" field="applicant_date">
           <ng-template let-appl="rowData" pTemplate="body">
             <small>{{ appl.applicant_date | date:'dd/MM/yyyy' }}</small>
           </ng-template>
         </p-column>
 
-        <p-column header="Contact">
+        <p-column header="Contact" >
           <ng-template let-appl="rowData" pTemplate="body">
             <span>{{appl.phone_number}}</span>
             <br>
@@ -59,7 +59,7 @@
           </ng-template>
         </p-column>
       -->
-        <p-column field="status" header="Status" styleClass="col-size"></p-column>
+        <p-column field="status" header="Status" styleClass="col-size" [sortable]="true"></p-column>
 
 
         <p-column styleClass="col-size" header="Rating">
