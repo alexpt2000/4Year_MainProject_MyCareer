@@ -24,7 +24,7 @@ export class ErrorHandlerService {
       this.router.navigate(['/login']);
 
     } else if (errorResponse instanceof Response
-        && errorResponse.status >= 400 && errorResponse.status <= 499) {
+      && errorResponse.status >= 400 && errorResponse.status <= 499) {
       let errors;
       msg = 'There was an error processing your request.';
 

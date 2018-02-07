@@ -30,7 +30,6 @@ import com.mycareer.api.repository.ApplicantRepository;
 import com.mycareer.api.repository.JobRepository;
 import com.mycareer.api.service.ApplicantService;
 
-
 @RestController
 @RequestMapping("/applicants")
 public class ApplicantResource {
@@ -38,13 +37,11 @@ public class ApplicantResource {
 	@Autowired
 	private ApplicantRepository applicantRepository;
 
-	
 	@Autowired
 	private ApplicantService applicantService;
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
-	
 
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
@@ -75,17 +72,16 @@ public class ApplicantResource {
 		return applicant != null ? ResponseEntity.ok(applicant) : ResponseEntity.notFound().build();
 	}
 
-	
-	
 	@GetMapping("/job/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
 	public List<Applicants> findJobByCode(@PathVariable Long code) {
 		return applicantRepository.findByJobCode(code);
 	}
-	
+
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname, Pageable pageable) {
+	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname,
+			Pageable pageable) {
 		return applicantRepository.findByFullnameContaining(fullname, pageable);
 	}
 

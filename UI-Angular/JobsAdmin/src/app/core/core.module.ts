@@ -12,9 +12,6 @@ import { JwtHelper } from 'angular2-jwt';
 
 import { AuthService } from './../security/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
-import { PessoaService } from './../pessoas/pessoa.service';
-import { LancamentoService } from './../lancamentos/lancamento.service';
-import { CategoriaService } from './../categorias/categoria.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotauthorizedComponent } from './not-authorized.component';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -47,9 +44,6 @@ import { DashboardService } from 'app/dashboard/dashboard.service';
   ],
   providers: [
     DashboardService,
-    LancamentoService,
-    PessoaService,
-    CategoriaService,
     JobsService,
     ApplicantsService,
     ErrorHandlerService,

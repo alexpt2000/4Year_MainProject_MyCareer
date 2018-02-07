@@ -5,12 +5,9 @@ import { LogoutService } from './../../security/logout.service';
 import { ErrorHandlerService } from './../error-handler.service';
 import { AuthService } from './../../security/auth.service';
 import { MenuItem } from 'primeng/components/common/menuitem';
-import {MenubarModule} from 'primeng/components/menubar/menubar';
+import { MenubarModule } from 'primeng/components/menubar/menubar';
 
-import {MenuModule} from 'primeng/components/menu/menu';
-
-
-
+import { MenuModule } from 'primeng/components/menu/menu';
 
 
 @Component({
@@ -18,7 +15,6 @@ import {MenuModule} from 'primeng/components/menu/menu';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-
 
 
 export class NavbarComponent implements OnInit {
@@ -43,7 +39,9 @@ export class NavbarComponent implements OnInit {
         icon: 'fa-user',
         items: [
           { label: 'List applicant', icon: 'fa-user', routerLink: ['/applicants'] },
-          { label: 'Evaluate applicant', icon: 'fa-address-card', routerLink: ['/'] }
+          { label: 'Evaluate applicant', icon: 'fa-address-card', routerLink: ['/'] },
+          { separator: true },
+          { label: 'Schedules', icon: 'fa-calendar', routerLink: ['/schedules'] }
         ]
       },
       {
@@ -54,16 +52,12 @@ export class NavbarComponent implements OnInit {
           { label: 'New job ', icon: 'fa-plus-circle', routerLink: ['/jobs/newjob'] }
         ]
       },
-      {
-        label: 'Test',
-        icon: 'fa-edit',
-        items: [
-          { label: 'Lancamentos', icon: 'fa-mail-forward', routerLink: ['/lancamentos'] },
-          { label: 'Pessoas', icon: 'fa-mail-reply', routerLink: ['/pessoas'] }
-        ]
-      }
+      { icon: 'fa-calendar', routerLink: ['/schedules'] },
+      { icon: 'fa-user', routerLink: ['/applicants'] },
+      { icon: 'fa-briefcase', routerLink: ['/jobs'] },
     ];
   }
+
 
 
   logout() {

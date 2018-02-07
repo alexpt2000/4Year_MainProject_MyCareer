@@ -6,19 +6,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { PessoasModule } from './pessoas/pessoas.module';
-import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SecurityModule } from './security/security.module';
 import { AppRoutingModule } from './app-routing.module';
 
-import {ScheduleModule} from 'primeng/primeng';
+import { ScheduleModule } from 'primeng/primeng';
 
-import {PanelModule} from 'primeng/primeng';
+import { PanelModule } from 'primeng/primeng';
 import { JobsModule } from 'app/jobs/jobs.module';
 import { DashboardModule } from 'app/dashboard/dashboard.module';
-
-
-
 
 
 @NgModule({
@@ -32,8 +27,6 @@ import { DashboardModule } from 'app/dashboard/dashboard.module';
     HttpModule,
     CoreModule,
     DashboardModule,
-    LancamentosModule,
-    PessoasModule,
     JobsModule,
     ApplicantsModule,
     SecurityModule,

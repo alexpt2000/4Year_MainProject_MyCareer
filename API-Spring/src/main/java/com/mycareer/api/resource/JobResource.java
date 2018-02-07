@@ -23,11 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycareer.api.event.ResourceCreatedEvent;
 import com.mycareer.api.model.Jobs;
-import com.mycareer.api.model.Pessoa;
 import com.mycareer.api.repository.JobRepository;
-import com.mycareer.api.repository.PessoaRepository;
 import com.mycareer.api.service.JobService;
-import com.mycareer.api.service.PessoaService;
 
 @RestController
 @RequestMapping("/jobs")

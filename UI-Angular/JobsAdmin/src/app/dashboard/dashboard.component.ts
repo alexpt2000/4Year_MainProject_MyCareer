@@ -20,22 +20,14 @@ export class DashboardComponent implements OnInit {
   total_newapplicants = '';
 
   constructor(
-  private dashboardService: DashboardService,
-  private toasty: ToastyService,
-  private auth: AuthService,
-  private confirmation: ConfirmationService,
-  private errorHandler: ErrorHandlerService,
-  private router: ActivatedRoute,
+    private dashboardService: DashboardService,
+    private toasty: ToastyService,
+    private auth: AuthService,
+    private confirmation: ConfirmationService,
+    private errorHandler: ErrorHandlerService,
+    private router: ActivatedRoute,
 
   ) { }
-
-  // private dashboardService: DashboardService,
-  // private toasty: ToastyService,
-  // private auth: AuthService,
-  // private confirmation: ConfirmationService,
-  // private errorHandler: ErrorHandlerService,
-  // private router: ActivatedRoute,
-  // private _location: Location,
 
   ngOnInit() {
 
