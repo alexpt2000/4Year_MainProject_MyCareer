@@ -1,3 +1,4 @@
+import { ApplicantsService } from './../../applicants/applicants.service';
 import { Jobs } from './../../core/model';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { JobsService } from './../jobs.service';
@@ -50,6 +51,7 @@ export class JobsAddComponent implements OnInit {
     const codeJob = this.route.snapshot.params['code'];
     this.title.setTitle('New Job');
 
+
     if (codeJob) {
       this.loadJobs(codeJob);
       this.titlePage = 'Edit Job';
@@ -59,6 +61,9 @@ export class JobsAddComponent implements OnInit {
   get editing() {
     return Boolean(this.job.code)
   }
+
+
+
 
   loadJobs(code: number) {
     this.jobService.findByCode(code)

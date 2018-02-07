@@ -27,14 +27,14 @@ export class SchedulesService {
   search(): Promise<any> {
 
     return this.http.get(`${this.apiUrl}`)
-  .toPromise()
-  .then(response => {
-    const schedule = response.json() as Schedules;
+      .toPromise()
+      .then(response => {
+        const schedule = response.json() as Schedules;
 
-    // this.convertStringToDate([schedule]);
+        // this.convertStringToDate([schedule]);
 
-    return schedule;
-  })
+        return schedule;
+      })
   }
 
 
@@ -88,7 +88,7 @@ export class SchedulesService {
       .then(response => {
         const schedule = response.json() as Schedules;
 
-        // this.convertStringToDate([schedule]);
+        this.convertStringToDate([schedule]);
 
         return schedule;
       });
@@ -96,9 +96,11 @@ export class SchedulesService {
 
   private convertStringToDate(schedules: Schedules[]) {
     for (const schedule of schedules) {
-      schedule.start = moment(schedule.start,
-        'YYYY-MM-DD').toDate();
+      schedule.start = moment(schedule.start, 'YYYY-MM-DD HH:mm').toDate();
+    }
 
+    for (const schedule of schedules) {
+      schedule.end = moment(schedule.end, 'YYYY-MM-DD HH:mm').toDate();
     }
   }
 

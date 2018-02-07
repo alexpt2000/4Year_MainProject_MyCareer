@@ -1,5 +1,5 @@
 <div class="container card-white">
-  <form autocomplete="off" #jobForm="ngForm" (ngSubmit)="addJob(jobForm)">
+  <form autocomplete="off" #scheduleForm="ngForm" (ngSubmit)="addSchedule(scheduleForm)">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -7,190 +7,69 @@
         <hr>
       </div>
 
-      <div class="ui-g-12 ui-md-8 ui-fluid">
+      <!--
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <br>
         <span class="ui-float-label">
-          <input pInputText type="text" id="float-input" name="title" #title="ngModel" [(ngModel)]="job.title" required>
+          <input pInputText type="text" id="float-input" name="title" #title="ngModel" [(ngModel)]="schedule.title" required>
           <label for="float-input">Title</label>
         </span>
       </div>
-
-      <div class="ui-g-12 ui-md-4 ui-fluid">
-        <span class="ui-float-label">
-          <input pInputText type="text" id="float-input" name="position" #position="ngModel" [(ngModel)]="job.position" required>
-          <label for="float-input">Position</label>
-        </span>
-      </div>
-
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <br/>
-        <span class="ui-float-label">
-          <input pInputText type="text" id="float-input" name="location" #position="ngModel" [(ngModel)]="job.location" required>
-          <label for="float-input">Location</label>
-        </span>
-      </div>
-
-      <!--
-      <div class="ui-g-12 ui-md-4 ui-fluid">
-        <br/>
-        <span class="ui-float-label">
-          <input pInputText type="text" id="float-input" name="publication" #publication="ngModel" [(ngModel)]="job.publication" required>
-          <label for="float-input">Publication</label>
-        </span>
-      </div>
     -->
 
-      <div class="ui-g-6 ui-md-3 ui-fluid">
-          <br/>
-          <span class="ui-float-label">
-          <p-calendar dateFormat="dd/mm/yy" id="float-input" name="publication" #publication="ngModel" [showIcon]="true" [(ngModel)]="job.publication" required></p-calendar>
-          <label for="float-input">Publication</label>
-        </span>
-        </div>
-
-      <!--
-      <div class="ui-g-12 ui-md-4 ui-fluid">
-        <br/>
-        <span class="ui-float-label">
-          <input pInputText type="text" id="float-input" name="status" #status="ngModel" [(ngModel)]="job.status" required>
-          <label for="float-input">Status</label>
-        </span>
-      </div>
-    -->
-
-      <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Status</label>
-        <p-dropdown name="status" id="float-input" [options]="statusList" placeholder="Select status" [autoWidth]="false" [(ngModel)]="job.status"
-          required></p-dropdown>
-      </div>
-
       <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Schedule</label>
+        <p-dropdown name="title" id="float-input" [options]="applicants" placeholder="Select applicant" [autoWidth]="false" filter="true"
+          [(ngModel)]="schedule.title" editable="true"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid"></div>
+
+      <div class="ui-g-6 ui-md-2 ui-fluid">
+        <br>
+        <p-checkbox [(ngModel)]="schedule.allDay" (onChange)="clearCalendar($event)" binary="true" label="All Day" name="allDay"
+          #allDay="ngModel"></p-checkbox>
+      </div>
+
+
+      <div class="ui-g-6 ui-md-3 ui-fluid" *ngIf="!schedule.allDay">
         <br/>
         <span class="ui-float-label">
-          <input pInputText type="text" id="float-input" name="organization" #organization="ngModel" [(ngModel)]="job.organization"
-            required>
-          <label for="float-input">Organization</label>
+          <p-calendar dateFormat="dd/mm/yy" [showTime]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2018:2030"
+            showButtonBar="true" id="float-input" name="start" #star="ngModel" [showIcon]="true" [(ngModel)]="schedule.start"
+            required></p-calendar>
+          <label for="float-input">Start date and time</label>
         </span>
       </div>
 
-      <div class="ui-g-12">
-        <h3>Description</h3>
-        <p-editor name="description" #description="ngModel" [(ngModel)]="job.description" [style]="{'height':'320px'}">
-          <p-header>
-            <span class="ql-formats">
-              <select class="ql-size">
-                <option value="small">Petit</option>
-                <option selected></option>
-                <option value="large">Sous-titre</option>
-                <option value="huge">Titre</option>
-              </select>
-            </span>
-            <span class="ql-formats">
-              <button class="ql-bold" aria-label="Bold"></button>
-              <button class="ql-italic" aria-label="Italic"></button>
-              <button class="ql-underline" aria-label="Underline"></button>
-            </span>
-
-            <span class="ql-formats">
-              <button class="ql-list" value="ordered"></button>
-              <button class="ql-list" value="bullet"></button>
-              <select title="Text Alignment" class="ql-align">
-                <option selected>Gauche</option>
-                <option value="center" label="Center"></option>
-                <option value="right" label="Right"></option>
-                <option value="justify" label="Justify"></option>
-              </select>
-            </span>
-            <span class="ql-formats">
-              <button aria-label="Link" class="ql-link"></button>
-            </span>
-          </p-header>
-        </p-editor>
+      <div class="ui-g-6 ui-md-3 ui-fluid" *ngIf="!schedule.allDay">
+        <br/>
+        <span class="ui-float-label">
+          <p-calendar dateFormat="dd/mm/yy" [showTime]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2018:2030"
+            showButtonBar="true" id="float-input" name="end" #end="ngModel" [showIcon]="true" [(ngModel)]="schedule.end"></p-calendar>
+          <label for="float-input">End date and time</label>
+        </span>
       </div>
 
-      <!--
-        <div class="ui-g-12 ui-md-4 ui-fluid">
-          <br>
-          <span class="ui-float-label">
-            <input pInputText type="text" class="form-control" id="float-input" required [(ngModel)]="applicant.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-              #email="ngModel">
-            <label for="float-input">Email</label>
-            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-              <div [hidden]="!email.hasError('required')">Email is required</div>
-              <div [hidden]="!email.hasError('pattern')">Email format should be
-                <small>
-                  <b>alex@abc.com</b>
-                </small>
-              </div>
-            </div>
-          </span>
-        </div>
+      <div class="ui-g-6 ui-md-3 ui-fluid" *ngIf="schedule.allDay">
+        <br/>
+        <span class="ui-float-label">
+          <p-calendar dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" yearRange="2018:2030" showButtonBar="true"
+            id="float-input" name="end" #end="ngModel" [showIcon]="true" [(ngModel)]="schedule.start" required></p-calendar>
+          <label for="float-input">Date</label>
+        </span>
+      </div>
 
 
-
-        <div class="ui-g-12 ui-md-6 ui-fluid">
-          <br>
-          <span class="ui-float-label">
-            <input pInputText type="text" id="float-input" name="phonenumber" #phonenumber="ngModel" [(ngModel)]="applicant.phone_number"
-              required>
-            <label for="float-input">Phone number</label>
-          </span>
-        </div>
-
-        <div class="ui-g-12 ui-md-6 ui-fluid">
-          <br>
-          <span class="ui-float-label">
-            <input pInputText type="text" id="float-input" name="profileurl" #profileurl="ngModel" [(ngModel)]="applicant.profile_url">
-            <label for="float-input">URL Profile</label>
-          </span>
-        </div>
-
-        <div class="ui-g-12 ui-md-6 ui-fluid">
-          <h3>Upload CV</h3>
-          <span class="ui-float-label">
-            <input pInputText type="file" id="i_submit" accept="application/pdf">
-          </span>
-        </div>
-
-
-        <div class="ui-g-12">
-          <h3>Cover Letter</h3>
-          <p-editor name="coverletter" #coverletter="ngModel" [(ngModel)]="applicant.cover_letter" [style]="{'height':'320px'}">
-            <p-header>
-              <span class="ql-formats">
-                <select class="ql-size">
-                  <option value="small">Petit</option>
-                  <option selected></option>
-                  <option value="large">Sous-titre</option>
-                  <option value="huge">Titre</option>
-                </select>
-              </span>
-              <span class="ql-formats">
-                <button class="ql-bold" aria-label="Bold"></button>
-                <button class="ql-italic" aria-label="Italic"></button>
-                <button class="ql-underline" aria-label="Underline"></button>
-              </span>
-
-              <span class="ql-formats">
-                <button class="ql-list" value="ordered"></button>
-                <button class="ql-list" value="bullet"></button>
-                <select title="Text Alignment" class="ql-align">
-                  <option selected>Gauche</option>
-                  <option value="center" label="Center"></option>
-                  <option value="right" label="Right"></option>
-                  <option value="justify" label="Justify"></option>
-                </select>
-              </span>
-              <span class="ql-formats">
-                <button aria-label="Link" class="ql-link"></button>
-              </span>
-            </p-header>
-          </p-editor>
-        </div>
-      -->
+      <div class="ui-g-6 ui-md-8 ui-fluid">
+        <br/>
+        <label>Notes</label>
+        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" name="notes" #notes="ngModel" [(ngModel)]="schedule.notes"></textarea>
+      </div>
 
       <div class="ui-g-12">
         <button pButton type="button" label="Back" (click)="backClicked()"></button>
-        <button pButton type="submit" label="Save job" class="ui-button-info" [disabled]="jobForm.invalid"></button>
+        <button pButton type="submit" label="Save" class="ui-button-info" [disabled]="scheduleForm.invalid"></button>
       </div>
 
     </div>

@@ -1,4 +1,5 @@
-import { Jobs, Schedules } from './../../core/model';
+import { ApplicantsService } from './../../applicants/applicants.service';
+import { Jobs, Schedules, Applicants } from './../../core/model';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { BrowserModule } from '@angular/platform-browser'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -15,6 +16,7 @@ import { Title } from '@angular/platform-browser';
 import { SchedulesService } from 'app/schedules/schedules.service';
 
 
+
 @Component({
   selector: 'app-schedules-add',
   templateUrl: './schedules-add.component.html',
@@ -23,13 +25,22 @@ import { SchedulesService } from 'app/schedules/schedules.service';
 export class SchedulesAddComponent implements OnInit {
 
   schedule = new Schedules();
+  applicants = [];
+
   titlePage = 'New Schedule';
+
+  statusList = [
+    { label: 'Open', value: 'Open' },
+    { label: 'Close', value: 'Close' },
+    { label: 'Pendent', value: 'Pendent' },
+  ];
 
 
   constructor(
     private _location: Location,
     private toasty: ToastyService,
     private schedulesService: SchedulesService,
+    private applicantsService: ApplicantsService,
     private route: ActivatedRoute,
     private title: Title,
     private errorHandler: ErrorHandlerService,
@@ -43,6 +54,8 @@ export class SchedulesAddComponent implements OnInit {
     const codeSchedule = this.route.snapshot.params['code'];
     this.title.setTitle('New Job');
 
+    this.loadApplicants();
+
     if (codeSchedule) {
       this.loadSchedule(codeSchedule);
       this.titlePage = 'Edit Schedule';
@@ -52,6 +65,24 @@ export class SchedulesAddComponent implements OnInit {
   get editing() {
     return Boolean(this.schedule.code)
   }
+
+
+  clearCalendar() {
+    // this.schedule.start = null;
+    this.schedule.end = null;
+  }
+
+  loadApplicants() {
+
+    this.applicantsService.listApplicants()
+    .then(applicants => {
+      this.applicants = applicants
+        .map(a => ({ label: a.fullname, value: a.fullname }));
+    })
+    .catch(erro => this.errorHandler.handle(erro));
+
+  }
+
 
   loadSchedule(code: number) {
     this.schedulesService.findByCode(code)
@@ -76,9 +107,6 @@ export class SchedulesAddComponent implements OnInit {
   }
 
   addSchedule(form: FormControl) {
-    // this.applicant.job.code = this.router.snapshot.params['code'];
-    // this.job.applicant_date = this.nowDate;
-    // console.log(this.applicant.applicant_date);
     this.schedulesService.add(this.schedule)
       .then(() => {
         this.toasty.success(`Hi the ${this.schedule.title} job has been successfully save.`);

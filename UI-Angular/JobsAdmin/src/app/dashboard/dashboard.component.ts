@@ -46,20 +46,6 @@ export class DashboardComponent implements OnInit {
       right: 'month,agendaWeek,agendaDay'
     }
 
-    // this.events = [
-    //   {
-    //     'id': 1,
-    //     'title': 'Alex',
-    //     'start': '2018-02-07 10:10',
-    //     'end': '2018-02-07 11:40'
-    //   },
-    //   {
-    //     'id': 2,
-    //     'title': 'Project',
-    //     'start': '2018-02-15'
-    //   }
-    // ]
-
   }
 
   searchSchedule() {

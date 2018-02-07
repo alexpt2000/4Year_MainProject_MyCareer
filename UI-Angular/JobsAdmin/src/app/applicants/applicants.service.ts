@@ -55,6 +55,14 @@ export class ApplicantsService {
       .then(response => response.json().content);
   }
 
+
+  listApplicants(): Promise<any> {
+
+    return this.http.get(`${this.apiUrl}`)
+    .toPromise()
+    .then(response => response.json().content);
+  }
+
   delete(code: number): Promise<void> {
     return this.http.delete(`${this.apiUrl}/${code}`)
       .toPromise()
@@ -95,7 +103,7 @@ export class ApplicantsService {
 
   findByJobCode(code: number): Promise<any> {
     console.log(code)
-      return this.http.get(`${this.apiUrl}/job/${code}`)
+    return this.http.get(`${this.apiUrl}/job/${code}`)
       .toPromise()
       .then(response => {
         const applicant = response.json() as Applicants;

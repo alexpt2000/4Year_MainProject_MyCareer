@@ -22,9 +22,8 @@ import { SchedulesSearchComponent } from 'app/schedules/schedules-search/schedul
 import { SchedulesAddComponent } from 'app/schedules/schedules-add/schedules-add.component';
 import { SchedulesRoutingModule } from 'app/schedules/schedules-routing.module';
 import {TriStateCheckboxModule} from 'primeng/components/tristatecheckbox/tristatecheckbox';
-
-
-
+import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
+import {CheckboxModule} from 'primeng/components/checkbox/checkbox';
 
 
 @NgModule({
@@ -48,7 +47,9 @@ import {TriStateCheckboxModule} from 'primeng/components/tristatecheckbox/trista
     SchedulesRoutingModule,
     DropdownModule,
     CalendarModule,
-    TriStateCheckboxModule
+    TriStateCheckboxModule,
+    InputTextareaModule,
+    CheckboxModule
   ],
   declarations: [
     SchedulesSearchComponent,

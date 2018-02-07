@@ -53,7 +53,7 @@ export class ApplicantsAddComponent implements OnInit {
 
     if (codeApplicant) {
       this.loadApplicant(codeApplicant);
-      this.titlePage = 'Edit Applicantion';
+      this.titlePage = 'Edit Application';
     }
   }
 

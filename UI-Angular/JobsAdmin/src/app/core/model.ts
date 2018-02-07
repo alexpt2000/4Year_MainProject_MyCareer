@@ -27,6 +27,7 @@ export class Schedules {
   code: number;
   title: string;
   start: Date;
-  finish: Date;
+  end: Date;
+  allDay: boolean = false;
   notes: string;
 }
