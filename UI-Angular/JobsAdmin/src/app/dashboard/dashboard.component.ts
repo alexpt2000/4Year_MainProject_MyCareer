@@ -45,7 +45,8 @@ export class DashboardComponent implements OnInit {
       {
         'id': 1,
         'title': 'Alex',
-        'start': '2018-02-05'
+        'start': '2018-02-07 10:10',
+        'end': '2018-02-07 11:40'
       },
       {
         'id': 2,

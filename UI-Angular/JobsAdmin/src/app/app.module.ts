@@ -14,6 +14,7 @@ import { ScheduleModule } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
 import { JobsModule } from 'app/jobs/jobs.module';
 import { DashboardModule } from 'app/dashboard/dashboard.module';
+import { SchedulesModule } from 'app/schedules/schedules.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { DashboardModule } from 'app/dashboard/dashboard.module';
     DashboardModule,
     JobsModule,
     ApplicantsModule,
+    SchedulesModule,
     SecurityModule,
     AppRoutingModule,
     ScheduleModule,

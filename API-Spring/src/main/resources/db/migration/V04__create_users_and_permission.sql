@@ -21,17 +21,6 @@ CREATE TABLE users_permission (
 INSERT INTO users (code, name, email, password) values (1, 'Administrator', 'admin@mycareer.com', '$2a$10$EM6ffY3XEy.XlcsY17dlJOcLiGNMju7.toLY7nwIV8imCBI35Fo.K');
 INSERT INTO users (code, name, email, password) values (2, 'Alexander', 'alex@mycareer.com', '$2a$10$seWaA2fewGpyfHlf35oUhOF0izs5XfBHi3tqOWzY8oGdnTVwBGW62');
 
-INSERT INTO permissions (code, description) values (1, 'ROLE_CADASTRAR_CATEGORIA');
-INSERT INTO permissions (code, description) values (2, 'ROLE_PESQUISAR_CATEGORIA');
-
-INSERT INTO permissions (code, description) values (3, 'ROLE_CADASTRAR_PESSOA');
-INSERT INTO permissions (code, description) values (4, 'ROLE_REMOVER_PESSOA');
-INSERT INTO permissions (code, description) values (5, 'ROLE_PESQUISAR_PESSOA');
-
-INSERT INTO permissions (code, description) values (6, 'ROLE_CADASTRAR_LANCAMENTO');
-INSERT INTO permissions (code, description) values (7, 'ROLE_REMOVER_LANCAMENTO');
-INSERT INTO permissions (code, description) values (8, 'ROLE_PESQUISAR_LANCAMENTO');
-
 -- Jobs permissions
 INSERT INTO permissions (code, description) values (9, 'ROLE_READ_JOB');
 INSERT INTO permissions (code, description) values (10, 'ROLE_ADD_JOB');
@@ -42,16 +31,13 @@ INSERT INTO permissions (code, description) values (12, 'ROLE_READ_APPLICANT');
 INSERT INTO permissions (code, description) values (13, 'ROLE_ADD_APPLICANT');
 INSERT INTO permissions (code, description) values (14, 'ROLE_REMOVE_APPLICANT');
 
+-- Applicants schedules
+INSERT INTO permissions (code, description) values (15, 'ROLE_READ_SCHEDULE');
+INSERT INTO permissions (code, description) values (16, 'ROLE_ADD_SCHEDULE');
+INSERT INTO permissions (code, description) values (17, 'ROLE_REMOVE_SCHEDULE');
 
--- admin
-INSERT INTO users_permission (code_user, code_permission) values (1, 1);
-INSERT INTO users_permission (code_user, code_permission) values (1, 2);
-INSERT INTO users_permission (code_user, code_permission) values (1, 3);
-INSERT INTO users_permission (code_user, code_permission) values (1, 4);
-INSERT INTO users_permission (code_user, code_permission) values (1, 5);
-INSERT INTO users_permission (code_user, code_permission) values (1, 6);
-INSERT INTO users_permission (code_user, code_permission) values (1, 7);
-INSERT INTO users_permission (code_user, code_permission) values (1, 8);
+
+
 -- admin JOBS
 INSERT INTO users_permission (code_user, code_permission) values (1, 9);
 INSERT INTO users_permission (code_user, code_permission) values (1, 10);
@@ -60,13 +46,16 @@ INSERT INTO users_permission (code_user, code_permission) values (1, 11);
 INSERT INTO users_permission (code_user, code_permission) values (1, 12);
 INSERT INTO users_permission (code_user, code_permission) values (1, 13);
 INSERT INTO users_permission (code_user, code_permission) values (1, 14);
+-- admin schedules
+INSERT INTO users_permission (code_user, code_permission) values (1, 15);
+INSERT INTO users_permission (code_user, code_permission) values (1, 16);
+INSERT INTO users_permission (code_user, code_permission) values (1, 17);
 
--- alex
-INSERT INTO users_permission (code_user, code_permission) values (2, 2);
-INSERT INTO users_permission (code_user, code_permission) values (2, 5);
-INSERT INTO users_permission (code_user, code_permission) values (2, 8);
+
 -- alex JOBS
 INSERT INTO users_permission (code_user, code_permission) values (2, 9);
 -- alex APPLICANTS
 INSERT INTO users_permission (code_user, code_permission) values (2, 12);
+-- alex SCHEDULES
+INSERT INTO users_permission (code_user, code_permission) values (2, 15);
 

@@ -25,9 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycareer.api.event.ResourceCreatedEvent;
 import com.mycareer.api.model.Applicants;
-import com.mycareer.api.model.Jobs;
 import com.mycareer.api.repository.ApplicantRepository;
-import com.mycareer.api.repository.JobRepository;
 import com.mycareer.api.service.ApplicantService;
 
 @RestController

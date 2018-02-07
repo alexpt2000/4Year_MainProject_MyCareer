@@ -20,6 +20,7 @@ import {MenubarModule} from 'primeng/components/menubar/menubar';
 import {MenuModule} from 'primeng/components/menu/menu';
 import { JobsService } from 'app/jobs/jobs.service';
 import { DashboardService } from 'app/dashboard/dashboard.service';
+import { SchedulesService } from 'app/schedules/schedules.service';
 
 @NgModule({
   imports: [
@@ -46,13 +47,13 @@ import { DashboardService } from 'app/dashboard/dashboard.service';
     DashboardService,
     JobsService,
     ApplicantsService,
+    SchedulesService,
     ErrorHandlerService,
     AuthService,
 
     ConfirmationService,
     JwtHelper,
-    Title,
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    Title
   ]
 })
 export class CoreModule { }

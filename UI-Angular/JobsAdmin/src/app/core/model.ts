@@ -21,3 +21,12 @@ export class Jobs {
   description: string;
   status: string;
 }
+
+
+export class Schedules {
+  code: number;
+  title: string;
+  start: Date;
+  finish: Date;
+  notes: string;
+}
