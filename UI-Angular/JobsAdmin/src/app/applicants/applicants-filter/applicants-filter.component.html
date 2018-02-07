@@ -16,7 +16,7 @@
             <input #gb type="text" pInputText size="50" placeholder="Applicants">
         </div>
 
-      <p-dataTable [value]="applicants" [responsive]="true" emptyMessage="No applicants available." [globalFilter]="gb" #table>
+      <p-dataTable [value]="applicants" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No applicants available." [globalFilter]="gb" #table>
 
 
           <p-column field="fullname" header="Name" [sortable]="true" styleClass="col-size"></p-column>

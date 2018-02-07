@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ScheduleModule} from 'primeng/primeng';
+import {ScheduleModule, PanelModule} from 'primeng/primeng';
+import { DashboardComponent } from 'app/dashboard/dashboard.component';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ScheduleModule
+    ScheduleModule,
+    PanelModule
   ],
-  declarations: []
+  declarations: [
+    DashboardComponent
+  ],
+  exports: [
+  ]
 })
 export class DashboardModule { }

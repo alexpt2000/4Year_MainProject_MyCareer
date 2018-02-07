@@ -59,7 +59,6 @@ export class ApplicantsFilterComponent implements OnInit {
       .then(applicants => {
         this.applicants = applicants;
       });
-      console.log(this.applicants)
   }
 
 

@@ -22,6 +22,7 @@ import {MenubarModule} from 'primeng/components/menubar/menubar';
 
 import {MenuModule} from 'primeng/components/menu/menu';
 import { JobsService } from 'app/jobs/jobs.service';
+import { DashboardService } from 'app/dashboard/dashboard.service';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { JobsService } from 'app/jobs/jobs.service';
     ConfirmDialogModule
   ],
   providers: [
+    DashboardService,
     LancamentoService,
     PessoaService,
     CategoriaService,

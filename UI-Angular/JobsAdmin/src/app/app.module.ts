@@ -10,11 +10,12 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SecurityModule } from './security/security.module';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 import {ScheduleModule} from 'primeng/primeng';
 
 import {PanelModule} from 'primeng/primeng';
 import { JobsModule } from 'app/jobs/jobs.module';
+import { DashboardModule } from 'app/dashboard/dashboard.module';
 
 
 
@@ -22,8 +23,7 @@ import { JobsModule } from 'app/jobs/jobs.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DashboardComponent,
+    AppComponent
 
   ],
   imports: [
@@ -31,6 +31,7 @@ import { JobsModule } from 'app/jobs/jobs.module';
     BrowserAnimationsModule,
     HttpModule,
     CoreModule,
+    DashboardModule,
     LancamentosModule,
     PessoasModule,
     JobsModule,
