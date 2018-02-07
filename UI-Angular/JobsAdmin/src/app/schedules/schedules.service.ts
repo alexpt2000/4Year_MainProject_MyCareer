@@ -27,8 +27,14 @@ export class SchedulesService {
   search(): Promise<any> {
 
     return this.http.get(`${this.apiUrl}`)
-      .toPromise()
-      .then(response => response.json().content);
+  .toPromise()
+  .then(response => {
+    const schedule = response.json() as Schedules;
+
+    // this.convertStringToDate([schedule]);
+
+    return schedule;
+  })
   }
 
 

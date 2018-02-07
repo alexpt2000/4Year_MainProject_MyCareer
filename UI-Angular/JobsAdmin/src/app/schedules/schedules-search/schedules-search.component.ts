@@ -25,7 +25,7 @@ import { SchedulesService, SchedulesFilter } from 'app/schedules/schedules.servi
 })
 
 
-export class SchedulesSearchComponent {
+export class SchedulesSearchComponent implements OnInit {
 
 
   totalRecords = 0;
@@ -44,6 +44,10 @@ export class SchedulesSearchComponent {
     private errorHandler: ErrorHandlerService
   ) { }
 
+
+  ngOnInit() {
+    this.search();
+  }
 
   search() {
     this.schedulesService.search()

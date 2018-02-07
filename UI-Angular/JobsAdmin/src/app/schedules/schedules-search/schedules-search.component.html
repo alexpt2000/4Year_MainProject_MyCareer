@@ -1,57 +1,33 @@
-<!--
-<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
-  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-  <input #gb type="text" pInputText size="50" placeholder="Applicants">
-</div>
-
-<p-dataTable [value]="applicants" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No applicants available." [globalFilter]="gb" #table>
-
-
-<p-column field="fullname" header="Name" [sortable]="true" styleClass="col-size"></p-column>
-
--->
-
 <div class="container card-white">
-  <div class="ui-g">
-
-    <form autocomplete="off" (ngSubmit)="search()">
-      <div class="ui-g-12 ui-fluid" class="form-inline">
-        <br/>
-        <button pButton type="submit" label="Add Schedule" icon="fa-plus" class="ui-button-success" [routerLink]="['/schedules/newschedule']"></button>
-        <input pInputText type="text" name="title" placeholder="Title" [(ngModel)]="filter.title">
-        <button pButton type="submit" icon="fa-search" pTooltip="Search" tooltipPosition="top"></button>
-      </div>
-    </form>
-
-  </div>
-
   <div class="ui-g">
     <div class="ui-g-12">
 
-        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input #gb type="text" pInputText size="50" placeholder="Applicants">
-          </div>
+      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+        <button pButton type="submit" label="Add Schedule" icon="fa-plus" class="ui-button-success" [routerLink]="['/schedules/newschedule']"></button>
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input #gb type="text" pInputText size="50" placeholder="Applicants">
+      </div>
 
-      <p-dataTable [value]="schedulesweb" [responsive]="true" emptyMessage="No schedules available." [rows]="15" [paginator]="true" [globalFilter]="gb" #table>
+      <p-dataTable [value]="schedulesweb" [responsive]="true" emptyMessage="No schedules available." [rows]="15" [paginator]="true"
+        [globalFilter]="gb" #table>
 
         <p-column field="title" header="Title" [sortable]="true"></p-column>
 
         <p-column header="Start" styleClass="col-size">
           <ng-template let-schedule="rowData" pTemplate="body">
-            <span>{{ schedule.start | date:'dd/MM/yyyy  HH:mm' }}</span>
+            <span>{{ schedule.start | date:'dd/MM/yyyy HH:mm' }}</span>
           </ng-template>
         </p-column>
 
         <p-column header="End" styleClass="col-size">
           <ng-template let-schedule="rowData" pTemplate="body">
-            <span>{{ schedule.finish | date:'dd/MM/yyyy  HH:mm' }}</span>
+            <span>{{ schedule.finish | date:'dd/MM/yyyy HH:mm' }}</span>
           </ng-template>
         </p-column>
 
         <p-column field="notes" header="Notes"></p-column>
 
-<!--
+        <!--
         <p-column header="Publication" styleClass="col-size">
           <ng-template let-job="rowData" pTemplate="body">
             <span>{{ job.publication | date:'dd/MM/yyyy' }}</span>
