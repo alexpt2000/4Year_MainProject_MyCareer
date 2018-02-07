@@ -21,6 +21,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { SchedulesSearchComponent } from 'app/schedules/schedules-search/schedules-search.component';
 import { SchedulesAddComponent } from 'app/schedules/schedules-add/schedules-add.component';
 import { SchedulesRoutingModule } from 'app/schedules/schedules-routing.module';
+import {TriStateCheckboxModule} from 'primeng/components/tristatecheckbox/tristatecheckbox';
 
 
 
@@ -46,7 +47,8 @@ import { SchedulesRoutingModule } from 'app/schedules/schedules-routing.module';
     RouterModule,
     SchedulesRoutingModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    TriStateCheckboxModule
   ],
   declarations: [
     SchedulesSearchComponent,

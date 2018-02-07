@@ -13,27 +13,21 @@
 
         <p-column field="title" header="Title" [sortable]="true"></p-column>
 
-        <p-column header="Start" styleClass="col-size">
+        <p-column header="Start" styleClass="col-size" [sortable]="true" field="start">
           <ng-template let-schedule="rowData" pTemplate="body">
             <span>{{ schedule.start | date:'dd/MM/yyyy HH:mm' }}</span>
           </ng-template>
         </p-column>
 
-        <p-column header="End" styleClass="col-size">
+        <p-column header="End" styleClass="col-size" [sortable]="true" field="end">
           <ng-template let-schedule="rowData" pTemplate="body">
-            <span>{{ schedule.finish | date:'dd/MM/yyyy HH:mm' }}</span>
+            <span>{{ schedule.end | date:'dd/MM/yyyy HH:mm' }}</span>
           </ng-template>
         </p-column>
 
         <p-column field="notes" header="Notes"></p-column>
 
-        <!--
-        <p-column header="Publication" styleClass="col-size">
-          <ng-template let-job="rowData" pTemplate="body">
-            <span>{{ job.publication | date:'dd/MM/yyyy' }}</span>
-          </ng-template>
-        </p-column>
-      -->
+        <p-column field="allDay" header="All Day"></p-column>
 
 
         <p-column styleClass="col-size">

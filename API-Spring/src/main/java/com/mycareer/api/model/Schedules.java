@@ -3,6 +3,7 @@ package com.mycareer.api.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,13 @@ public class Schedules {
 
 	@NotNull
 	private LocalDateTime start;
-	private LocalDateTime finish;
+
+	@Column(name = "finish")
+	private LocalDateTime end;
+
+	@Column(name = "allday")
+	private boolean allDay;
+
 	private String notes;
 
 	public Long getCode() {
@@ -52,12 +59,24 @@ public class Schedules {
 		this.start = start;
 	}
 
-	public LocalDateTime getFinish() {
-		return finish;
+	public LocalDateTime getEnd() {
+		return end;
 	}
 
-	public void setFinish(LocalDateTime finish) {
-		this.finish = finish;
+	public void setEnd(LocalDateTime end) {
+		this.end = end;
+	}
+
+
+
+
+
+	public boolean isAllDay() {
+		return allDay;
+	}
+
+	public void setAllDay(boolean allDay) {
+		this.allDay = allDay;
 	}
 
 	public String getNotes() {

@@ -5,6 +5,7 @@ import { ToastyService } from 'ng2-toasty';
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'app/dashboard/dashboard.service';
 import { AuthService } from 'app/security/auth.service';
+import { SchedulesService } from 'app/schedules/schedules.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,12 +16,14 @@ export class DashboardComponent implements OnInit {
 
   scheduleHeader: any;
   events: any[];
+  end: any;
   total_jobs = '';
   total_applicants = '';
   total_newapplicants = '';
 
   constructor(
     private dashboardService: DashboardService,
+    private schedulesService: SchedulesService,
     private toasty: ToastyService,
     private auth: AuthService,
     private confirmation: ConfirmationService,
@@ -30,6 +33,8 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.searchSchedule();
 
     this.findTotalJobs();
     this.findTotalApplicants();
@@ -41,21 +46,27 @@ export class DashboardComponent implements OnInit {
       right: 'month,agendaWeek,agendaDay'
     }
 
-    this.events = [
-      {
-        'id': 1,
-        'title': 'Alex',
-        'start': '2018-02-07 10:10',
-        'end': '2018-02-07 11:40'
-      },
-      {
-        'id': 2,
-        'title': 'Project',
-        'start': '2018-02-15'
-      }
+    // this.events = [
+    //   {
+    //     'id': 1,
+    //     'title': 'Alex',
+    //     'start': '2018-02-07 10:10',
+    //     'end': '2018-02-07 11:40'
+    //   },
+    //   {
+    //     'id': 2,
+    //     'title': 'Project',
+    //     'start': '2018-02-15'
+    //   }
+    // ]
 
-    ]
+  }
 
+  searchSchedule() {
+    this.schedulesService.search()
+      .then(result => {
+        this.events = result;
+      });
   }
 
   findTotalJobs() {

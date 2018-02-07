@@ -1,4 +1,4 @@
-import { Jobs } from './../../core/model';
+import { Jobs, Schedules } from './../../core/model';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { BrowserModule } from '@angular/platform-browser'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -12,6 +12,7 @@ import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { SchedulesService } from 'app/schedules/schedules.service';
 
 
 @Component({
@@ -21,23 +22,16 @@ import { Title } from '@angular/platform-browser';
 })
 export class SchedulesAddComponent implements OnInit {
 
-  job = new Jobs();
-  titlePage = 'New Job';
-
-  statusList = [
-    { label: 'Open', value: 'Open' },
-    { label: 'Close', value: 'Close' },
-    { label: 'Pendent', value: 'Pendent' },
-  ];
+  schedule = new Schedules();
+  titlePage = 'New Schedule';
 
 
   constructor(
     private _location: Location,
     private toasty: ToastyService,
-    // private jobsService: JobsService,
+    private schedulesService: SchedulesService,
     private route: ActivatedRoute,
     private title: Title,
-   // private jobService: JobsService,
     private errorHandler: ErrorHandlerService,
 
   ) {
@@ -46,67 +40,67 @@ export class SchedulesAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    const codeJob = this.route.snapshot.params['code'];
+    const codeSchedule = this.route.snapshot.params['code'];
     this.title.setTitle('New Job');
 
-    // if (codeJob) {
-    //   this.loadJobs(codeJob);
-    //   this.titlePage = 'Edit Job';
-    // }
+    if (codeSchedule) {
+      this.loadSchedule(codeSchedule);
+      this.titlePage = 'Edit Schedule';
+    }
   }
 
   get editing() {
-    return Boolean(this.job.code)
+    return Boolean(this.schedule.code)
   }
 
-  // loadJobs(code: number) {
-  //   this.jobService.findByCode(code)
-  //     .then(job => {
-  //       this.job = job;
-  //       this.updateTitle();
-  //     })
-  //     .catch(erro => this.errorHandler.handle(erro));
-  // }
+  loadSchedule(code: number) {
+    this.schedulesService.findByCode(code)
+      .then(schedule => {
+        this.schedule = schedule;
+        this.updateTitle();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
 
 
-  // save(form: FormControl) {
-  //   if (this.editing) {
-  //     this.updateJob(form);
-  //   } else {
-  //     this.addJob(form);
-  //   }
-  // }
+  save(form: FormControl) {
+    if (this.editing) {
+      this.updateSchedule(form);
+    } else {
+      this.addSchedule(form);
+    }
+  }
 
-  // backClicked() {
-  //   this._location.back();
-  // }
+  backClicked() {
+    this._location.back();
+  }
 
-  // addJob(form: FormControl) {
-  //   // this.applicant.job.code = this.router.snapshot.params['code'];
-  //   // this.job.applicant_date = this.nowDate;
-  //   // console.log(this.applicant.applicant_date);
-  //   this.jobsService.add(this.job)
-  //     .then(() => {
-  //       this.toasty.success(`Hi the ${this.job.title} job has been successfully save.`);
-  //       this.job = new Jobs();
-  //       this.backClicked();
-  //       // alert(`Email "${email}" now will receive alerts from MyCareer.`);
-  //     })
-  // }
+  addSchedule(form: FormControl) {
+    // this.applicant.job.code = this.router.snapshot.params['code'];
+    // this.job.applicant_date = this.nowDate;
+    // console.log(this.applicant.applicant_date);
+    this.schedulesService.add(this.schedule)
+      .then(() => {
+        this.toasty.success(`Hi the ${this.schedule.title} job has been successfully save.`);
+        this.schedule = new Schedules();
+        this.backClicked();
+        // alert(`Email "${email}" now will receive alerts from MyCareer.`);
+      })
+  }
 
-  // updateJob(form: FormControl) {
-  //   this.jobService.update(this.job)
-  //     .then(job => {
-  //       this.job = job;
+  updateSchedule(form: FormControl) {
+    this.schedulesService.update(this.schedule)
+      .then(schedule => {
+        this.schedule = schedule;
 
-  //       this.toasty.success('Successfully changed!');
-  //       this.updateTitle();
-  //     })
-  //     .catch(erro => this.errorHandler.handle(erro));
-  // }
+        this.toasty.success('Successfully changed!');
+        this.updateTitle();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
 
-  // updateTitle() {
-  //   this.title.setTitle(`Edit: ${this.job.title}`);
-  // }
+  updateTitle() {
+    this.title.setTitle(`Edit: ${this.schedule.title}`);
+  }
 
 }
