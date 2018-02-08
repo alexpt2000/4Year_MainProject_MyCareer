@@ -26,7 +26,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { FormsModule } from '@angular/forms';
 import {RatingModule} from 'primeng/components/rating/rating';
 import { ApplicantsAddNotesComponent } from 'app/applicants/applicants-add-notes/applicants-add-notes.component';
-import { TabViewModule } from 'primeng/primeng';
+import { TabViewModule, SpinnerModule } from 'primeng/primeng';
 
 
 
@@ -54,7 +54,10 @@ import { TabViewModule } from 'primeng/primeng';
     CalendarModule,
     RatingModule,
     ApplicantsRoutingModule,
-    TabViewModule
+    TabViewModule,
+    SpinnerModule
+
+
   ],
   declarations: [
     ApplicantsSearchComponent,

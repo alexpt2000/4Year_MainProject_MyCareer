@@ -1,5 +1,5 @@
 <div class="container card-white">
-  <form autocomplete="off" #applicantForm="ngForm" (ngSubmit)="save(applicantForm)">
+  <form autocomplete="off" #applicantForm="ngForm" (ngSubmit)="updateApplicant(applicantForm)">
     <!-- <form autocomplete="off" #applicantForm="ngForm" (ngSubmit)="save(applicantForm)"> -->
     <div class="ui-g">
       <div class="ui-g-12">
@@ -10,7 +10,6 @@
             <Label>Title : </Label>
             <span>{{applicant.applicant.job.title}}</span>
           </div>
-
 
           <div class="ui-g-12 ui-md-3 ui-fluid">
             <Label>Position : </Label>
@@ -24,7 +23,6 @@
 
           <div class="ui-g-12 ui-fluid">
             <hr>
-
           </div>
 
           <div class="ui-g-12 ui-md-3 ui-fluid">
@@ -53,7 +51,6 @@
             <a target="_blank" href="{{applicant.applicant.profile_url}}">{{applicant.applicant.profile_url}}</a>
           </div>
 
-
         </p-panel>
 
       </div>
@@ -62,12 +59,20 @@
         <p-tabView>
           <p-tabPanel header="Notes" leftIcon="fa-edit">
 
-            <div class="ui-g-12 ui-md-8 ui-fluid">
-              <br>
-              <span class="ui-float-label">
-                <input pInputText type="text" id="float-input" name="score" #score="ngModel" [(ngModel)]="applicant.score" required>
-                <label for="float-input">Score</label>
-              </span>
+            <div class="ui-g-12 ui-md-1 ui-fluid">
+
+              <label>Score</label>
+              <p-spinner size="5" [(ngModel)]="applicant.score" [min]="0" [max]="5" name="score" #score="ngModel"></p-spinner>
+              <p-rating [(ngModel)]="applicant.score" [cancel]="false" readonly="false" name="score" #score="ngModel"></p-rating>
+            </div>
+
+            <div class="ui-g-12 ui-md-12 ui-fluid"></div>
+
+            <div class="ui-g-6 ui-md-8 ui-fluid">
+              <div>
+                <label>Notes</label>
+              </div>
+              <textarea [rows]="15" [cols]="90" pInputTextarea name="notes" #notes="ngModel" [(ngModel)]="applicant.notes"></textarea>
             </div>
 
             <div class="ui-g-12">
@@ -75,20 +80,14 @@
               <button pButton type="submit" label="Save evaluation" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
             </div>
 
-
-
           </p-tabPanel>
 
           <p-tabPanel header="Questions" leftIcon="fa-question-circle">
 
           </p-tabPanel>
 
-
-
         </p-tabView>
       </div>
-
-
 
     </div>
 

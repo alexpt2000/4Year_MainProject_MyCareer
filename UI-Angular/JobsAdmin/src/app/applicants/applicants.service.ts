@@ -75,6 +75,12 @@ export class ApplicantsService {
       .then(response => response.json());
   }
 
+  addApplicanNotes(applicant: ApplicantNotes): Promise<ApplicantNotes> {
+    return this.http.post(`${this.apiUrl}/applicantnotes`, JSON.stringify(applicant))
+      .toPromise()
+      .then(response => response.json());
+  }
+
   update(applicant: Applicants): Promise<Applicants> {
     return this.http.put(`${this.apiUrl}/${applicant.code}`,
       JSON.stringify(applicant))
@@ -83,6 +89,20 @@ export class ApplicantsService {
         const applicantChange = response.json() as Applicants;
 
         this.convertStringToDate([applicantChange]);
+
+        return applicantChange;
+      });
+  }
+
+
+  updateApplicantNotes(applicant: ApplicantNotes): Promise<ApplicantNotes> {
+    return this.http.put(`${this.apiUrl}/applicantnotes/${applicant.code}`,
+      JSON.stringify(applicant))
+      .toPromise()
+      .then(response => {
+        const applicantChange = response.json() as ApplicantNotes;
+
+        // this.convertStringToDate([applicantChange]);
 
         return applicantChange;
       });
