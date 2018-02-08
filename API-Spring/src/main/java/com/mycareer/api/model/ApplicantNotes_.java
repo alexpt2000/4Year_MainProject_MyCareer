@@ -9,10 +9,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class ApplicantNotes_ {
 
 	public static volatile SingularAttribute<ApplicantNotes, Long> code;
-	public static volatile SingularAttribute<ApplicantNotes, Long> score_question;
-	public static volatile SingularAttribute<ApplicantNotes, Long> score_test;
-	public static volatile SingularAttribute<ApplicantNotes, Long> score_other;
-	public static volatile SingularAttribute<ApplicantNotes, String> hr_notes;
-	public static volatile SingularAttribute<ApplicantNotes, Applicants> applicants;
+	public static volatile SingularAttribute<ApplicantNotes, Long> score;
+	public static volatile SingularAttribute<ApplicantNotes, String> notes;
+	public static volatile SingularAttribute<ApplicantNotes, Applicants> applicant;
 }
+
 

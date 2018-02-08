@@ -16,21 +16,15 @@ public class ApplicantNotes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long code;
-	
+
 	@NotNull
 	@OneToOne
 	@JoinColumn(name = "code_applicant")
-	private Applicants applicants;
+	private Applicants applicant;
 
-	private long score_question;
+	private long score;
 
-	private long score_test;
-
-	private long score_other;
-
-	private String hr_notes;
-
-
+	private String notes;
 
 	public Long getCode() {
 		return code;
@@ -40,44 +34,28 @@ public class ApplicantNotes {
 		this.code = code;
 	}
 
-	public Applicants getApplicants() {
-		return applicants;
+	public Applicants getApplicant() {
+		return applicant;
 	}
 
-	public void setApplicants(Applicants applicants) {
-		this.applicants = applicants;
+	public void setApplicant(Applicants applicant) {
+		this.applicant = applicant;
 	}
 
-	public long getScore_question() {
-		return score_question;
+	public long getScore() {
+		return score;
 	}
 
-	public void setScore_question(long score_question) {
-		this.score_question = score_question;
+	public void setScore(long score) {
+		this.score = score;
 	}
 
-	public long getScore_test() {
-		return score_test;
+	public String getNotes() {
+		return notes;
 	}
 
-	public void setScore_test(long score_test) {
-		this.score_test = score_test;
-	}
-
-	public long getScore_other() {
-		return score_other;
-	}
-
-	public void setScore_other(long score_other) {
-		this.score_other = score_other;
-	}
-
-	public String getHr_notes() {
-		return hr_notes;
-	}
-
-	public void setHr_notes(String hr_notes) {
-		this.hr_notes = hr_notes;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	@Override

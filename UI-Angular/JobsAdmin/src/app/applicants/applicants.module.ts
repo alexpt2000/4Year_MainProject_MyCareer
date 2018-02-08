@@ -25,6 +25,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 
 import { FormsModule } from '@angular/forms';
 import {RatingModule} from 'primeng/components/rating/rating';
+import { ApplicantsAddNotesComponent } from 'app/applicants/applicants-add-notes/applicants-add-notes.component';
 
 
 
@@ -56,6 +57,7 @@ import {RatingModule} from 'primeng/components/rating/rating';
   declarations: [
     ApplicantsSearchComponent,
     ApplicantsAddComponent,
+    ApplicantsAddNotesComponent,
     ApplicantsFilterComponent
   ],
   exports: [
