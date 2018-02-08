@@ -1,5 +1,5 @@
 import { ErrorHandlerService } from './../../core/error-handler.service';
-import { Applicants } from './../../core/model';
+import { Applicants, ApplicantNotes } from './../../core/model';
 import { ApplicantsService } from 'app/applicants/applicants.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
@@ -21,17 +21,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class ApplicantsAddNotesComponent implements OnInit {
 
-  applicant = new Applicants();
-  titlePage = 'New Applicant';
-
-  statusList = [
-    { label: 'New applicant', value: 'New applicant' },
-    { label: 'In process', value: 'In process' },
-    { label: 'Did not pass', value: 'Did not pass' },
-    { label: 'Accepted', value: 'Accepted' },
-    { label: 'Did not accept', value: 'Did not accept' },
-    { label: 'Missing requirements', value: 'Missing requirements' },
-  ];
+  applicant = new ApplicantNotes();
+  titlePage = '';
 
 
   constructor(
@@ -49,12 +40,12 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
   ngOnInit() {
     const codeApplicant = this.route.snapshot.params['code'];
-    this.title.setTitle('New Job');
+    this.title.setTitle('Evaluate applicant');
 
-    if (codeApplicant) {
+    // if (codeApplicant) {
       this.loadApplicantNotes(codeApplicant);
-      this.titlePage = 'Edit Application';
-    }
+     // this.titlePage = 'Evaluate applicant - ' + this.applicant.score;
+    // }
   }
 
   get editing() {
@@ -62,7 +53,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
   }
 
   loadApplicantNotes(code: number) {
-    this.applicantsService.findByCode(code)
+    this.applicantsService.findByCodeApplicantNotes(code)
       .then(applicant => {
         this.applicant = applicant;
         this.updateTitle();
@@ -70,45 +61,47 @@ export class ApplicantsAddNotesComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-
-  save(form: FormControl) {
-    if (this.editing) {
-      this.updateApplicant(form);
-    } else {
-      this.addApplicant(form);
-    }
-  }
 
   backClicked() {
     this._location.back();
   }
 
-  addApplicant(form: FormControl) {
-    // this.applicant.job.code = this.router.snapshot.params['code'];
-    // this.job.applicant_date = this.nowDate;
-    // console.log(this.applicant.applicant_date);
-    this.applicantsService.add(this.applicant)
-      .then(() => {
-        this.toasty.success(`Hi the ${this.applicant.fullname} job has been successfully save.`);
-        this.applicant = new Applicants();
-        this.backClicked();
-        // alert(`Email "${email}" now will receive alerts from MyCareer.`);
-      })
-  }
+ // TODO ********************************
+  // save(form: FormControl) {
+  //   if (this.editing) {
+  //     this.updateApplicant(form);
+  //   } else {
+  //     this.addApplicantNotes(form);
+  //   }
+  // }
 
-  updateApplicant(form: FormControl) {
-    this.applicantsService.update(this.applicant)
-      .then(applicant => {
-        this.applicant = applicant;
+  // addApplicantNotes(form: FormControl) {
+  //   // this.applicant.job.code = this.router.snapshot.params['code'];
+  //   // this.job.applicant_date = this.nowDate;
+  //   // console.log(this.applicant.applicant_date);
+  //   this.applicantsService.add(this.applicant)
+  //     .then(() => {
+  //       this.toasty.success(`Hi the ${this.applicant.fullname} job has been successfully save.`);
+  //       this.applicant = new Applicants();
+  //       this.backClicked();
+  //       // alert(`Email "${email}" now will receive alerts from MyCareer.`);
+  //     })
+  // }
 
-        this.toasty.success('Successfully changed!');
-        this.updateTitle();
-      })
-      .catch(erro => this.errorHandler.handle(erro));
-  }
+  // updateApplicant(form: FormControl) {
+  //   this.applicantsService.update(this.applicant)
+  //     .then(applicant => {
+  //       this.applicant = applicant;
+
+  //       this.toasty.success('Successfully changed!');
+  //       this.updateTitle();
+  //     })
+  //     .catch(erro => this.errorHandler.handle(erro));
+  // }
 
   updateTitle() {
-    this.title.setTitle(`Edit: ${this.applicant.fullname}`);
+    this.title.setTitle(`Evaluate: ${this.applicant.applicant.fullname}`);
+    this.titlePage = 'Evaluate applicant - ' + this.applicant.applicant.fullname;
   }
 
 }

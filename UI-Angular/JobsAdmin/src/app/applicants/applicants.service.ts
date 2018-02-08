@@ -1,4 +1,4 @@
-import { Applicants } from './../core/model';
+import { Applicants, ApplicantNotes } from './../core/model';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
@@ -97,6 +97,16 @@ export class ApplicantsService {
 
         this.convertStringToDate([applicant]);
 
+        return applicant;
+      });
+  }
+
+  findByCodeApplicantNotes(code: number): Promise<ApplicantNotes> {
+    return this.http.get(`${this.apiUrl}/applicantnotes/${code}`)
+      .toPromise()
+      .then(response => {
+        const applicant = response.json() as ApplicantNotes;
+        // this.convertStringToDate([applicant]);
         return applicant;
       });
   }

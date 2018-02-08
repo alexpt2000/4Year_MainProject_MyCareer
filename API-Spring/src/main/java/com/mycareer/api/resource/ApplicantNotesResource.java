@@ -24,7 +24,7 @@ import com.mycareer.api.repository.ApplicantNotesRepository;
 import com.mycareer.api.service.ApplicantNotesService;
 
 @RestController
-@RequestMapping("/applicantnotes")
+@RequestMapping("/applicants/applicantnotes")
 public class ApplicantNotesResource {
 
 	@Autowired

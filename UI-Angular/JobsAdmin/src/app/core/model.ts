@@ -31,3 +31,12 @@ export class Schedules {
   allDay: boolean = false;
   notes: string;
 }
+
+
+export class ApplicantNotes {
+  code: number;
+  score: number;
+  notes: string;
+  applicant = new Applicants();
+}
+
