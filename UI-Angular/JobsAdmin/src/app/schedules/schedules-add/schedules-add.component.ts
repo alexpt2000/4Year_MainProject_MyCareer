@@ -26,6 +26,7 @@ export class SchedulesAddComponent implements OnInit {
 
   schedule = new Schedules();
   applicants = [];
+  fullnameDopdown: boolean;
 
   titlePage = 'New Schedule';
 
@@ -52,6 +53,7 @@ export class SchedulesAddComponent implements OnInit {
 
   ngOnInit() {
     const codeSchedule = this.route.snapshot.params['code'];
+    const fullnameSchedule = this.route.snapshot.params['fullname'];
     this.title.setTitle('New Job');
 
     this.loadApplicants();
@@ -60,6 +62,13 @@ export class SchedulesAddComponent implements OnInit {
       this.loadSchedule(codeSchedule);
       this.titlePage = 'Edit Schedule';
     }
+
+    if (fullnameSchedule) {
+      this.schedule.title = 'Intv - ' + fullnameSchedule;
+      this.titlePage = 'New Schedule - ' + fullnameSchedule;
+      this.fullnameDopdown = true;
+    }
+
   }
 
   get editing() {

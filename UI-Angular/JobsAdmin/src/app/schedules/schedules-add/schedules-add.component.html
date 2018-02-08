@@ -17,13 +17,13 @@
       </div>
     -->
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
+      <div class="ui-g-12 ui-md-6 ui-fluid" *ngIf="!fullnameDopdown">
         <label>Schedule</label>
         <p-dropdown name="title" id="float-input" [options]="applicants" placeholder="Select applicant" [autoWidth]="false" filter="true"
           [(ngModel)]="schedule.title" editable="true"></p-dropdown>
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-fluid"></div>
+      <div class="ui-g-12 ui-md-6 ui-fluid" *ngIf="!fullnameDopdown"></div>
 
       <div class="ui-g-6 ui-md-2 ui-fluid">
         <br>

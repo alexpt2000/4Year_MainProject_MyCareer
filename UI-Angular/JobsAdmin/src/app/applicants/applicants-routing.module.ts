@@ -1,3 +1,4 @@
+import { SchedulesAddComponent } from './../schedules/schedules-add/schedules-add.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
@@ -30,6 +31,12 @@ const routes: Routes = [
     component: ApplicantsFilterComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_READ_APPLICANT'] }
+  },
+  {
+    path: 'schedules/newschedule/:fullname',
+    component: SchedulesAddComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ADD_SCHEDULE'] }
   }
 
 ];

@@ -28,9 +28,15 @@
 
 
     <div class="ui-g-12 ui-md-12">
-      <p-panel header="Schedule" [style]="{'height':'100%'}">
-        <p-schedule [events]="events" defaultDate="2018-02-10" [header]="scheduleHeader"></p-schedule>
+      <p-panel header="Schedule" [style]="{'height':'100%'}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+        <p-schedule [events]="events" defaultDate="2018-02-10" [header]="scheduleHeader" ></p-schedule>
       </p-panel>
+
     </div>
+
+    <div class="ui-g-12 ui-md-2">
+        <button pButton label="Add Schedule" icon="fa-plus" class="ui-button-success" [routerLink]="['/schedules/newschedule']"></button>
+    </div>
+
 
   </div>

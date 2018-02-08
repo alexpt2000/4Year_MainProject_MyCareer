@@ -11,15 +11,16 @@
   <div class="ui-g">
     <div class="ui-g-12">
 
-        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input #gb type="text" pInputText size="50" placeholder="Applicants">
-        </div>
+      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input #gb type="text" pInputText size="50" placeholder="Applicants">
+      </div>
 
-      <p-dataTable [value]="applicants" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No applicants available." [globalFilter]="gb" #table>
+      <p-dataTable [value]="applicants" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No applicants available."
+        [globalFilter]="gb" #table>
 
 
-          <p-column field="fullname" header="Name" [sortable]="true" styleClass="col-size"></p-column>
+        <p-column field="fullname" header="Name" [sortable]="true" styleClass="col-size"></p-column>
 
         <p-column header="Applied" styleClass="col-size" [sortable]="true" field="applicant_date">
           <ng-template let-appl="rowData" pTemplate="body">
@@ -27,7 +28,7 @@
           </ng-template>
         </p-column>
 
-        <p-column header="Contact" >
+        <p-column header="Contact">
           <ng-template let-appl="rowData" pTemplate="body">
             <span>{{appl.phone_number}}</span>
             <br>
@@ -38,27 +39,6 @@
         </p-column>
 
 
-
-        <!--
-
-                  <p-column field="email" header ="Email" >
-            <ng-template let-appl="rowData" pTemplate type="body">
-                <a target="_blank" href="mailto:{{appl.email}}">{{appl.email}}</a>
-            </ng-template>
-        </p-column>
-
-        <p-column field="profile_url" header ="Profile" >
-            <ng-template let-row="rowData" pTemplate type="body">
-                <a target="_blank" href="{{row.profile_url}}">{{row.profile_url}}</a>
-            </ng-template>
-        </p-column>
-
-                <p-column header="Date" styleClass="col-size">
-          <ng-template let-appl="rowData" pTemplate="body">
-            <span>{{ appl.applicant_date | date:'dd/MM/yyyy' }}</span>
-          </ng-template>
-        </p-column>
-      -->
         <p-column field="status" header="Status" styleClass="col-size" [sortable]="true"></p-column>
 
 
@@ -73,6 +53,8 @@
         <p-column styleClass="col-size">
           <ng-template let-appl="rowData" pTemplate="body">
             <button pButton icon="fa-balance-scale" pTooltip="Evaluation of the candidate" tooltipPosition="top" [routerLink]="['/applicants', appl.code]"></button>
+            <button pButton icon="fa-calendar" pTooltip="Add the Applicant to an Interview Schedule" tooltipPosition="top" [routerLink]="['/schedules/newschedule', appl.fullname]"
+              [disabled]="!auth.havePermission('ROLE_ADD_SCHEDULE')"></button>
             <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', appl.code]"
               [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
             <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(appl)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')"
