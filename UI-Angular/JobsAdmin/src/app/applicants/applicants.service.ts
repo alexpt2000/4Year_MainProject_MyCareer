@@ -57,7 +57,6 @@ export class ApplicantsService {
 
 
   listApplicants(): Promise<any> {
-
     return this.http.get(`${this.apiUrl}`)
     .toPromise()
     .then(response => response.json().content);
@@ -150,6 +149,14 @@ export class ApplicantsService {
         'YYYY-MM-DD').toDate();
 
     }
+  }
+
+
+  // Load the list of Questions
+  listTypeQuestions(): Promise<any> {
+    return this.http.get(`${this.apiUrl}/listquestions`)
+    .toPromise()
+    .then(response => response.json().content);
   }
 
 

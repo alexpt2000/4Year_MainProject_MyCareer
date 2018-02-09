@@ -24,6 +24,8 @@ export class ApplicantsAddNotesComponent implements OnInit {
   applicant = new ApplicantNotes();
   titlePage = '';
 
+  typeQuestion = [];
+
   constructor(
     private _location: Location,
     private toasty: ToastyService,
@@ -89,6 +91,19 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
   backClicked() {
     this._location.back();
+  }
+
+
+  // Load the list of Questions
+  listTypeQuestions() {
+
+    this.applicantsService.listTypeQuestions()
+    .then(typeQuestion => {
+      this.typeQuestion = typeQuestion
+        .map(a => ({ label: a, value: a }));
+    })
+    .catch(erro => this.errorHandler.handle(erro));
+
   }
 
 }
