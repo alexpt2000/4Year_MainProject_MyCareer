@@ -1,4 +1,5 @@
-import { Applicants, ApplicantNotes } from './../core/model';
+import { Title } from '@angular/platform-browser';
+import { Applicants, ApplicantNotes, ListQuestions } from './../core/model';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
@@ -156,7 +157,7 @@ export class ApplicantsService {
   listTypeQuestions(): Promise<any> {
     return this.http.get(`${this.apiUrl}/listquestions`)
     .toPromise()
-    .then(response => response.json().content);
+    .then(response => response.json() as ListQuestions);
   }
 
 

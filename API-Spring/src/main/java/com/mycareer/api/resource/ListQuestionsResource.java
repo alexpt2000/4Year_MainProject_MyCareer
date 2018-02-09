@@ -75,7 +75,7 @@ public class ListQuestionsResource {
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public List<String> find() {
+	public List<ListQuestions> find() {
 		return listQuestionsRepository.findListQuestions();
 	}
 	

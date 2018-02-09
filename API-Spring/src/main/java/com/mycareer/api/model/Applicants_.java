@@ -3,14 +3,8 @@ package com.mycareer.api.model;
 import java.time.LocalDate;
 
 import javax.annotation.Generated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
-import javax.validation.constraints.NotNull;
 
 import com.mysql.jdbc.Blob;
 
@@ -29,4 +23,3 @@ public abstract class Applicants_ {
 	public static volatile SingularAttribute<Applicants, LocalDate> applicant_date;
 	public static volatile SingularAttribute<Applicants, Jobs> job;
 }
-

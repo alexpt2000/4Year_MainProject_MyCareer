@@ -19,19 +19,17 @@ public class JobWebResource {
 
 	@Autowired
 	private JobRepository jobRepository;
-	
+
 	@Autowired
 	private JobService jobService;
-	
+
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
-
-	@GetMapping 
+	@GetMapping
 	public Page<Jobs> find(@RequestParam(required = false, defaultValue = "%") String title, Pageable pageable) {
 		return jobRepository.findByTitleContaining(title, pageable);
 
 	}
-	
 
 }

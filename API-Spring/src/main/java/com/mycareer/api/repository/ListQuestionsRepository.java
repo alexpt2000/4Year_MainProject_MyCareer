@@ -9,7 +9,7 @@ import com.mycareer.api.model.ListQuestions;
 
 public interface ListQuestionsRepository extends JpaRepository<ListQuestions, Long> {
 
-	@Query(value = "select distinct type_question as value from listquestions", nativeQuery = true)
-	public List<String> findListQuestions();
+	@Query(value = "select * from listquestions", nativeQuery = true)
+	public List<ListQuestions> findListQuestions();
 
 }

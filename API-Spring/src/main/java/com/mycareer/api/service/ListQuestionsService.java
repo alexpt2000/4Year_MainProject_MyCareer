@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mycareer.api.model.Jobs;
 import com.mycareer.api.model.ListQuestions;
-import com.mycareer.api.repository.JobRepository;
 import com.mycareer.api.repository.ListQuestionsRepository;
 
 @Service

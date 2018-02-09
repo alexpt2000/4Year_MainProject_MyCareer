@@ -6,9 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mycareer.api.model.Alerts;
-import com.mycareer.api.model.Jobs;
 import com.mycareer.api.repository.AlertsRepository;
-import com.mycareer.api.repository.JobRepository;
 
 @Service
 public class AlertsService {

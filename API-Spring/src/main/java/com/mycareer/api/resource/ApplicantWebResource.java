@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycareer.api.event.ResourceCreatedEvent;
 import com.mycareer.api.model.Applicants;
-import com.mycareer.api.model.Jobs;
 import com.mycareer.api.repository.ApplicantRepository;
 
 @RestController
@@ -27,14 +26,14 @@ public class ApplicantWebResource {
 
 	@Autowired
 	private ApplicantRepository applicantRepository;
-	
-	
+
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
 	// TODO: To be remove, just use for test
 	@GetMapping
-	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname, Pageable pageable) {
+	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname,
+			Pageable pageable) {
 		return applicantRepository.findByFullnameContaining(fullname, pageable);
 	}
 

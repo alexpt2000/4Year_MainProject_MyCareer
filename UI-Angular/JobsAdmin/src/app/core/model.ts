@@ -33,6 +33,12 @@ export class Schedules {
 }
 
 
+export class ListQuestions {
+  code: number;
+  type_question: string;
+  question: string;
+}
+
 export class ApplicantNotes {
   code: number;
   score: number;

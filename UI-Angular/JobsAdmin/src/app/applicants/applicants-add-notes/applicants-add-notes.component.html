@@ -84,6 +84,27 @@
 
           <p-tabPanel header="Questions" leftIcon="fa-question-circle">
 
+
+<!--
+            <div class="ui-g-12 ui-md-3 ui-fluid">
+              <label>Type of questions</label>
+              <p-dropdown name="title" id="float-input" [options]="typeQuestion" placeholder="Select type questions" [autoWidth]="false"
+                filter="true" [(ngModel)]="selectedTypeQuestion" editable="false"></p-dropdown>
+            </div>
+          -->
+
+            <div class="ui-g-12 ui-md-3 ui-fluid">
+                <label>Type of questions</label>
+                <p-dropdown name="title" id="float-input" [options]="typeQuestion" placeholder="Select type questions" [autoWidth]="false"
+                  filter="true" [(ngModel)]="selectedTypeQuestion" editable="false"></p-dropdown>
+              </div>
+
+            <div class="ui-g-12 ui-md-7 ui-fluid">
+                <label>Questions</label>
+                <p-dropdown name="title" id="float-input" [options]="question" placeholder="Select type questions" [autoWidth]="false"
+                  filter="true" [(ngModel)]="selectedQuestion" editable="false"></p-dropdown>
+              </div>
+
           </p-tabPanel>
 
         </p-tabView>

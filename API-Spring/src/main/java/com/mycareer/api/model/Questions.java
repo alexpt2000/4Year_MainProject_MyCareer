@@ -25,6 +25,10 @@ public class Questions {
 
 	@NotNull
 	private String question;
+	
+	@NotNull
+	private String type_question;
+	
 	private String note;
 	private Long score;
 
@@ -42,6 +46,16 @@ public class Questions {
 
 	public void setApplicant(Applicants applicant) {
 		this.applicant = applicant;
+	}
+	
+	
+
+	public String getType_question() {
+		return type_question;
+	}
+
+	public void setType_question(String type_question) {
+		this.type_question = type_question;
 	}
 
 	public String getQuestion() {

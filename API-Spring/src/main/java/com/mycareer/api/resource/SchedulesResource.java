@@ -7,8 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,16 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycareer.api.event.ResourceCreatedEvent;
-import com.mycareer.api.model.Jobs;
 import com.mycareer.api.model.Schedules;
-import com.mycareer.api.repository.JobRepository;
 import com.mycareer.api.repository.SchedulesRepository;
-import com.mycareer.api.service.JobService;
 import com.mycareer.api.service.SchedulesService;
 
 @RestController
@@ -73,17 +67,18 @@ public class SchedulesResource {
 		return schedule != null ? ResponseEntity.ok(schedule) : ResponseEntity.notFound().build();
 	}
 
-//	@GetMapping
-//	@PreAuthorize("hasAuthority('ROLE_READ_SCHEDULE') and #oauth2.hasScope('read')")
-//	public Page<Schedules> find(@RequestParam(required = false, defaultValue = "%") String title, Pageable pageable) {
-//		return schedulesRepository.findByTitleContaining(title, pageable);
-//	}
+	// @GetMapping
+	// @PreAuthorize("hasAuthority('ROLE_READ_SCHEDULE') and
+	// #oauth2.hasScope('read')")
+	// public Page<Schedules> find(@RequestParam(required = false, defaultValue =
+	// "%") String title, Pageable pageable) {
+	// return schedulesRepository.findByTitleContaining(title, pageable);
+	// }
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_SCHEDULE') and #oauth2.hasScope('read')")
 	public List<Schedules> find() {
 		return schedulesRepository.findSchedules();
 	}
-	
-	
+
 }

@@ -23,8 +23,14 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
   applicant = new ApplicantNotes();
   titlePage = '';
+  i = 0;
+
+  selectedTypeQuestion = '';
+  selectedQuestion = '';
 
   typeQuestion = [];
+  question: any;
+
 
   constructor(
     private _location: Location,
@@ -39,6 +45,8 @@ export class ApplicantsAddNotesComponent implements OnInit {
     const codeApplicant = this.route.snapshot.params['code'];
     this.title.setTitle('Evaluate applicant');
     this.loadApplicantNotes(codeApplicant);
+    this.listTypeQuestions();
+
   }
 
 
@@ -98,11 +106,13 @@ export class ApplicantsAddNotesComponent implements OnInit {
   listTypeQuestions() {
 
     this.applicantsService.listTypeQuestions()
-    .then(typeQuestion => {
-      this.typeQuestion = typeQuestion
-        .map(a => ({ label: a, value: a }));
-    })
-    .catch(erro => this.errorHandler.handle(erro));
+      .then(typeQuestion => {
+        this.typeQuestion = typeQuestion
+          .map(a => ({ label: a.type_question, value: a.type_question }),
+          this.question = typeQuestion
+            .map(q => ({ label: q.question, value: q.question })));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
 
   }
 

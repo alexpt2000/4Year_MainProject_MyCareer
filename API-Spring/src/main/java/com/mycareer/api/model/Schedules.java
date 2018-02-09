@@ -1,6 +1,5 @@
 package com.mycareer.api.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -9,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -66,10 +64,6 @@ public class Schedules {
 	public void setEnd(LocalDateTime end) {
 		this.end = end;
 	}
-
-
-
-
 
 	public boolean isAllDay() {
 		return allDay;
