@@ -1,5 +1,5 @@
 import { Title } from '@angular/platform-browser';
-import { Applicants, ApplicantNotes, ListQuestions } from './../core/model';
+import { Applicants, ApplicantNotes, ListQuestions, ApplicantQuestions } from './../core/model';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
@@ -121,6 +121,7 @@ export class ApplicantsService {
       });
   }
 
+  // Applocants Notes
   findByCodeApplicantNotes(code: number): Promise<ApplicantNotes> {
     return this.http.get(`${this.apiUrl}/applicantnotes/${code}`)
       .toPromise()
@@ -130,6 +131,17 @@ export class ApplicantsService {
         return applicant;
       });
   }
+
+    // Applocants Questions
+    findByCodeApplicantQuestions(code: number): Promise<ApplicantQuestions> {
+      return this.http.get(`${this.apiUrl}/questions/${code}`)
+        .toPromise()
+        .then(response => {
+          const applicantQuestions = response.json() as ApplicantQuestions;
+          // this.convertStringToDate([applicant]);
+          return applicantQuestions;
+        });
+    }
 
   findByJobCode(code: number): Promise<any> {
     console.log(code)

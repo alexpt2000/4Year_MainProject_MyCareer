@@ -1,14 +1,16 @@
 
-CREATE TABLE applicant_notes (
+CREATE TABLE questions (
 	code BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-	score BIGINT(20),
+	type_question VARCHAR(50) NOT NULL,
+	question VARCHAR(50) NOT NULL,
 	notes TEXT,
+	score BIGINT(20),
 	code_applicant BIGINT(20) NOT NULL,
 	FOREIGN KEY (code_applicant) REFERENCES Applicants(code)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
-INSERT INTO applicant_notes (score, notes, code_applicant) values (3, 'Very good applicant', 1);
-INSERT INTO applicant_notes (score, notes, code_applicant) values (5, 'Very bad applicant', 2);
+INSERT INTO questions (type_question, question, notes, score, code_applicant) values ('Java', 'What is Bytecode?', 'Its ok', 4, 1);
+INSERT INTO questions (type_question, question, notes, score, code_applicant) values ('C#', 'What is C#?', 'Its ok', 2, 1);
 

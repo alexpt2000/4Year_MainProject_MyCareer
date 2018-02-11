@@ -55,6 +55,10 @@
 
       </div>
 
+      <!--
+              Block to add notes on applicant
+            -->
+
       <div class="ui-g-12">
         <p-tabView>
           <p-tabPanel header="Notes" leftIcon="fa-edit">
@@ -68,11 +72,11 @@
 
             <div class="ui-g-12 ui-md-12 ui-fluid"></div>
 
-            <div class="ui-g-6 ui-md-8 ui-fluid">
+            <div class="ui-g-12 ui-md-8 ui-fluid">
               <div>
                 <label>Notes</label>
               </div>
-              <textarea [rows]="15" [cols]="90" pInputTextarea name="notes" #notes="ngModel" [(ngModel)]="applicant.notes"></textarea>
+              <textarea [rows]="10" style="width:100%;" pInputTextarea name="notes" #notes="ngModel" [(ngModel)]="applicant.notes"></textarea>
             </div>
 
             <div class="ui-g-12">
@@ -85,25 +89,94 @@
           <p-tabPanel header="Questions" leftIcon="fa-question-circle">
 
 
-<!--
-            <div class="ui-g-12 ui-md-3 ui-fluid">
-              <label>Type of questions</label>
-              <p-dropdown name="title" id="float-input" [options]="typeQuestion" placeholder="Select type questions" [autoWidth]="false"
-                filter="true" [(ngModel)]="selectedTypeQuestion" editable="false"></p-dropdown>
+            <!--
+              Block to add questions on applicant
+            -->
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+
+                <div class="ui-g-12 ui-md-3 ui-fluid">
+                  <label>Type of questions</label>
+                  <p-dropdown name="title" id="float-input" [options]="typeQuestion" placeholder="Select type questions" [autoWidth]="false"
+                    filter="true" [(ngModel)]="applicantNewQuestion.type_question" editable="false"></p-dropdown>
+                </div>
+
+                <div class="ui-g-12 ui-md-7 ui-fluid">
+                  <label>Questions</label>
+                  <p-dropdown name="title" id="float-input" [options]="question" placeholder="Select type questions" [autoWidth]="false" filter="true"
+                    [(ngModel)]="applicantNewQuestion.question" editable="false"></p-dropdown>
+                </div>
+
+
+                <div class="ui-g-12 ui-md-8 ui-fluid">
+                  <div>
+                    <label>Notes</label>
+                  </div>
+                  <textarea [rows]="5" style="width:100%;" pInputTextarea name="newnotes" #newnotes="ngModel" [(ngModel)]="applicantNewQuestion.notes"></textarea>
+                </div>
+
+                <div class="ui-g-12 ui-md-2 ui-fluid">
+
+                  <label>Score</label>
+                  <p-spinner size="5" [(ngModel)]="applicantNewQuestion.score" [min]="0" [max]="5" name="newscore" #newscore="ngModel"></p-spinner>
+                  <p-rating [(ngModel)]="applicantNewQuestion.score" [cancel]="false" readonly="false" name="newscorestar" #newscorestar="ngModel"></p-rating>
+                </div>
+
+                <div class="ui-g-12">
+                  <button pButton type="button" label="Back" (click)="backClicked()"></button>
+                  <button pButton type="submit" label="Save question" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
+                </div>
+
+
+              </div>
             </div>
-          -->
 
-            <div class="ui-g-12 ui-md-3 ui-fluid">
-                <label>Type of questions</label>
-                <p-dropdown name="title" id="float-input" [options]="typeQuestion" placeholder="Select type questions" [autoWidth]="false"
-                  filter="true" [(ngModel)]="selectedTypeQuestion" editable="false"></p-dropdown>
-              </div>
 
-            <div class="ui-g-12 ui-md-7 ui-fluid">
-                <label>Questions</label>
-                <p-dropdown name="title" id="float-input" [options]="question" placeholder="Select type questions" [autoWidth]="false"
-                  filter="true" [(ngModel)]="selectedQuestion" editable="false"></p-dropdown>
+            <!--
+              Block to List questions on applicant
+            -->
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+
+                <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                  <input #gb type="text" pInputText size="50" placeholder="Applicants">
+                </div>
+
+                <p-dataTable [value]="applicantQuestions" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No applicants available."
+                  [globalFilter]="gb" #table>
+
+
+                  <p-column field="type_question" header="Subject" [sortable]="true" styleClass="col-size"></p-column>
+
+                  <p-column field="question" header="Question" [sortable]="true" styleClass="col-size"></p-column>
+
+
+                  <p-column styleClass="col-size-buttom" header="Rating" field="score" [sortable]="true">
+                    <ng-template let-applscore="rowData" pTemplate="body">
+                      <p-rating [ngModel]="applscore.score" binary="true" [cancel]="false" readonly="false" name="scorerating"></p-rating>
+                      {{applscore.score}}
+                    </ng-template>
+                  </p-column>
+
+                  <p-column styleClass="col-size-buttom">
+                    <ng-template let-appl="rowData" pTemplate="body">
+                      <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', appl.code]"
+                        [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
+                      <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(appl)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')"
+                        class="ui-button-danger"></button>
+                    </ng-template>
+                  </p-column>
+
+                </p-dataTable>
               </div>
+            </div>
+
+
+
+
 
           </p-tabPanel>
 

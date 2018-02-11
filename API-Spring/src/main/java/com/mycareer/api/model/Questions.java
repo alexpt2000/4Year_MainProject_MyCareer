@@ -19,18 +19,19 @@ public class Questions {
 	private Long code;
 
 	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "code_applicant")
-	private Applicants applicant;
+	private String type_question;
 
 	@NotNull
 	private String question;
-	
-	@NotNull
-	private String type_question;
-	
-	private String note;
+
+	private String notes;
+
 	private Long score;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "code_applicant")
+	private Applicants applicant;
 
 	public Long getCode() {
 		return code;
@@ -47,8 +48,6 @@ public class Questions {
 	public void setApplicant(Applicants applicant) {
 		this.applicant = applicant;
 	}
-	
-	
 
 	public String getType_question() {
 		return type_question;
@@ -66,12 +65,12 @@ public class Questions {
 		this.question = question;
 	}
 
-	public String getNote() {
-		return note;
+	public String getNotes() {
+		return notes;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	public Long getScore() {

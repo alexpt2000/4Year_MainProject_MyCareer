@@ -1,5 +1,7 @@
 package com.mycareer.api.resource;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -60,9 +62,9 @@ public class QuestionsResource {
 
 	@GetMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public ResponseEntity<Questions> findByCode(@PathVariable Long code) {
-		Questions question = questionsRepository.findOne(code);
-		return question != null ? ResponseEntity.ok(question) : ResponseEntity.notFound().build();
+	public List<Questions> findByCode(@PathVariable Long code) {
+		//Questions question = questionsRepository.findQuestions(code);
+		return questionsRepository.findQuestions(code);
 	}
 
 }

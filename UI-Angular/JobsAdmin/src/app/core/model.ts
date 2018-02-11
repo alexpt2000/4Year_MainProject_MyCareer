@@ -46,3 +46,12 @@ export class ApplicantNotes {
   applicant = new Applicants();
 }
 
+
+export class ApplicantQuestions {
+  code: number;
+  type_question: string;
+  question: string;
+  score: number;
+  notes: string;
+  applicant = new Applicants();
+}

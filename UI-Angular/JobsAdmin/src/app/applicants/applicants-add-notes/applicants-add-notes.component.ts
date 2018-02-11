@@ -1,5 +1,6 @@
+import { AuthService } from './../../security/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
-import { Applicants, ApplicantNotes } from './../../core/model';
+import { Applicants, ApplicantNotes, ApplicantQuestions } from './../../core/model';
 import { ApplicantsService } from 'app/applicants/applicants.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
@@ -22,8 +23,12 @@ import { Title } from '@angular/platform-browser';
 export class ApplicantsAddNotesComponent implements OnInit {
 
   applicant = new ApplicantNotes();
+  applicantNewQuestion = new ApplicantQuestions();
+
+  applicantQuestions: any;
   titlePage = '';
   i = 0;
+  score1 = 0;
 
   selectedTypeQuestion = '';
   selectedQuestion = '';
@@ -39,12 +44,14 @@ export class ApplicantsAddNotesComponent implements OnInit {
     private route: ActivatedRoute,
     private title: Title,
     private errorHandler: ErrorHandlerService,
+    private auth: AuthService,
   ) { }
 
   ngOnInit() {
     const codeApplicant = this.route.snapshot.params['code'];
     this.title.setTitle('Evaluate applicant');
     this.loadApplicantNotes(codeApplicant);
+    this.loadApplicantQuestinons(codeApplicant);
     this.listTypeQuestions();
 
   }
@@ -55,6 +62,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
   }
 
 
+   // Load the list of Applicant notes
   loadApplicantNotes(code: number) {
     this.applicantsService.findByCodeApplicantNotes(code)
       .then(applicant => {
@@ -77,6 +85,30 @@ export class ApplicantsAddNotesComponent implements OnInit {
         this.loadApplicantNotes(codeApplicant1);
       })
   }
+
+     // Load the list of Applicant QUestions
+     loadApplicantQuestinons(code: number) {
+      this.applicantsService.findByCodeApplicantQuestions(code)
+        .then(applicantQuestions => {
+          this.applicantQuestions = applicantQuestions;
+          this.updateTitle();
+        })
+        .catch(erro => {
+          // this.addApplicantNotes();
+        });
+    }
+
+
+    // addApplicantNotes() {
+    //   const codeApplicant1 = this.route.snapshot.params['code'];
+    //   this.applicant.applicant.code = codeApplicant1;
+
+    //   this.applicantsService.addApplicanNotes(this.applicant)
+    //     .then(() => {
+    //       this.applicant = new ApplicantNotes();
+    //       this.loadApplicantNotes(codeApplicant1);
+    //     })
+    // }
 
 
   updateApplicant(form: FormControl) {

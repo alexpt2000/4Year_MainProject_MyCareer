@@ -9,10 +9,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Questions_ {
 
 	public static volatile SingularAttribute<Questions, Long> codigo;
-	public static volatile SingularAttribute<Questions, Applicants> applicant;
 	public static volatile SingularAttribute<Questions, String> type_question;
 	public static volatile SingularAttribute<Questions, String> question;
-	public static volatile SingularAttribute<Questions, String> note;
 	public static volatile SingularAttribute<Questions, Long> score;
+	public static volatile SingularAttribute<Questions, String> notes;
+	public static volatile SingularAttribute<Questions, Applicants> applicant;
 
 }
