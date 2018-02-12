@@ -1,4 +1,3 @@
-
 CREATE TABLE questions (
 	code BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 	type_question VARCHAR(50) NOT NULL,
@@ -12,5 +11,6 @@ CREATE TABLE questions (
 
 
 INSERT INTO questions (type_question, question, notes, score, code_applicant) values ('Java', 'What is Bytecode?', 'Its ok', 4, 1);
-INSERT INTO questions (type_question, question, notes, score, code_applicant) values ('C#', 'What is C#?', 'Its ok', 2, 1);
+INSERT INTO questions (type_question, question, notes, score, code_applicant) values ('Java', 'What is the difference between JVM and JRE?', 'Its ok', 2, 1);
+
 

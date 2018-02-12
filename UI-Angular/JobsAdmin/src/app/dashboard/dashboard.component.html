@@ -34,9 +34,18 @@
 
     </div>
 
-    <div class="ui-g-12 ui-md-2">
+    <div class="container">
+    <div class="ui-g-12 ui-md-2 ui-fluid">
+        <button pButton label="Schedules" icon="fa-calendar" [routerLink]="['/schedules']"></button>
+        <div></div>
         <button pButton label="Add Schedule" icon="fa-plus" class="ui-button-success" [routerLink]="['/schedules/newschedule']"></button>
     </div>
+  </div>
 
+    <div class="ui-g-12">
+      <br>
+      <small>by Alexander Souza</small>
+      <hr>
+    </div>
 
   </div>
