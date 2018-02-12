@@ -30,13 +30,12 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
   applicantQuestions: any;
   titlePage = '';
-  i = 0;
-  testAlex: any;
+
 
   selectedTypeQuestion = '';
   selectedQuestion = '';
 
-  typeQuestion = [];
+  type_question: any;
   question: any;
 
 
@@ -66,7 +65,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
   }
 
 
-   // Load the list of Applicant notes
+  // Load the list of Applicant notes
   loadApplicantNotes(code: number) {
     this.applicantsService.findByCodeApplicantNotes(code)
       .then(applicant => {
@@ -90,69 +89,63 @@ export class ApplicantsAddNotesComponent implements OnInit {
       })
   }
 
-     // Load the list of Applicant QUestions
-     loadApplicantQuestinons(code: number) {
-      this.applicantsService.findByCodeApplicantQuestions(code)
-        .then(applicantQuestions => {
-          this.applicantQuestions = applicantQuestions;
-          this.updateTitle();
-        })
-        .catch(erro => {
-          // this.addApplicantQuestinons();
-        });
-    }
-
-
-    addApplicantQuestinons(form: FormControl) {
-      const codeApplicantAdd = this.route.snapshot.params['code'];
-      this.applicantNewQuestion.applicant.code = codeApplicantAdd;
-
-      console.log(this.applicantNewQuestion.question);
-
-      this.applicantsService.addApplicanQuestion(this.applicantNewQuestion)
-        .then(() => {
-          this.applicantNewQuestion = new ApplicantQuestions();
-          this.loadApplicantQuestinons(codeApplicantAdd);
-        })
-    }
-
-
-    confirmationDeleteQuestion(code: any) {
-      this.confirmation.confirm({
-        message: 'Are you sure you want to delete?',
-        accept: () => {
-          this.deleteQuestion(code);
-        }
+  // Load the list of Applicant QUestions
+  loadApplicantQuestinons(code: number) {
+    this.applicantsService.findByCodeApplicantQuestions(code)
+      .then(applicantQuestions => {
+        this.applicantQuestions = applicantQuestions;
+        this.updateTitle();
+      })
+      .catch(erro => {
+        // this.addApplicantQuestinons();
       });
-    }
-
-    deleteQuestion(code: any) {
-      const codeApplicantDel = this.route.snapshot.params['code'];
-      this.applicantsService.deleteQuestion(code)
-        .then(() => {
-          this.toasty.success('Deleted successfully!');
-          this.loadApplicantQuestinons(codeApplicantDel);
-        })
-        .catch(erro => this.errorHandler.handle(erro));
-    }
+  }
 
 
-    findByCodeQuestions(code: any) {
-      this.applicantsService.findByCodeQuestions(code)
-        .then(applicantQuestions => {
-          this.outro = applicantQuestions[0];
-          console.log(this.outro.question);
-          this.applicantNewQuestion.question = this.outro.question;
-          console.log(this.applicantNewQuestion.question);
-          // this.updateTitle();
-        })
-        .catch(erro => {
-          // this.addApplicantQuestinons();
-        });
-    }
+  addApplicantQuestinons(form: FormControl) {
+    const codeApplicantAdd = this.route.snapshot.params['code'];
+    this.applicantNewQuestion.applicant.code = codeApplicantAdd;
+
+    this.applicantsService.addApplicanQuestion(this.applicantNewQuestion)
+      .then(() => {
+        this.applicantNewQuestion = new ApplicantQuestions();
+        this.loadApplicantQuestinons(codeApplicantAdd);
+      })
+  }
 
 
-    // *****************************************
+  confirmationDeleteQuestion(code: any) {
+    this.confirmation.confirm({
+      message: 'Are you sure you want to delete?',
+      accept: () => {
+        this.deleteQuestion(code);
+      }
+    });
+  }
+
+  deleteQuestion(code: any) {
+    const codeApplicantDel = this.route.snapshot.params['code'];
+    this.applicantsService.deleteQuestion(code)
+      .then(() => {
+        this.toasty.success('Deleted successfully!');
+        this.loadApplicantQuestinons(codeApplicantDel);
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+
+  findByCodeQuestions(code: any) {
+    this.applicantsService.findByCodeQuestions(code)
+      .then(applicantQuestions => {
+        this.applicantNewQuestion = applicantQuestions[0];
+      })
+      .catch(erro => {
+        // this.addApplicantQuestinons();
+      });
+  }
+
+
+  // *****************************************
   updateApplicant(form: FormControl) {
     this.applicantsService.updateApplicantNotes(this.applicant)
       .then(applicant => {
@@ -180,10 +173,10 @@ export class ApplicantsAddNotesComponent implements OnInit {
   listTypeQuestions() {
 
     this.applicantsService.listTypeQuestions()
-      .then(typeQuestion => {
-        this.typeQuestion = typeQuestion
+      .then(resultQuestion => {
+        this.type_question = resultQuestion
           .map(a => ({ label: a.type_question, value: a.type_question }),
-          this.question = typeQuestion
+          this.question = resultQuestion
             .map(q => ({ label: q.question, value: q.question })));
       })
       .catch(erro => this.errorHandler.handle(erro));

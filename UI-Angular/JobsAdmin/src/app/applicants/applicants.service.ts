@@ -136,7 +136,6 @@ export class ApplicantsService {
   // Applicants Questions
 
   addApplicanQuestion(applicantQuestion: ApplicantQuestions): Promise<ApplicantQuestions> {
-    console.log(applicantQuestion);
 
     return this.http.post(`${this.apiUrl}/questions`, JSON.stringify(applicantQuestion))
       .toPromise()

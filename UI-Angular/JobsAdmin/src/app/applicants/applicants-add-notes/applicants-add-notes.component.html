@@ -100,16 +100,14 @@
 
                 <div class="ui-g-12 ui-md-3 ui-fluid">
                   <label>Type of questions</label>
-                  <p-dropdown name="title" id="float-input" [options]="typeQuestion" placeholder="Select type questions" [autoWidth]="false"
+                  <p-dropdown name="type_question" id="float-input" [options]="type_question" placeholder="Select type questions" [autoWidth]="false"
                     filter="true" [(ngModel)]="applicantNewQuestion.type_question" editable="false"></p-dropdown>
-                    {{applicantNewQuestion.type_question}}
                 </div>
 
                 <div class="ui-g-12 ui-md-7 ui-fluid">
                   <label>Questions</label>
-                  <p-dropdown name="title" id="float-input" [options]="question" placeholder="Select type questions" [autoWidth]="false" filter="true"
+                  <p-dropdown name="question" id="float-input" [options]="question" placeholder="Select type questions" [autoWidth]="false" filter="true"
                     [(ngModel)]="applicantNewQuestion.question" editable="false"></p-dropdown>
-                    {{applicantNewQuestion.question}}
                 </div>
 
 
@@ -118,7 +116,6 @@
                     <label>Notes</label>
                   </div>
                   <textarea [rows]="5" style="width:100%;" pInputTextarea name="notes1" #notes1="ngModel" [(ngModel)]="applicantNewQuestion.notes"></textarea>
-                  {{applicantNewQuestion.notes}}
                 </div>
 
                 <div class="ui-g-12 ui-md-2 ui-fluid">
@@ -150,7 +147,7 @@
               </div>
 
               <p-dataTable [value]="applicantQuestions" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No questions available."
-                [globalFilter]="gb" #table>
+                [globalFilter]="gb" selectionMode="single" [(selection)]="applicantNewQuestion" (onRowSelect)="findByCodeQuestions(applicantNewQuestion.code)" dataKey="code" #table>
 
                 <p-column field="type_question" header="Subject" [sortable]="true" styleClass="col-size" styleClass="col-size-subject"></p-column>
 
