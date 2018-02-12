@@ -59,8 +59,8 @@ export class ApplicantsService {
 
   listApplicants(): Promise<any> {
     return this.http.get(`${this.apiUrl}`)
-    .toPromise()
-    .then(response => response.json().content);
+      .toPromise()
+      .then(response => response.json().content);
   }
 
   delete(code: number): Promise<void> {
@@ -75,11 +75,6 @@ export class ApplicantsService {
       .then(response => response.json());
   }
 
-  addApplicanNotes(applicant: ApplicantNotes): Promise<ApplicantNotes> {
-    return this.http.post(`${this.apiUrl}/applicantnotes`, JSON.stringify(applicant))
-      .toPromise()
-      .then(response => response.json());
-  }
 
   update(applicant: Applicants): Promise<Applicants> {
     return this.http.put(`${this.apiUrl}/${applicant.code}`,
@@ -122,6 +117,12 @@ export class ApplicantsService {
   }
 
   // Applocants Notes
+  addApplicanNotes(applicant: ApplicantNotes): Promise<ApplicantNotes> {
+    return this.http.post(`${this.apiUrl}/applicantnotes`, JSON.stringify(applicant))
+      .toPromise()
+      .then(response => response.json());
+  }
+
   findByCodeApplicantNotes(code: number): Promise<ApplicantNotes> {
     return this.http.get(`${this.apiUrl}/applicantnotes/${code}`)
       .toPromise()
@@ -132,19 +133,40 @@ export class ApplicantsService {
       });
   }
 
-    // Applocants Questions
-    findByCodeApplicantQuestions(code: number): Promise<ApplicantQuestions> {
-      return this.http.get(`${this.apiUrl}/questions/${code}`)
-        .toPromise()
-        .then(response => {
-          const applicantQuestions = response.json() as ApplicantQuestions;
-          // this.convertStringToDate([applicant]);
-          return applicantQuestions;
-        });
-    }
+  // Applicants Questions
+
+  addApplicanQuestion(applicantQuestion: ApplicantQuestions): Promise<ApplicantQuestions> {
+    return this.http.post(`${this.apiUrl}/questions`, JSON.stringify(applicantQuestion))
+      .toPromise()
+      .then(response => response.json());
+  }
+
+  findByCodeApplicantQuestions(code: number): Promise<ApplicantQuestions> {
+    return this.http.get(`${this.apiUrl}/questions/${code}`)
+      .toPromise()
+      .then(response => {
+        const applicantQuestions = response.json() as ApplicantQuestions;
+        // this.convertStringToDate([applicant]);
+        return applicantQuestions;
+      });
+  }
+
+  deleteQuestion(code: number): Promise<void> {
+    return this.http.delete(`${this.apiUrl}/questions/${code}`)
+      .toPromise()
+      .then(() => null);
+  }
+
+  findByCodeQuestions(code: number): Promise<ApplicantQuestions> {
+    return this.http.get(`${this.apiUrl}/questions/question/${code}`)
+      .toPromise()
+      .then(response => response.json() as ApplicantQuestions);
+  }
+
+
+  // ******************************
 
   findByJobCode(code: number): Promise<any> {
-    console.log(code)
     return this.http.get(`${this.apiUrl}/job/${code}`)
       .toPromise()
       .then(response => {
@@ -168,8 +190,8 @@ export class ApplicantsService {
   // Load the list of Questions
   listTypeQuestions(): Promise<any> {
     return this.http.get(`${this.apiUrl}/listquestions`)
-    .toPromise()
-    .then(response => response.json() as ListQuestions);
+      .toPromise()
+      .then(response => response.json() as ListQuestions);
   }
 
 

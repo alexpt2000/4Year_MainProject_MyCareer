@@ -1,70 +1,69 @@
 <div class="container card-white">
-  <form autocomplete="off" #applicantForm="ngForm" (ngSubmit)="updateApplicant(applicantForm)">
-    <!-- <form autocomplete="off" #applicantForm="ngForm" (ngSubmit)="save(applicantForm)"> -->
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <p-panel header={{titlePage}} [style]="{'height':'100%'}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
 
+  <!-- <form autocomplete="off" #applicantForm="ngForm" (ngSubmit)="save(applicantForm)"> -->
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-panel header={{titlePage}} [style]="{'height':'100%'}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
 
-          <div class="ui-g-12 ui-md-3 ui-fluid">
-            <Label>Title : </Label>
-            <span>{{applicant.applicant.job.title}}</span>
-          </div>
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <Label>Title : </Label>
+          <span>{{applicant.applicant.job.title}}</span>
+        </div>
 
-          <div class="ui-g-12 ui-md-3 ui-fluid">
-            <Label>Position : </Label>
-            <span>{{applicant.applicant.job.position}}</span>
-          </div>
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <Label>Position : </Label>
+          <span>{{applicant.applicant.job.position}}</span>
+        </div>
 
-          <div class="ui-g-12 ui-md-4 ui-fluid">
-            <Label>Location : </Label>
-            <span>{{applicant.applicant.job.location}}</span>
-          </div>
+        <div class="ui-g-12 ui-md-4 ui-fluid">
+          <Label>Location : </Label>
+          <span>{{applicant.applicant.job.location}}</span>
+        </div>
 
-          <div class="ui-g-12 ui-fluid">
-            <hr>
-          </div>
+        <div class="ui-g-12 ui-fluid">
+          <hr>
+        </div>
 
-          <div class="ui-g-12 ui-md-3 ui-fluid">
-            <Label>Phone : </Label>
-            <span>{{applicant.applicant.phone_number}}</span>
-          </div>
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <Label>Phone : </Label>
+          <span>{{applicant.applicant.phone_number}}</span>
+        </div>
 
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <Label>Status : </Label>
+          <span>{{applicant.applicant.status}}</span>
+        </div>
 
-          <div class="ui-g-12 ui-md-3 ui-fluid">
-            <Label>Status : </Label>
-            <span>{{applicant.applicant.status}}</span>
-          </div>
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <Label>Date : </Label>
+          <span>{{applicant.applicant.applicant_date | date:'dd/MM/yyyy'}}</span>
+        </div>
 
-          <div class="ui-g-12 ui-md-3 ui-fluid">
-            <Label>Date : </Label>
-            <span>{{applicant.applicant.applicant_date | date:'dd/MM/yyyy'}}</span>
-          </div>
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <Label>email : </Label>
+          <a target="_blank" href="mailto:{{applicant.applicant.email}}">{{applicant.applicant.email}}</a>
+        </div>
 
-          <div class="ui-g-12 ui-md-6 ui-fluid">
-            <Label>email : </Label>
-            <a target="_blank" href="mailto:{{applicant.applicant.email}}">{{applicant.applicant.email}}</a>
-          </div>
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <Label>Profile URL : </Label>
+          <a target="_blank" href="{{applicant.applicant.profile_url}}">{{applicant.applicant.profile_url}}</a>
+        </div>
 
-          <div class="ui-g-12 ui-md-6 ui-fluid">
-            <Label>Profile URL : </Label>
-            <a target="_blank" href="{{applicant.applicant.profile_url}}">{{applicant.applicant.profile_url}}</a>
-          </div>
+      </p-panel>
 
-        </p-panel>
+    </div>
 
-      </div>
-
-      <!--
+    <!--
               Block to add notes on applicant
             -->
 
-      <div class="ui-g-12">
-        <p-tabView>
-          <p-tabPanel header="Notes" leftIcon="fa-edit">
+    <div class="ui-g-12">
+      <p-tabView>
+        <p-tabPanel header="Notes" leftIcon="fa-edit">
+
+          <form autocomplete="off" #applicantForm="ngForm" (ngSubmit)="updateApplicant(applicantForm)">
 
             <div class="ui-g-12 ui-md-1 ui-fluid">
-
               <label>Score</label>
               <p-spinner size="5" [(ngModel)]="applicant.score" [min]="0" [max]="5" name="score" #score="ngModel"></p-spinner>
               <p-rating [(ngModel)]="applicant.score" [cancel]="false" readonly="false" name="score" #score="ngModel"></p-rating>
@@ -83,18 +82,21 @@
               <button pButton type="button" label="Back" (click)="backClicked()"></button>
               <button pButton type="submit" label="Save evaluation" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
             </div>
+          </form>
 
-          </p-tabPanel>
+        </p-tabPanel>
 
-          <p-tabPanel header="Questions" leftIcon="fa-question-circle">
+        <p-tabPanel header="Questions" leftIcon="fa-question-circle">
 
 
-            <!--
+          <!--
               Block to add questions on applicant
             -->
 
-            <div class="ui-g">
-              <div class="ui-g-12">
+          <div class="ui-g">
+            <div class="ui-g-12">
+
+              <form autocomplete="off" #applicantNewQuestion="ngForm" (ngSubmit)="addApplicantQuestinons()" >
 
                 <div class="ui-g-12 ui-md-3 ui-fluid">
                   <label>Type of questions</label>
@@ -113,11 +115,10 @@
                   <div>
                     <label>Notes</label>
                   </div>
-                  <textarea [rows]="5" style="width:100%;" pInputTextarea name="newnotes" #newnotes="ngModel" [(ngModel)]="applicantNewQuestion.notes"></textarea>
+                  <textarea [rows]="5" style="width:100%;" pInputTextarea name="notes" #notes="ngModel" [(ngModel)]="applicantNewQuestion.notes"></textarea>
                 </div>
 
                 <div class="ui-g-12 ui-md-2 ui-fluid">
-
                   <label>Score</label>
                   <p-spinner size="5" [(ngModel)]="applicantNewQuestion.score" [min]="0" [max]="5" name="newscore" #newscore="ngModel"></p-spinner>
                   <p-rating [(ngModel)]="applicantNewQuestion.score" [cancel]="false" readonly="false" name="newscorestar" #newscorestar="ngModel"></p-rating>
@@ -128,62 +129,59 @@
                   <button pButton type="submit" label="Save question" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
                 </div>
 
-
-              </div>
+              </form>
             </div>
+          </div>
 
 
-            <!--
+          <!--
               Block to List questions on applicant
             -->
 
-            <div class="ui-g">
-              <div class="ui-g-12">
+          <div class="ui-g">
+            <div class="ui-g-12">
 
-                <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
-                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                  <input #gb type="text" pInputText size="50" placeholder="Applicants">
-                </div>
-
-                <p-dataTable [value]="applicantQuestions" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No applicants available."
-                  [globalFilter]="gb" #table>
-
-
-                  <p-column field="type_question" header="Subject" [sortable]="true" styleClass="col-size"></p-column>
-
-                  <p-column field="question" header="Question" [sortable]="true" styleClass="col-size"></p-column>
-
-
-                  <p-column styleClass="col-size-buttom" header="Rating" field="score" [sortable]="true">
-                    <ng-template let-applscore="rowData" pTemplate="body">
-                      <p-rating [ngModel]="applscore.score" binary="true" [cancel]="false" readonly="false" name="scorerating"></p-rating>
-                      {{applscore.score}}
-                    </ng-template>
-                  </p-column>
-
-                  <p-column styleClass="col-size-buttom">
-                    <ng-template let-appl="rowData" pTemplate="body">
-                      <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', appl.code]"
-                        [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
-                      <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(appl)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')"
-                        class="ui-button-danger"></button>
-                    </ng-template>
-                  </p-column>
-
-                </p-dataTable>
+              <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input #gb type="text" pInputText size="50" placeholder="Applicants">
               </div>
+
+              <p-dataTable [value]="applicantQuestions" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No questions available."
+                [globalFilter]="gb" #table>
+
+                <p-column field="type_question" header="Subject" [sortable]="true" styleClass="col-size" styleClass="col-size-subject"></p-column>
+
+                <p-column field="question" header="Question" [sortable]="true" styleClass="col-size-question"></p-column>
+
+                <p-column styleClass="col-size-buttom" header="Rating" field="score" [sortable]="true">
+                  <ng-template let-applscore="rowData" pTemplate="body">
+                    <p-rating [ngModel]="applscore.score" binary="true" [cancel]="false" readonly="false" name="scorerating" #scorerating="ngModel"></p-rating>
+                  </ng-template>
+                </p-column>
+
+                <p-column styleClass="col-size-buttom">
+                  <ng-template let-appl="rowData" pTemplate="body">
+                    <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" (click)="findByCodeQuestions(appl.code)"
+                      [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
+                    <button pButton icon="fa-trash" pTooltip="{{appl.code}}" tooltipPosition="top" (click)="confirmationDeleteQuestion(appl.code)"
+                      [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')" class="ui-button-danger"></button>
+                  </ng-template>
+                </p-column>
+
+              </p-dataTable>
             </div>
+          </div>
 
 
 
 
 
-          </p-tabPanel>
+        </p-tabPanel>
 
-        </p-tabView>
-      </div>
-
+      </p-tabView>
     </div>
 
-  </form>
+  </div>
+
+
 </div>

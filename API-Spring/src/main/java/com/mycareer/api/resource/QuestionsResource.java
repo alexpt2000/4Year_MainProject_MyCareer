@@ -66,5 +66,12 @@ public class QuestionsResource {
 		//Questions question = questionsRepository.findQuestions(code);
 		return questionsRepository.findQuestions(code);
 	}
+	
+	@GetMapping("/question/{code}")
+	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
+	public List<Questions> findByQuestionCode(@PathVariable Long code) {
+		//Questions question = questionsRepository.findQuestions(code);
+		return questionsRepository.findOneQuestions(code);
+	}
 
 }

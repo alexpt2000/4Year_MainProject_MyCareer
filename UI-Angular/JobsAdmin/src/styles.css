@@ -59,6 +59,14 @@ label {
   text-align: center;
 }
 
+.col-size-subject {
+  width: 60px;
+}
+
+.col-size-question {
+  width: 180px;
+}
+
 .col-size-buttom {
   width: 75px;
   text-align: center;
@@ -82,4 +90,10 @@ label {
 .ui-panel.ui-widget {
   padding: 0;
   background: #f4f6fa;
+}
+
+
+.ui-panel-titlebar {
+  border-width: 0 0 1px 0;
+  font-size: 27px;
 }

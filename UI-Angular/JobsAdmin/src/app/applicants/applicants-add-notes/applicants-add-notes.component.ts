@@ -1,3 +1,4 @@
+import { ConfirmationService } from 'primeng/components/common/api';
 import { AuthService } from './../../security/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Applicants, ApplicantNotes, ApplicantQuestions } from './../../core/model';
@@ -24,11 +25,13 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
   applicant = new ApplicantNotes();
   applicantNewQuestion = new ApplicantQuestions();
+  outro = new ApplicantQuestions();
+
 
   applicantQuestions: any;
   titlePage = '';
   i = 0;
-  score1 = 0;
+  testAlex: any;
 
   selectedTypeQuestion = '';
   selectedQuestion = '';
@@ -45,6 +48,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
     private title: Title,
     private errorHandler: ErrorHandlerService,
     private auth: AuthService,
+    private confirmation: ConfirmationService,
   ) { }
 
   ngOnInit() {
@@ -94,23 +98,59 @@ export class ApplicantsAddNotesComponent implements OnInit {
           this.updateTitle();
         })
         .catch(erro => {
-          // this.addApplicantNotes();
+          // this.addApplicantQuestinons();
         });
     }
 
 
-    // addApplicantNotes() {
-    //   const codeApplicant1 = this.route.snapshot.params['code'];
-    //   this.applicant.applicant.code = codeApplicant1;
+    addApplicantQuestinons() {
+      const codeApplicantAdd = this.route.snapshot.params['code'];
+      this.applicantNewQuestion.applicant.code = codeApplicantAdd;
 
-    //   this.applicantsService.addApplicanNotes(this.applicant)
-    //     .then(() => {
-    //       this.applicant = new ApplicantNotes();
-    //       this.loadApplicantNotes(codeApplicant1);
-    //     })
-    // }
+      this.applicantsService.addApplicanQuestion(this.applicantNewQuestion)
+        .then(() => {
+          this.applicantNewQuestion = new ApplicantQuestions();
+          this.loadApplicantQuestinons(codeApplicantAdd);
+        })
+    }
 
 
+    confirmationDeleteQuestion(code: any) {
+      this.confirmation.confirm({
+        message: 'Are you sure you want to delete?',
+        accept: () => {
+          this.deleteQuestion(code);
+        }
+      });
+    }
+
+    deleteQuestion(code: any) {
+      const codeApplicantDel = this.route.snapshot.params['code'];
+      this.applicantsService.deleteQuestion(code)
+        .then(() => {
+          this.toasty.success('Deleted successfully!');
+          this.loadApplicantQuestinons(codeApplicantDel);
+        })
+        .catch(erro => this.errorHandler.handle(erro));
+    }
+
+
+    findByCodeQuestions(code: any) {
+      this.applicantsService.findByCodeQuestions(code)
+        .then(applicantQuestions => {
+          this.outro = applicantQuestions[0];
+          console.log(this.outro.question);
+          this.applicantNewQuestion.question = this.outro.question;
+          console.log(this.applicantNewQuestion.question);
+          // this.updateTitle();
+        })
+        .catch(erro => {
+          // this.addApplicantQuestinons();
+        });
+    }
+
+
+    // *****************************************
   updateApplicant(form: FormControl) {
     this.applicantsService.updateApplicantNotes(this.applicant)
       .then(applicant => {

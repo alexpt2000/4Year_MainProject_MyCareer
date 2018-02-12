@@ -12,4 +12,7 @@ public interface QuestionsRepository extends JpaRepository<Questions, Long> {
 	
 	@Query(value = "select * from questions where code_applicant = ?1", nativeQuery = true)
 	public List<Questions> findQuestions(Long code);
+	
+	@Query(value = "select * from questions where code = ?1", nativeQuery = true)
+	public List<Questions> findOneQuestions(Long code);
 }
