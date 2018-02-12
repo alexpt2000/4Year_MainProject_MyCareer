@@ -103,9 +103,11 @@ export class ApplicantsAddNotesComponent implements OnInit {
     }
 
 
-    addApplicantQuestinons() {
+    addApplicantQuestinons(form: FormControl) {
       const codeApplicantAdd = this.route.snapshot.params['code'];
       this.applicantNewQuestion.applicant.code = codeApplicantAdd;
+
+      console.log(this.applicantNewQuestion.question);
 
       this.applicantsService.addApplicanQuestion(this.applicantNewQuestion)
         .then(() => {

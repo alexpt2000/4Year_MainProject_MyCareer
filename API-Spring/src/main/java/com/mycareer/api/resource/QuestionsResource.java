@@ -40,8 +40,8 @@ public class QuestionsResource {
 
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
-	public ResponseEntity<Questions> add(@Valid @RequestBody Questions question, HttpServletResponse response) {
-		Questions saveQuestion = questionsRepository.save(question);
+	public ResponseEntity<Questions> add(@Valid @RequestBody Questions questions, HttpServletResponse response) {
+		Questions saveQuestion = questionsRepository.save(questions);
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveQuestion.getCode()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveQuestion);
 	}

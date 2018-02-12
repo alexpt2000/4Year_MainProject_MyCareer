@@ -96,18 +96,20 @@
           <div class="ui-g">
             <div class="ui-g-12">
 
-              <form autocomplete="off" #applicantNewQuestion="ngForm" (ngSubmit)="addApplicantQuestinons()" >
+              <form autocomplete="off" #formApplicantQuestions="ngForm" (ngSubmit)="addApplicantQuestinons(formApplicantQuestions)" >
 
                 <div class="ui-g-12 ui-md-3 ui-fluid">
                   <label>Type of questions</label>
                   <p-dropdown name="title" id="float-input" [options]="typeQuestion" placeholder="Select type questions" [autoWidth]="false"
                     filter="true" [(ngModel)]="applicantNewQuestion.type_question" editable="false"></p-dropdown>
+                    {{applicantNewQuestion.type_question}}
                 </div>
 
                 <div class="ui-g-12 ui-md-7 ui-fluid">
                   <label>Questions</label>
                   <p-dropdown name="title" id="float-input" [options]="question" placeholder="Select type questions" [autoWidth]="false" filter="true"
                     [(ngModel)]="applicantNewQuestion.question" editable="false"></p-dropdown>
+                    {{applicantNewQuestion.question}}
                 </div>
 
 
@@ -115,7 +117,8 @@
                   <div>
                     <label>Notes</label>
                   </div>
-                  <textarea [rows]="5" style="width:100%;" pInputTextarea name="notes" #notes="ngModel" [(ngModel)]="applicantNewQuestion.notes"></textarea>
+                  <textarea [rows]="5" style="width:100%;" pInputTextarea name="notes1" #notes1="ngModel" [(ngModel)]="applicantNewQuestion.notes"></textarea>
+                  {{applicantNewQuestion.notes}}
                 </div>
 
                 <div class="ui-g-12 ui-md-2 ui-fluid">
@@ -126,7 +129,7 @@
 
                 <div class="ui-g-12">
                   <button pButton type="button" label="Back" (click)="backClicked()"></button>
-                  <button pButton type="submit" label="Save question" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
+                  <button pButton type="submit" label="Save question" class="ui-button-info" [disabled]="formApplicantQuestions.invalid"></button>
                 </div>
 
               </form>
