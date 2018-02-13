@@ -1,4 +1,4 @@
-# 4Year_MainProject_MyCareer
+# 4th Year Project
 ### 45627 - APPLIED PROJECT AND MINOR DISSERTATION
 ![Screencast](Screencast/Logo.png)
 
