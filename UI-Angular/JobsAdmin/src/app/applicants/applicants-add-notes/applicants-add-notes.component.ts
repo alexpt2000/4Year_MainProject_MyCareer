@@ -14,6 +14,7 @@ import { Form, EmailValidator } from '@angular/forms';
 
 import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
   applicant = new ApplicantNotes();
   applicantNewQuestion = new ApplicantQuestions();
-  outro = new ApplicantQuestions();
+  // outro = new ApplicantQuestions();
 
 
   applicantQuestions: any;
@@ -35,10 +36,13 @@ export class ApplicantsAddNotesComponent implements OnInit {
   selectedTypeQuestion = '';
   selectedQuestion = '';
 
-  type_question: any;
-  type_questionFilter: any;
+  type_question = [];
+  type_questionFilter = [];
+  type_questionFilterDropdown = [];
+
   question: any;
   questionFilter: any;
+  i = 0;
 
   constructor(
     private _location: Location,
@@ -60,21 +64,11 @@ export class ApplicantsAddNotesComponent implements OnInit {
     this.loadApplicantQuestinons(codeApplicant);
     this.listTypeQuestions();
 
-    // this.type_questionFilter =  Array.from(new Set(this.type_question));
-
-    // this.type_questionFilter = _.uniqBy(this.type_question, 'label');
-    // console.log(this.type_question);
-    // console.log(this.type_questionFilter);
-
-
-    // this.type_question.forEach(e => this.type_questionFilter.add(JSON.stringify(e)));
-    // this.type_questionFilter = Array.from(this.type_questionFilter).map(e => JSON.parse(e));
-
-    // const uniqueObjects = Array.from(new Set(this.type_question.map((x) => JSON.stringify(x)))).map((y) => JSON.parse(y.toString()));
-    // console.log(this.type_questionFilter);
-
   }
 
+  newQuestion() {
+    this.applicantNewQuestion = new ApplicantQuestions();
+  }
 
   onSelect(val) {
     this.questionFilter = this.question.filter(x => x.id === val);
@@ -198,6 +192,14 @@ export class ApplicantsAddNotesComponent implements OnInit {
           .map(a => ({ label: a.type_question, value: a.type_question }),
           this.question = resultQuestion
             .map(q => ({ label: q.question, value: q.question, id: q.type_question })));
+
+        for (this.i = 0; this.i < this.type_question.length; this.i++) {
+          if (this.type_questionFilter.indexOf(this.type_question[this.i].label) === -1) {
+            this.type_questionFilter.push(this.type_question[this.i].label);
+            this.type_questionFilterDropdown.push({ label: this.type_question[this.i].label, value: this.type_question[this.i].value });
+          }
+        }
+
       })
       .catch(erro => this.errorHandler.handle(erro));
 

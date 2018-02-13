@@ -101,7 +101,7 @@
 
                 <div class="ui-g-12 ui-md-3 ui-fluid">
                   <label>Type of questions</label>
-                  <p-dropdown name="type_question" id="float-input" [options]="type_question" placeholder="Select type questions" [autoWidth]="false"
+                  <p-dropdown name="type_question" id="float-input" [options]="type_questionFilterDropdown" placeholder="Select type questions" [autoWidth]="false"
                     filter="true" [(ngModel)]="applicantNewQuestion.type_question" (ngModelChange)="onSelect(applicantNewQuestion.type_question)"
                     editable="false"></p-dropdown>
                 </div>
@@ -129,6 +129,7 @@
                 <div class="ui-g-12">
                   <button pButton type="button" label="Back" (click)="backClicked()"></button>
                   <button pButton type="submit" label="Save question" class="ui-button-info" [disabled]="formApplicantQuestions.invalid"></button>
+                  <button pButton type="button" label="New question" class="ui-button-success" (click)="newQuestion()"></button>
                 </div>
 
               </form>
@@ -145,12 +146,14 @@
 
               <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
                 <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                <input #gb type="text" pInputText size="50" placeholder="Applicants">
+                <input #gb type="text" pInputText size="50" placeholder="Search">
               </div>
 
-              <p-dataTable [value]="applicantQuestions" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No questions available."
+              <p-dataTable [value]="applicantQuestions" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No questions available."
                 [globalFilter]="gb" selectionMode="single" [(selection)]="applicantNewQuestion" (onRowSelect)="findByCodeQuestions(applicantNewQuestion.code)"
-                dataKey="code" #table>
+                (onRowUnselect)="newQuestion($event)" dataKey="code" #table>
+
+                <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
 
                 <p-column field="type_question" header="Subject" [sortable]="true" styleClass="col-size" styleClass="col-size-subject"></p-column>
 
@@ -166,7 +169,7 @@
                   <ng-template let-appl="rowData" pTemplate="body">
                     <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" (click)="findByCodeQuestions(appl.code)"
                       [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
-                    <button pButton icon="fa-trash" pTooltip="{{appl.code}}" tooltipPosition="top" (click)="confirmationDeleteQuestion(appl.code)"
+                    <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDeleteQuestion(appl.code)"
                       [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')" class="ui-button-danger"></button>
                   </ng-template>
                 </p-column>
