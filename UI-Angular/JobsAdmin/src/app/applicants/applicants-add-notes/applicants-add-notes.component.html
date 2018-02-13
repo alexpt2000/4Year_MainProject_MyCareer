@@ -96,18 +96,20 @@
           <div class="ui-g">
             <div class="ui-g-12">
 
-              <form autocomplete="off" #formApplicantQuestions="ngForm" (ngSubmit)="addApplicantQuestinons(formApplicantQuestions)" >
+              <form autocomplete="off" #formApplicantQuestions="ngForm" (ngSubmit)="addApplicantQuestinons(formApplicantQuestions)">
+
 
                 <div class="ui-g-12 ui-md-3 ui-fluid">
                   <label>Type of questions</label>
                   <p-dropdown name="type_question" id="float-input" [options]="type_question" placeholder="Select type questions" [autoWidth]="false"
-                    filter="true" [(ngModel)]="applicantNewQuestion.type_question" editable="false"></p-dropdown>
+                    filter="true" [(ngModel)]="applicantNewQuestion.type_question" (ngModelChange)="onSelect(applicantNewQuestion.type_question)"
+                    editable="false"></p-dropdown>
                 </div>
 
                 <div class="ui-g-12 ui-md-7 ui-fluid">
                   <label>Questions</label>
-                  <p-dropdown name="question" id="float-input" [options]="question" placeholder="Select type questions" [autoWidth]="false" filter="true"
-                    [(ngModel)]="applicantNewQuestion.question" editable="false"></p-dropdown>
+                  <p-dropdown name="question" id="float-input" [options]="questionFilter" placeholder="Select type questions" [autoWidth]="false"
+                    filter="true" [(ngModel)]="applicantNewQuestion.question" editable="false"></p-dropdown>
                 </div>
 
 
@@ -147,7 +149,8 @@
               </div>
 
               <p-dataTable [value]="applicantQuestions" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No questions available."
-                [globalFilter]="gb" selectionMode="single" [(selection)]="applicantNewQuestion" (onRowSelect)="findByCodeQuestions(applicantNewQuestion.code)" dataKey="code" #table>
+                [globalFilter]="gb" selectionMode="single" [(selection)]="applicantNewQuestion" (onRowSelect)="findByCodeQuestions(applicantNewQuestion.code)"
+                dataKey="code" #table>
 
                 <p-column field="type_question" header="Subject" [sortable]="true" styleClass="col-size" styleClass="col-size-subject"></p-column>
 

@@ -36,8 +36,9 @@ export class ApplicantsAddNotesComponent implements OnInit {
   selectedQuestion = '';
 
   type_question: any;
+  type_questionFilter: any;
   question: any;
-
+  questionFilter: any;
 
   constructor(
     private _location: Location,
@@ -48,7 +49,9 @@ export class ApplicantsAddNotesComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private auth: AuthService,
     private confirmation: ConfirmationService,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     const codeApplicant = this.route.snapshot.params['code'];
@@ -57,8 +60,25 @@ export class ApplicantsAddNotesComponent implements OnInit {
     this.loadApplicantQuestinons(codeApplicant);
     this.listTypeQuestions();
 
+    // this.type_questionFilter =  Array.from(new Set(this.type_question));
+
+    // this.type_questionFilter = _.uniqBy(this.type_question, 'label');
+    // console.log(this.type_question);
+    // console.log(this.type_questionFilter);
+
+
+    // this.type_question.forEach(e => this.type_questionFilter.add(JSON.stringify(e)));
+    // this.type_questionFilter = Array.from(this.type_questionFilter).map(e => JSON.parse(e));
+
+    // const uniqueObjects = Array.from(new Set(this.type_question.map((x) => JSON.stringify(x)))).map((y) => JSON.parse(y.toString()));
+    // console.log(this.type_questionFilter);
+
   }
 
+
+  onSelect(val) {
+    this.questionFilter = this.question.filter(x => x.id === val);
+  }
 
   get editing() {
     return Boolean(this.applicant.code)
@@ -177,7 +197,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
         this.type_question = resultQuestion
           .map(a => ({ label: a.type_question, value: a.type_question }),
           this.question = resultQuestion
-            .map(q => ({ label: q.question, value: q.question })));
+            .map(q => ({ label: q.question, value: q.question, id: q.type_question })));
       })
       .catch(erro => this.errorHandler.handle(erro));
 
