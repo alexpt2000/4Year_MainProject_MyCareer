@@ -1,5 +1,7 @@
 package com.mycareer.api.model;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -46,6 +48,7 @@ public class Applicants {
 	@ManyToOne
 	@JoinColumn(name = "code_job")
 	private Jobs job;
+	
 
 	public Long getCode() {
 		return code;
@@ -67,7 +70,7 @@ public class Applicants {
 		return fullname;
 	}
 
-	public void setFull_name(String fullname) {
+	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
 
@@ -119,7 +122,9 @@ public class Applicants {
 	public void setApplicant_date(LocalDate applicant_date) {
 		this.applicant_date = applicant_date;
 	}
-
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

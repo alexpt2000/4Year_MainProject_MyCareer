@@ -1,5 +1,7 @@
 package com.mycareer.api.model;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 import javax.annotation.Generated;
@@ -22,4 +24,5 @@ public abstract class Applicants_ {
 	public static volatile SingularAttribute<Applicants, String> status;
 	public static volatile SingularAttribute<Applicants, LocalDate> applicant_date;
 	public static volatile SingularAttribute<Applicants, Jobs> job;
+
 }
