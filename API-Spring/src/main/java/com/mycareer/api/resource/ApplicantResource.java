@@ -75,22 +75,29 @@ public class ApplicantResource {
 		return applicant != null ? ResponseEntity.ok(applicant) : ResponseEntity.notFound().build();
 	}
 
+	// Original
+//	@GetMapping("/job/{code}")
+//	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
+//	public List<Applicants> findJobByCode(@PathVariable Long code) {
+//		return applicantRepository.findByJobCode(code);
+//	}
+	
 	@GetMapping("/job/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public List<Applicants> findJobByCode(@PathVariable Long code) {
-		return applicantRepository.findByJobCode(code);
+	public List<ApplicantNotes> findJobByCode(@PathVariable Long code) {
+		return applicantNotesRepository.findByJobCode(code);
 	}
+
+//	@GetMapping
+//	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
+//	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname,
+//			Pageable pageable) {
+//		return applicantRepository.findByFullnameContaining(fullname, pageable);
+//	}
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname, Pageable pageable) {
-		return applicantRepository.findByFullnameContaining(fullname, pageable);
+	public List<ApplicantNotes> findScore() {
+		return applicantNotesRepository.findAll();
 	}
-
-	// @GetMapping
-	// @PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and
-	// #oauth2.hasScope('read')")
-	// public List<ApplicantNotes> findScore() {
-	// return applicantNotesRepository.findAll();
-	// }
 }

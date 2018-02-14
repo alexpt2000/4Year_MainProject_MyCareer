@@ -3,7 +3,7 @@
   <div class="ui-g">
     <form autocomplete="off" (ngSubmit)="search()">
       <div class="ui-g-12 ui-fluid" class="form-inline">
-        <h2> Position - {{title}}</h2>
+        <h2> {{title}}</h2>
       </div>
     </form>
   </div>
@@ -20,35 +20,41 @@
         [globalFilter]="gb" #table>
 
 
-        <p-column field="fullname" header="Name" [sortable]="true" styleClass="col-size"></p-column>
+        <p-column field="applicant.fullname" header="Name" [sortable]="true" styleClass="col-size-name"></p-column>
 
-        <p-column header="Applied" styleClass="col-size" [sortable]="true" field="applicant_date">
+        <p-column header="Applied" [sortable]="true" field="applicant_date" styleClass="col-size-date">
           <ng-template let-appl="rowData" pTemplate="body">
-            <small>{{ appl.applicant_date | date:'dd/MM/yyyy' }}</small>
+            <small>{{ appl.applicant.applicant_date | date:'dd/MM/yyyy' }}</small>
           </ng-template>
         </p-column>
 
         <p-column header="Contact">
           <ng-template let-appl="rowData" pTemplate="body">
-            <span>{{appl.phone_number}}</span>
+            <span>{{appl.applicant.phone_number}}</span>
             <br>
             <small>
-              <a target="_blank" href="mailto:{{appl.email}}">{{appl.email}}</a>
+              <a target="_blank" href="mailto:{{appl.applicant.email}}">{{appl.applicant.email}}</a>
             </small>
           </ng-template>
         </p-column>
 
 
-        <p-column field="status" header="Status" styleClass="col-size" [sortable]="true"></p-column>
+        <p-column field="applicant.status" header="Status" [sortable]="true" ></p-column>
+
+        <p-column field="applicant.job.title" header="Position" [sortable]="true" *ngIf="!codeJob"></p-column>
 
 
-        <p-column styleClass="col-size" header="Rating">
-          <ng-template let-appl="rowData" pTemplate="body">
-            <p-rating [(ngModel)]="rating1" [cancel]="false" readonly="true" pTooltip="Evaluation of the candidate" tooltipPosition="top"></p-rating>
-            <p-rating [(ngModel)]="rating2" [cancel]="false" readonly="true" pTooltip="Evaluation of the candidate" tooltipPosition="top"></p-rating>
-            <p-rating [(ngModel)]="rating3" [cancel]="false" readonly="true" pTooltip="Evaluation of the candidate" tooltipPosition="top"></p-rating>
-          </ng-template>
-        </p-column>
+        <p-column styleClass="col-size" header="Notes" field="score" [sortable]="true" styleClass="col-size-rating">
+            <ng-template let-applscore="rowData" pTemplate="body">
+              <p-rating [ngModel]="applscore.score" binary="true" [cancel]="false" readonly="false" name="scorerating" #scorerating="ngModel" pTooltip="Evaluated as {{applscore.score}}" tooltipPosition="top"></p-rating>
+            </ng-template>
+          </p-column>
+
+          <p-column styleClass="col-size" header="Questions" field="score_questions" [sortable]="true" styleClass="col-size-rating">
+              <ng-template let-applscore="rowData" pTemplate="body">
+                <p-rating [ngModel]="applscore.score_questions" binary="true" [cancel]="false" readonly="false" name="scorerating" #scorerating="ngModel" pTooltip="Evaluated as {{applscore.score_questions}}" tooltipPosition="top"></p-rating>
+              </ng-template>
+            </p-column>
 
         <p-column styleClass="col-size">
           <ng-template let-appl="rowData" pTemplate="body">

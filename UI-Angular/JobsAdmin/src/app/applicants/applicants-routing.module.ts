@@ -11,7 +11,7 @@ import { ApplicantsAddNotesComponent } from 'app/applicants/applicants-add-notes
 const routes: Routes = [
   {
     path: 'applicants',
-    component: ApplicantsSearchComponent,
+    component: ApplicantsFilterComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_READ_APPLICANT'] }
   },

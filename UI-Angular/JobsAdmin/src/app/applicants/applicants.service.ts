@@ -165,23 +165,59 @@ export class ApplicantsService {
   }
 
 
-  // ******************************
+  // // ****************************** Oiginal
 
-  findByJobCode(code: number): Promise<any> {
+  // findByJobCode(code: number): Promise<any> {
+  //   return this.http.get(`${this.apiUrl}/job/${code}`)
+  //     .toPromise()
+  //     .then(response => {
+  //       const applicant = response.json() as Applicants;
+
+  //       this.convertStringToDate([applicant]);
+
+  //       return applicant;
+  //     });
+  // }
+
+  private convertStringToDate(applicants: Applicants[]) {
+    for (const applicant of applicants) {
+      applicant.applicant_date = moment(applicant.applicant_date,
+        'YYYY-MM-DD').toDate();
+
+    }
+  }
+
+
+
+    // ****************************** Applicants Notes
+
+  findApplicanByJobCode(code: number): Promise<any> {
     return this.http.get(`${this.apiUrl}/job/${code}`)
       .toPromise()
       .then(response => {
-        const applicant = response.json() as Applicants;
+        const applicant = response.json() as ApplicantNotes;
 
-        this.convertStringToDate([applicant]);
+        // this.convertStringToDateNotes([applicant]);
 
         return applicant;
       });
   }
 
-  private convertStringToDate(applicants: Applicants[]) {
-    for (const applicant of applicants) {
-      applicant.applicant_date = moment(applicant.applicant_date,
+  findApplicans(): Promise<any> {
+    return this.http.get(`${this.apiUrl}`)
+      .toPromise()
+      .then(response => {
+        const applicant = response.json() as ApplicantNotes;
+
+        // this.convertStringToDateNotes([applicant]);
+
+        return applicant;
+      });
+  }
+
+  private convertStringToDateNotes(applicants: ApplicantNotes[]) {
+    for (const appl of applicants) {
+      appl.applicant.applicant_date = moment(appl.applicant.applicant_date,
         'YYYY-MM-DD').toDate();
 
     }

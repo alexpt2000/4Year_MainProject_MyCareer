@@ -11,5 +11,7 @@ CREATE TABLE applicant_notes (
 
 
 INSERT INTO applicant_notes (score, score_questions, notes, code_applicant) values (3, 2, 'Very good applicant', 1);
+INSERT INTO applicant_notes (score, score_questions, notes, code_applicant) values (1, 0, 'Very good applicant', 5);
+INSERT INTO applicant_notes (score, score_questions, notes, code_applicant) values (5, 4, 'Very good applicant', 6);
 INSERT INTO applicant_notes (score, score_questions, notes, code_applicant) values (5, 1, 'Very bad applicant', 2);
 
