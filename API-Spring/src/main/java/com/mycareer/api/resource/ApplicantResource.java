@@ -1,7 +1,6 @@
 package com.mycareer.api.resource;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -25,10 +24,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycareer.api.event.ResourceCreatedEvent;
+import com.mycareer.api.model.ApplicantNotes;
 import com.mycareer.api.model.Applicants;
-import com.mycareer.api.model.ApplicantsScore;
+import com.mycareer.api.repository.ApplicantNotesRepository;
 import com.mycareer.api.repository.ApplicantRepository;
-import com.mycareer.api.repository.ApplicantRepositoryScore;
 import com.mycareer.api.service.ApplicantService;
 
 @RestController
@@ -37,12 +36,12 @@ public class ApplicantResource {
 
 	@Autowired
 	private ApplicantRepository applicantRepository;
-	
-	@Autowired
-	private ApplicantRepositoryScore applicantRepositoryScore;
 
 	@Autowired
 	private ApplicantService applicantService;
+
+	@Autowired
+	private ApplicantNotesRepository applicantNotesRepository;
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -82,18 +81,16 @@ public class ApplicantResource {
 		return applicantRepository.findByJobCode(code);
 	}
 
-	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname,
-			Pageable pageable) {
+	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname, Pageable pageable) {
 		return applicantRepository.findByFullnameContaining(fullname, pageable);
 	}
 
-	
-	@GetMapping("/score")
-	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public List<Map<String, Object>> findScore() {
-		return applicantRepositoryScore.applicantsWhitScore();
-	}
+	// @GetMapping
+	// @PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and
+	// #oauth2.hasScope('read')")
+	// public List<ApplicantNotes> findScore() {
+	// return applicantNotesRepository.findAll();
+	// }
 }

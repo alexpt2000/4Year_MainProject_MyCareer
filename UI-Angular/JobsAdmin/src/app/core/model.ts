@@ -43,6 +43,7 @@ export class ApplicantNotes {
   code: number;
   score: number;
   notes: string;
+  score_questions: number;
   applicant = new Applicants();
 }
 

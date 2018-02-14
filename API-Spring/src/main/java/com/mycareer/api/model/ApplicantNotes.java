@@ -25,6 +25,8 @@ public class ApplicantNotes {
 	private long score;
 
 	private String notes;
+	
+	private long score_questions;
 
 	public Long getCode() {
 		return code;
@@ -52,6 +54,16 @@ public class ApplicantNotes {
 
 	public String getNotes() {
 		return notes;
+	}
+	
+	
+
+	public long getScore_questions() {
+		return score_questions;
+	}
+
+	public void setScore_questions(long score_questions) {
+		this.score_questions = score_questions;
 	}
 
 	public void setNotes(String notes) {
