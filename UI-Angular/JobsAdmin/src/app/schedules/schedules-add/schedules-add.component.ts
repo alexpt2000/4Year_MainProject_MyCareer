@@ -86,7 +86,7 @@ export class SchedulesAddComponent implements OnInit {
     this.applicantsService.listApplicants()
     .then(applicants => {
       this.applicants = applicants
-        .map(a => ({ label: a.fullname, value: a.fullname }));
+      .map(a => ({ label: a.fullname, value: a.fullname }));
     })
     .catch(erro => this.errorHandler.handle(erro));
 

@@ -56,9 +56,9 @@ export class ApplicantsService {
       .then(response => response.json().content);
   }
 
-
+// Return the list of applicats to serve the shedules dropdown
   listApplicants(): Promise<any> {
-    return this.http.get(`${this.apiUrl}`)
+    return this.http.get(`${this.apiUrl}/list`)
       .toPromise()
       .then(response => response.json().content);
   }

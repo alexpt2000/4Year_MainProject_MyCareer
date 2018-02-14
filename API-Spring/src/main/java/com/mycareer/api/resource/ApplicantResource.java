@@ -88,13 +88,18 @@ public class ApplicantResource {
 		return applicantNotesRepository.findByJobCode(code);
 	}
 
-//	@GetMapping
-//	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-//	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname,
-//			Pageable pageable) {
-//		return applicantRepository.findByFullnameContaining(fullname, pageable);
-//	}
+	@GetMapping("/list")
+	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
+	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname, Pageable pageable) {
+		return applicantRepository.findByFullnameContaining(fullname, pageable);
+	}
 
+//	@GetMapping("/list")
+//	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
+//	public List<Applicants> listApplicants() {
+//		return applicantRepository.findAll();
+//	}
+	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
 	public List<ApplicantNotes> findScore() {
