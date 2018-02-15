@@ -24,29 +24,37 @@ export class JobsService {
     this.apiUrl = `${environment.apiUrl}/jobs`;
   }
 
-  search(filter: JobsFilter): Promise<any> {
-    const params = new URLSearchParams();
+  // loadJobs(): Promise<any> {
 
-    params.set('page', filter.page.toString());
-    params.set('size', filter.itensPage.toString());
+  //   return this.http.get(`${this.apiUrl}`)
+  //     .toPromise()
+  //     .then(response => {
+  //       const responseJson = response.json();
+  //       const jobsweb = responseJson.content;
 
-    if (filter.title) {
-      params.set('title', filter.title);
-    }
+  //       const result = {
+  //         jobsweb,
+  //         total: responseJson.totalElements
+  //       };
 
-    return this.http.get(`${this.apiUrl}`, { search: params })
+  //       return result;
+  //     })
+  // }
+
+  // loadJobs(): Promise<any> {
+  //   return this.http.get(this.apiUrl)
+  //     .toPromise()
+  //     .then(response => response.json().content);
+  // }
+
+
+  loadJobs(): Promise<any> {
+    return this.http.get(`${this.apiUrl}`)
       .toPromise()
       .then(response => {
-        const responseJson = response.json();
-        const jobsweb = responseJson.content;
-
-        const result = {
-          jobsweb,
-          total: responseJson.totalElements
-        };
-
-        return result;
-      })
+        const jobs = response.json() as Jobs;
+        return jobs;
+      });
   }
 
   listAll(): Promise<any> {

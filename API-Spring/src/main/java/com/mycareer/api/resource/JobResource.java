@@ -1,5 +1,7 @@
 package com.mycareer.api.resource;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -68,10 +70,16 @@ public class JobResource {
 		return job != null ? ResponseEntity.ok(job) : ResponseEntity.notFound().build();
 	}
 
+//	@GetMapping
+//	@PreAuthorize("hasAuthority('ROLE_READ_JOB') and #oauth2.hasScope('read')")
+//	public Page<Jobs> find(@RequestParam(required = false, defaultValue = "%") String title, Pageable pageable) {
+//		return jobRepository.findByTitleContaining(title, pageable);
+//	}
+	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_JOB') and #oauth2.hasScope('read')")
-	public Page<Jobs> find(@RequestParam(required = false, defaultValue = "%") String title, Pageable pageable) {
-		return jobRepository.findByTitleContaining(title, pageable);
+	public List<Jobs> listJobs() {
+		return jobRepository.findAll();
 	}
 
 }

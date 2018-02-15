@@ -71,7 +71,7 @@ export class ApplicantsFilterComponent implements OnInit {
   }
 
   loadApplicants() {
-    this.applicantsService.findApplicans()
+    this.applicantsService.findApplicants()
       .then(applicants => {
         this.applicants = applicants;
       });

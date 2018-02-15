@@ -207,7 +207,7 @@ export class ApplicantsService {
       });
   }
 
-  findApplicans(): Promise<any> {
+  findApplicants(): Promise<any> {
     return this.http.get(`${this.apiUrl}`)
       .toPromise()
       .then(response => {

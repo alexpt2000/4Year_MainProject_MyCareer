@@ -26,7 +26,8 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
 })
 
 
-export class JobsSearchComponent {
+export class JobsSearchComponent implements OnInit {
+
 
 
   totalRecords = 0;
@@ -46,21 +47,17 @@ export class JobsSearchComponent {
     private errorHandler: ErrorHandlerService
   ) {  }
 
+  ngOnInit() {
+    this.loadJobs();
+  }
 
-  search(page = 0) {
-    this.filter.page = page;
-
-    this.jobsService.search(this.filter)
+  loadJobs() {
+    this.jobsService.loadJobs()
       .then(result => {
-        this.totalRecords = result.total;
-        this.jobsweb = result.jobsweb;
+        this.jobsweb = result;
       });
   }
 
-  changePage(event: LazyLoadEvent) {
-    const page = event.first / event.rows;
-    this.search(page);
-  }
 
   showJobDetails(job: any) {
     this.jobTitle = job.title;
@@ -81,7 +78,7 @@ export class JobsSearchComponent {
     this.jobsService.delete(job.code)
       .then(() => {
         if (this.grid.first === 0) {
-          this.search();
+          this.loadJobs();
         } else {
           this.grid.first = 0;
         }
