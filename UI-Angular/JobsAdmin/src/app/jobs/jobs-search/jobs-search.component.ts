@@ -2,9 +2,9 @@ import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 
-import { JobsFilter, JobsService } from './../jobs.service';
+import { JobsService } from './../jobs.service';
 
-import {BrowserModule} from '@angular/platform-browser'
+import { BrowserModule } from '@angular/platform-browser'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { ToastyService } from 'ng2-toasty';
@@ -14,9 +14,6 @@ import { Location } from '@angular/common';
 import { Form, EmailValidator } from '@angular/forms';
 import { AuthService } from 'app/security/auth.service';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
-
-
-
 
 
 @Component({
@@ -29,9 +26,7 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
 export class JobsSearchComponent implements OnInit {
 
 
-
   totalRecords = 0;
-  filter = new JobsFilter();
   jobsweb = [];
   jobTitle;
   jobDescription = '';
@@ -45,7 +40,7 @@ export class JobsSearchComponent implements OnInit {
     private auth: AuthService,
     private confirmation: ConfirmationService,
     private errorHandler: ErrorHandlerService
-  ) {  }
+  ) { }
 
   ngOnInit() {
     this.loadJobs();
@@ -87,7 +82,5 @@ export class JobsSearchComponent implements OnInit {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
-
-
 
 }

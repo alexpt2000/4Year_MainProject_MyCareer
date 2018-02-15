@@ -34,23 +34,23 @@ export class ApplicantAddComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.router.snapshot.params['code']);
+
   }
 
-  backClicked () {
+  backClicked() {
     this._location.back();
   }
 
   addApplicant(form: FormControl) {
     this.applicant.job.code = this.router.snapshot.params['code'];
     this.applicant.applicant_date = this.nowDate;
-    // console.log(this.applicant.applicant_date);
-    this.applicantService.addApplicant( this.applicant )
+
+    this.applicantService.addApplicant(this.applicant)
       .then(() => {
         this.toasty.success(`Hi ${this.applicant.fullname} your application has been successfully applied.`);
         this.applicant = new Applicants();
-        this.backClicked ();
-        // alert(`Email "${email}" now will receive alerts from MyCareer.`);
+        this.backClicked();
+
       })
   }
 }

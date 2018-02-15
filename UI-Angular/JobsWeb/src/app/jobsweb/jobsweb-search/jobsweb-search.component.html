@@ -1,23 +1,32 @@
 <div class="container">
   <div class="ui-g">
 
-    <form autocomplete="off" (ngSubmit)="search()">
-      <div class="ui-g-12 ui-fluid" class="form-inline">
-        <input pInputText type="text" name="title" placeholder="Job Title" [(ngModel)]="filter.title">
-        <button pButton type="submit" label="Search"></button>
-      </div>
-    </form>
-
-  </div>
-
-  <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="jobsweb" [responsive]="true" emptyMessage="No jobs available." [paginator]="true" [rows]="filter.itensPage"
-        [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="changePage($event)" #table>
-        <p-column field="title" header="Title"></p-column>
-        <p-column field="position" header="Position"></p-column>
-        <p-column field="location" header="Location"></p-column>
-        <p-column field="publication" header="Posted"></p-column>
+
+      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input #gb type="text" pInputText size="50" placeholder="Search">
+        <i class="fa fa-bars"></i>
+        <span>
+          <strong>Positions Available</strong>
+        </span>
+      </div>
+
+      <p-dataTable [value]="jobsweb" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No Positions available."
+        [globalFilter]="gb" #table>
+
+        <p-column field="title" header="Title" [sortable]="true"></p-column>
+
+        <p-column field="position" header="Position" [sortable]="true"></p-column>
+
+        <p-column field="location" header="Location" [sortable]="true"></p-column>
+
+        <p-column header="Publication" [sortable]="true">
+          <ng-template let-job="rowData" pTemplate="body">
+            <span>{{ job.publication | date:'dd/MM/yyyy' }}</span>
+          </ng-template>
+        </p-column>
+
         <p-column>
           <ng-template let-job="rowData" pTemplate="body">
             <button pButton icon="fa-search-plus" pTooltip="More details" tooltipPosition="top" (click)="showJobDetails(job)"></button>
@@ -36,12 +45,6 @@
         <p> Join our talent community and get MyCareer news and job alerts delivered to your inbox.</p>
         <div align="center">
           <label>Email</label>
-
-
-          <!--
-          <input pInputText type="email" [(ngModel)]="email" name="email" placeholder="name@domain.com" #emailAlert="ngModel">
-          -->
-
 
           <input pInputText type="text" class="form-control" [(ngModel)]="email" name="emailf" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             #emailAlert="ngModel">

@@ -1,9 +1,7 @@
 <div class="container card-white">
   <div class="ui-g">
-
-
-      <h1>List of Jobs</h1>
-
+      <div class="ui-g-12">
+    </div>
 
   </div>
 
@@ -14,6 +12,8 @@
         <button pButton type="submit" label="Add Job" icon="fa-plus" class="ui-button-success" [routerLink]="['/jobs/newjob']"></button>
         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
         <input #gb type="text" pInputText size="50" placeholder="Jobs">
+        <i class="fa fa-bars"></i>
+        <span> <strong>List of Jobs</strong> </span>
       </div>
 
       <p-dataTable [value]="jobsweb" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No jobs available." [globalFilter]="gb"

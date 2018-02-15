@@ -2,9 +2,9 @@ import { Component, OnInit, NgModule } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/components/common/api';
 
-import { JobswebFilter, JobswebService } from './../jobsweb.service';
+import { JobswebService } from './../jobsweb.service';
 
-import {BrowserModule} from '@angular/platform-browser'
+import { BrowserModule } from '@angular/platform-browser'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { ToastyService } from 'ng2-toasty';
@@ -14,8 +14,6 @@ import { Location } from '@angular/common';
 import { Form, EmailValidator } from '@angular/forms';
 
 
-
-
 @Component({
   selector: 'app-jobsweb-search',
   templateUrl: './jobsweb-search.component.html',
@@ -23,11 +21,8 @@ import { Form, EmailValidator } from '@angular/forms';
 })
 
 
-export class JobswebSearchComponent {
+export class JobswebSearchComponent implements OnInit {
 
-
-  totalRecords = 0;
-  filter = new JobswebFilter();
   jobsweb = [];
   jobTitle;
   jobDescription = '';
@@ -37,22 +32,17 @@ export class JobswebSearchComponent {
   constructor(
     private jobswebService: JobswebService,
     private toasty: ToastyService
-  ) {  }
+  ) { }
 
-
-  search(page = 0) {
-    this.filter.page = page;
-
-    this.jobswebService.search(this.filter)
-      .then(result => {
-        this.totalRecords = result.total;
-        this.jobsweb = result.jobsweb;
-      });
+  ngOnInit() {
+    this.loadJobs();
   }
 
-  changePage(event: LazyLoadEvent) {
-    const page = event.first / event.rows;
-    this.search(page);
+  loadJobs() {
+    this.jobswebService.loadJobs()
+      .then(result => {
+        this.jobsweb = result;
+      });
   }
 
   showJobDetails(job: any) {
@@ -63,14 +53,13 @@ export class JobswebSearchComponent {
 
 
   addAlert(email: any) {
-    this.jobswebService.addAlert( {email} )
+    this.jobswebService.addAlert({ email })
       .then(() => {
         this.toasty.success(`Email "${email}" now will receive alerts from MyCareer.`);
         this.email = '';
-        // alert(`Email "${email}" now will receive alerts from MyCareer.`);
       })
       .catch(erro => this.toasty.error(`Email "${email}" is already registered.`));
-      this.email = '';
+    this.email = '';
   }
 
 }

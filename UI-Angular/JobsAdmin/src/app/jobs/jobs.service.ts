@@ -7,46 +7,14 @@ import * as moment from 'moment';
 
 import 'rxjs/add/operator/toPromise';
 
-
-export class JobsFilter {
-  title: string;
-  page = 0;
-  itensPage = 15;
-}
-
 @Injectable()
 export class JobsService {
 
   apiUrl: string;
 
-
   constructor(private http: AuthHttp) {
     this.apiUrl = `${environment.apiUrl}/jobs`;
   }
-
-  // loadJobs(): Promise<any> {
-
-  //   return this.http.get(`${this.apiUrl}`)
-  //     .toPromise()
-  //     .then(response => {
-  //       const responseJson = response.json();
-  //       const jobsweb = responseJson.content;
-
-  //       const result = {
-  //         jobsweb,
-  //         total: responseJson.totalElements
-  //       };
-
-  //       return result;
-  //     })
-  // }
-
-  // loadJobs(): Promise<any> {
-  //   return this.http.get(this.apiUrl)
-  //     .toPromise()
-  //     .then(response => response.json().content);
-  // }
-
 
   loadJobs(): Promise<any> {
     return this.http.get(`${this.apiUrl}`)
@@ -57,11 +25,11 @@ export class JobsService {
       });
   }
 
-  listAll(): Promise<any> {
-    return this.http.get(this.apiUrl)
-      .toPromise()
-      .then(response => response.json().content);
-  }
+  // listAll(): Promise<any> {
+  //   return this.http.get(this.apiUrl)
+  //     .toPromise()
+  //     .then(response => response.json().content);
+  // }
 
   delete(code: number): Promise<void> {
     return this.http.delete(`${this.apiUrl}/${code}`)

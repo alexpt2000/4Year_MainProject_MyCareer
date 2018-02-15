@@ -13,13 +13,9 @@ export class ApplicantService {
 
   constructor(private http: Http) { }
 
-
   addApplicant(applicant: Applicants): Promise<Applicants> {
     const headers = new Headers();
-
     headers.append('Content-Type', 'application/json');
-
-    // console.log(JSON.stringify(applicant));
 
     return this.http.post(`${this.apiUrl}/applicantsweb`, JSON.stringify(applicant), { headers })
       .toPromise()

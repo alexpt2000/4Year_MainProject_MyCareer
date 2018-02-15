@@ -39,7 +39,6 @@ export class NavbarComponent implements OnInit {
         icon: 'fa-user',
         items: [
           { label: 'List applicant', icon: 'fa-user', routerLink: ['/applicants'] },
-          { label: 'Evaluate applicant', icon: 'fa-address-card', routerLink: ['/'] },
           { separator: true },
           { label: 'Schedules', icon: 'fa-calendar', routerLink: ['/schedules'] }
         ]

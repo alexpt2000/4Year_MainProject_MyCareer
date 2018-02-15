@@ -12,4 +12,11 @@ export class Applicants {
 
 export class Jobs {
   code: number;
+  title: string;
+  position: string;
+  location: string;
+  organization: string;
+  publication: Date;
+  description: string;
+  status: string;
 }

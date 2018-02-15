@@ -1,17 +1,14 @@
 <div class="container card-white">
   <div class="ui-g">
 
-
-    <div class="ui-g-12">
-      <h1>List of Schedules</h1>
-    </div>
-
     <div class="ui-g-12">
 
       <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
         <button pButton type="submit" label="Add Schedule" icon="fa-plus" class="ui-button-success" [routerLink]="['/schedules/newschedule']"></button>
         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
         <input #gb type="text" pInputText size="50" placeholder="Applicants">
+        <i class="fa fa-bars"></i>
+        <span> <strong>List of Schedules</strong> </span>
       </div>
 
       <p-dataTable [value]="schedulesweb" [responsive]="true" emptyMessage="No schedules available." [rows]="15" [paginator]="true"

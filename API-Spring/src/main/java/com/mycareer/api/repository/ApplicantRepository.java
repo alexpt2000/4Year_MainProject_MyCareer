@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.mycareer.api.model.Applicants;
-import com.mycareer.api.model.ApplicantsScore;
 
 public interface ApplicantRepository extends JpaRepository<Applicants, Long> {
 
@@ -23,24 +22,5 @@ public interface ApplicantRepository extends JpaRepository<Applicants, Long> {
 
 	@Query(value = "select count(*) as total from Applicants WHERE status like 'New applicant'", nativeQuery = true)
 	public List<BigInteger> TotalNewApplicants();
-	
-//	@Query(value = "select applicants.*, applicant_notes.score, avg(questions.score) as score_questions "
-//			+ "from applicants "
-//			+ "join questions "
-//			+ "on questions.code_applicant = applicants.code "
-//			+ "join applicant_notes "
-//			+ "on applicant_notes.code_applicant =  applicants.code", nativeQuery = true)
-//	public List<ApplicantsScore> applicantsWhitScore();
 
 }
-
-
-//select applicants.*, applicant_notes.score, avg(questions.score) as score_questions from applicants join questions on questions.code_applicant = applicants.code join applicant_notes on applicant_notes.code_applicant =  applicants.code
-//
-//
-//select applicants.*, applicant_notes.score, avg(questions.score) as score_questions 
-//from applicants
-//join questions
-//on questions.code_applicant = applicants.code 
-//join applicant_notes
-//on applicant_notes.code_applicant =  applicants.code

@@ -20,8 +20,6 @@ import { JobswebSearchComponent } from 'app/jobsweb/jobsweb-search/jobsweb-searc
 import { CustomFormsModule } from 'ng2-validation'
 
 
-
-
 @NgModule({
   imports: [
     CommonModule,
