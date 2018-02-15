@@ -45,6 +45,8 @@ public class ApplicantNotes {
 		this.applicant = applicant;
 	}
 
+	
+
 	public long getScore() {
 		return score;
 	}

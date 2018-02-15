@@ -67,8 +67,8 @@ export class ApplicantsService {
   }
 
 
-  deleteApplicant(code: number): Promise<void> {
-    return this.http.delete(`${this.apiUrl}/${code}`)
+  deleteApplicant(code: number, codeQ: number): Promise<void> {
+    return this.http.delete(`${this.apiUrl}/${code}/${codeQ}`)
       .toPromise()
       .then(() => null);
   }

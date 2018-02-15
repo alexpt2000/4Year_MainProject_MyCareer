@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,7 @@ import com.mycareer.api.model.ApplicantNotes;
 import com.mycareer.api.model.Applicants;
 import com.mycareer.api.repository.ApplicantNotesRepository;
 import com.mycareer.api.repository.ApplicantRepository;
+import com.mycareer.api.repository.QuestionsRepository;
 import com.mycareer.api.service.ApplicantService;
 
 @RestController
@@ -39,6 +41,9 @@ public class ApplicantResource {
 
 	@Autowired
 	private ApplicantService applicantService;
+	
+	@Autowired
+	private QuestionsRepository questionsRepository;
 
 	@Autowired
 	private ApplicantNotesRepository applicantNotesRepository;
@@ -54,11 +59,16 @@ public class ApplicantResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveApplicant);
 	}
 
-	@DeleteMapping("/{code}")
+	@DeleteMapping("/{code}/{codeQ}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_REMOVE_APPLICANT') and #oauth2.hasScope('write')")
-	public void remove(@PathVariable Long code) {
-		applicantRepository.delete(code);
+	public void remove(@PathVariable Long code, @PathVariable Long codeQ) {
+		
+		System.out.println(code);
+		System.out.println(codeQ);
+
+		questionsRepository.deleteQuestions(codeQ);
+		applicantNotesRepository.delete(code);
 	}
 
 	@PutMapping("/{code}")

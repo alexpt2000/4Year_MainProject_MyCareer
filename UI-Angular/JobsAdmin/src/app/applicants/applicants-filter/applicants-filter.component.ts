@@ -87,8 +87,9 @@ export class ApplicantsFilterComponent implements OnInit {
   }
 
   deleteApplicant(applicant: any) {
-    this.applicantsService.deleteApplicant(applicant.applicant.code)
+    this.applicantsService.deleteApplicant(applicant.code, applicant.applicant.code)
       .then(() => {
+        this.load();
         this.toasty.success('Deleted successfully!');
       })
       .catch(erro => this.errorHandler.handle(erro));

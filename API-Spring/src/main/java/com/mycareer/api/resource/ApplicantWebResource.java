@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycareer.api.event.ResourceCreatedEvent;
+import com.mycareer.api.model.ApplicantNotes;
 import com.mycareer.api.model.Applicants;
+import com.mycareer.api.repository.ApplicantNotesRepository;
 import com.mycareer.api.repository.ApplicantRepository;
 
 @RestController
@@ -26,11 +28,13 @@ public class ApplicantWebResource {
 
 	@Autowired
 	private ApplicantRepository applicantRepository;
+	
+	@Autowired
+	private ApplicantNotesRepository applicantNotesRepository;
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
-	// TODO: To be remove, just use for test
 	@GetMapping
 	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname,
 			Pageable pageable) {
@@ -41,6 +45,15 @@ public class ApplicantWebResource {
 	public ResponseEntity<Applicants> save(@Valid @RequestBody Applicants applicant, HttpServletResponse response) {
 		Applicants saveApplicants = applicantRepository.save(applicant);
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveApplicants.getCode()));
+		
+		
+		// After applicants applies, will be create a new record for notes
+		ApplicantNotes applicantNotes = new ApplicantNotes(); 
+		applicantNotes.setApplicant(applicant);
+		ApplicantNotes saveApplicant = applicantNotesRepository.save(applicantNotes);
+		publisher.publishEvent(new ResourceCreatedEvent(this, response, applicantNotes.getCode()));
+		
+			
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveApplicants);
 	}
 
