@@ -59,11 +59,11 @@
         <p-column styleClass="col-size">
           <ng-template let-appl="rowData" pTemplate="body">
             <button pButton icon="fa-balance-scale" pTooltip="Evaluation of the candidate" tooltipPosition="top" [routerLink]="['/applicantnotes', appl.code]"></button>
-            <button pButton icon="fa-calendar" pTooltip="Add the Applicant to an Interview Schedule" tooltipPosition="top" [routerLink]="['/schedules/newschedule', appl.fullname]"
+            <button pButton icon="fa-calendar" pTooltip="Add the Applicant to an Interview Schedule" tooltipPosition="top" [routerLink]="['/schedules/newschedule', appl.applicant.fullname]"
               [disabled]="!auth.havePermission('ROLE_ADD_SCHEDULE')"></button>
-            <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', appl.code]"
+            <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', appl.applicant.code]"
               [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
-            <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(appl)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')"
+            <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDeleteApplicant(appl)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')"
               class="ui-button-danger"></button>
           </ng-template>
         </p-column>

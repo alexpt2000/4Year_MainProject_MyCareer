@@ -77,24 +77,18 @@ export class ApplicantsFilterComponent implements OnInit {
       });
   }
 
-  confirmationDelete(applicant: any) {
+  confirmationDeleteApplicant(applicant: any) {
     this.confirmation.confirm({
       message: 'Are you sure you want to delete?',
       accept: () => {
-        this.delete(applicant);
+        this.deleteApplicant(applicant);
       }
     });
   }
 
-  delete(applicant: any) {
-    this.applicantsService.delete(applicant.code)
+  deleteApplicant(applicant: any) {
+    this.applicantsService.deleteApplicant(applicant.applicant.code)
       .then(() => {
-        if (this.grid.first === 0) {
-          this.load();
-        } else {
-          this.grid.first = 0;
-        }
-
         this.toasty.success('Deleted successfully!');
       })
       .catch(erro => this.errorHandler.handle(erro));

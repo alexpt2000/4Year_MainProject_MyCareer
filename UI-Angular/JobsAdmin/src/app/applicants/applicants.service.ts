@@ -60,10 +60,14 @@ export class ApplicantsService {
   listApplicants(): Promise<any> {
     return this.http.get(`${this.apiUrl}/list`)
       .toPromise()
-      .then(response => response.json().content);
+      .then(response => {
+        const applicant = response.json() as Applicants;
+      return applicant;
+    });
   }
 
-  delete(code: number): Promise<void> {
+
+  deleteApplicant(code: number): Promise<void> {
     return this.http.delete(`${this.apiUrl}/${code}`)
       .toPromise()
       .then(() => null);

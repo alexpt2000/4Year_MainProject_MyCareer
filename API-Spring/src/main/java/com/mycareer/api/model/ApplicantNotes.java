@@ -1,5 +1,6 @@
 package com.mycareer.api.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class ApplicantNotes {
 	private Long code;
 
 	@NotNull
-	@OneToOne
+	@OneToOne(cascade=CascadeType.REMOVE)
 	@JoinColumn(name = "code_applicant")
 	private Applicants applicant;
 

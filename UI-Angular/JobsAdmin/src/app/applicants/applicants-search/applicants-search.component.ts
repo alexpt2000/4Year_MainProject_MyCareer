@@ -76,28 +76,28 @@ export class ApplicantsSearchComponent implements OnInit {
     this.search(page);
   }
 
-  confirmationDelete(applicant: any) {
-    this.confirmation.confirm({
-      message: 'Are you sure you want to delete?',
-      accept: () => {
-        this.delete(applicant);
-      }
-    });
-  }
+  // confirmationDelete(applicant: any) {
+  //   this.confirmation.confirm({
+  //     message: 'Are you sure you want to delete?',
+  //     accept: () => {
+  //       this.delete(applicant);
+  //     }
+  //   });
+  // }
 
-  delete(applicant: any) {
-    this.applicantsService.delete(applicant.code)
-      .then(() => {
-        if (this.grid.first === 0) {
-          this.search();
-        } else {
-          this.grid.first = 0;
-        }
+  // delete(applicant: any) {
+  //   this.applicantsService.delete(applicant.code)
+  //     .then(() => {
+  //       if (this.grid.first === 0) {
+  //         this.search();
+  //       } else {
+  //         this.grid.first = 0;
+  //       }
 
-        this.toasty.success('Deleted successfully!');
-      })
-      .catch(erro => this.errorHandler.handle(erro));
-  }
+  //       this.toasty.success('Deleted successfully!');
+  //     })
+  //     .catch(erro => this.errorHandler.handle(erro));
+  // }
 
 
 
