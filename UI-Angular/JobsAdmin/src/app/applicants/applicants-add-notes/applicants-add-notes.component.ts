@@ -26,6 +26,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
   applicant = new ApplicantNotes();
   applicantNewQuestion = new ApplicantQuestions();
+  applicantNewQuestionAverage = []
   // outro = new ApplicantQuestions();
 
 
@@ -42,6 +43,10 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
   question: any;
   questionFilter: any;
+
+  averageScore = 0;
+  countScore = 0;
+
   i = 0;
 
   constructor(
@@ -103,17 +108,47 @@ export class ApplicantsAddNotesComponent implements OnInit {
       })
   }
 
+
+  // ************************************************************************
+  // ************************************************************************
   // Load the list of Applicant QUestions
   loadApplicantQuestinons(code: number) {
     this.applicantsService.findByCodeApplicantQuestions(code)
       .then(applicantQuestions => {
         this.applicantQuestions = applicantQuestions;
-        this.updateTitle();
+
+        this.countScore = 0;
+        this.averageScore = 0;
+
+        // tslint:disable-next-line:forin
+        for (const k in this.applicantQuestions) {
+          this.averageScore += this.applicantQuestions[k].score;
+          this.countScore++;
+        }
+
+        this.averageScore = this.averageScore / this.countScore;
+
+        this.applicant.score_questions = this.averageScore;
+
+        this.updateApplicantScoreQuestions();
+
       })
       .catch(erro => {
-        // this.addApplicantQuestinons();
+
       });
+
+
   }
+
+  updateApplicantScoreQuestions() {
+    this.applicantsService.updateApplicantNotes(this.applicant)
+      .then(applicant => {
+        this.applicant = applicant;
+        this.updateTitle();
+      })
+      // .catch(erro => this.errorHandler.handle(erro));
+  }
+
 
 
   addApplicantQuestinons(form: FormControl) {

@@ -49,6 +49,12 @@
           <a target="_blank" href="{{applicant.applicant.profile_url}}">{{applicant.applicant.profile_url}}</a>
         </div>
 
+        <div class="ui-g-12">
+            <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', applicant.applicant.code]"
+            [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
+        </div>
+
+
       </p-panel>
 
     </div>
@@ -101,8 +107,8 @@
 
                 <div class="ui-g-12 ui-md-3 ui-fluid">
                   <label>Type of questions</label>
-                  <p-dropdown name="type_question" id="float-input" [options]="type_questionFilterDropdown" placeholder="Select type questions" [autoWidth]="false"
-                    filter="true" [(ngModel)]="applicantNewQuestion.type_question" (ngModelChange)="onSelect(applicantNewQuestion.type_question)"
+                  <p-dropdown name="type_question" id="float-input" [options]="type_questionFilterDropdown" placeholder="Select type questions"
+                    [autoWidth]="false" filter="true" [(ngModel)]="applicantNewQuestion.type_question" (ngModelChange)="onSelect(applicantNewQuestion.type_question)"
                     editable="false"></p-dropdown>
                 </div>
 
@@ -169,18 +175,15 @@
                   <ng-template let-appl="rowData" pTemplate="body">
                     <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" (click)="findByCodeQuestions(appl.code)"
                       [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
-                    <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDeleteQuestion(appl.code)"
-                      [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')" class="ui-button-danger"></button>
+                    <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDeleteQuestion(appl.code)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')"
+                      class="ui-button-danger"></button>
                   </ng-template>
                 </p-column>
 
               </p-dataTable>
+
             </div>
           </div>
-
-
-
-
 
         </p-tabPanel>
 

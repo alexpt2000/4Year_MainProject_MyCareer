@@ -64,10 +64,10 @@ public class ApplicantResource {
 	@PreAuthorize("hasAuthority('ROLE_REMOVE_APPLICANT') and #oauth2.hasScope('write')")
 	public void remove(@PathVariable Long code, @PathVariable Long codeQ) {
 		
-		System.out.println(code);
-		System.out.println(codeQ);
-
+		// Delete all questions first
 		questionsRepository.deleteQuestions(codeQ);
+		
+		// Delete the applicant
 		applicantNotesRepository.delete(code);
 	}
 
