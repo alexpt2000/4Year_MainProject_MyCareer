@@ -35,10 +35,10 @@
 
         <p-column styleClass="col-size-btn-job">
           <ng-template let-job="rowData" pTemplate="body">
-            <button pButton icon="fa-user" label="Applicants" pTooltip="Applicants for {{job.title}}" tooltipPosition="top" [routerLink]="['/applied', job.code, job.title]"></button>
-            <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/jobs', job.code]"
+            <button pButton icon="fa-user" label="Applicants" pTooltip="Applicants for {{job.title}}" class="ui-button-info" tooltipPosition="top" [routerLink]="['/applied', job.code, job.title]"></button>
+            <button pButton icon="fa-pencil" pTooltip="Edit {{job.title}}" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/jobs', job.code]"
               [disabled]="!auth.havePermission('ROLE_ADD_JOB')"></button>
-            <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(job)" [disabled]="!auth.havePermission('ROLE_REMOVE_JOB')"
+            <button pButton icon="fa-trash" pTooltip="Delete {{job.title}}" tooltipPosition="top" (click)="confirmationDelete(job)" [disabled]="!auth.havePermission('ROLE_REMOVE_JOB')"
               class="ui-button-danger"></button>
 
           </ng-template>
@@ -53,6 +53,10 @@
     <hr>
     <p innerHtml="{{ jobDescription }}">
   </p-sidebar>
+
+  <div class="ui-g-12">
+      <button pButton icon="fa-arrow-circle-left" type="button" label="Back" (click)="backClicked()" class="ui-button-secondary"></button>
+    </div>
 
   <p-growl [(value)]="msgs"></p-growl>
 

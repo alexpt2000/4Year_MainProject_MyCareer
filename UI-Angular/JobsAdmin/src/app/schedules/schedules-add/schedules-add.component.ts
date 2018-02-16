@@ -54,7 +54,7 @@ export class SchedulesAddComponent implements OnInit {
   ngOnInit() {
     const codeSchedule = this.route.snapshot.params['code'];
     const fullnameSchedule = this.route.snapshot.params['fullname'];
-    this.title.setTitle('New Job');
+    this.title.setTitle('New Schedule');
 
     this.loadApplicants();
 

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 import { AuthGuard } from './../security/auth.guard';
 import { ApplicantsAddComponent } from 'app/applicants/applicants-add/applicants-add.component';
-import { ApplicantsSearchComponent } from 'app/applicants/applicants-search/applicants-search.component';
 import { ApplicantsFilterComponent } from 'app/applicants/applicants-filter/applicants-filter.component';
 import { ApplicantsAddNotesComponent } from 'app/applicants/applicants-add-notes/applicants-add-notes.component';
 

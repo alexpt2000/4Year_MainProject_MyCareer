@@ -36,15 +36,19 @@
 
         <p-column styleClass="col-size">
           <ng-template let-schedule="rowData" pTemplate="body">
-            <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/schedules', schedule.code]"
+            <button pButton icon="fa-pencil" pTooltip="Edit {{schedule.title}}" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/schedules', schedule.code]"
               [disabled]="!auth.havePermission('ROLE_ADD_SCHEDULE')"></button>
-            <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDelete(schedule)" [disabled]="!auth.havePermission('ROLE_REMOVE_SCHEDULE')"
+            <button pButton icon="fa-trash" pTooltip="Delete {{schedule.title}}" tooltipPosition="top" (click)="confirmationDelete(schedule)" [disabled]="!auth.havePermission('ROLE_REMOVE_SCHEDULE')"
               class="ui-button-danger"></button>
           </ng-template>
         </p-column>
       </p-dataTable>
     </div>
   </div>
+
+  <div class="ui-g-12">
+      <button pButton icon="fa-arrow-circle-left" type="button" label="Back" (click)="backClicked()" class="ui-button-secondary"></button>
+    </div>
 
   <p-growl [(value)]="msgs"></p-growl>
 

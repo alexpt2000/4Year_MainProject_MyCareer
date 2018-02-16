@@ -1,3 +1,4 @@
+import { MenuItem } from 'primeng/components/common/menuitem';
 import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
@@ -32,9 +33,7 @@ export class ApplicantsFilterComponent implements OnInit {
   codeJob = this.router.snapshot.params['code'];
   title = 'List of Applicants';
 
-  rating1 = 5;
-  rating2 = 1;
-  rating3 = 3;
+  items: MenuItem[];
 
   @ViewChild('table') grid;
 
@@ -50,6 +49,19 @@ export class ApplicantsFilterComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.items = [
+      {label: 'Update', icon: 'fa-refresh', command: () => {
+          // this.update();
+      }},
+      {label: 'Delete', icon: 'fa-close', command: () => {
+          // this.delete();
+      }},
+      {label: 'Angular.io', icon: 'fa-link', url: 'http://angular.io'},
+      {label: 'Theming', icon: 'fa-paint-brush', routerLink: ['/theming']}
+  ];
+
+
     this.load();
   }
 

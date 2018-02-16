@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { ApplicantsSearchComponent } from './applicants-search/applicants-search.component';
 import { ApplicantsAddComponent } from 'app/applicants/applicants-add/applicants-add.component';
 import { ApplicantsFilterComponent } from 'app/applicants/applicants-filter/applicants-filter.component';
 import { NgModule } from '@angular/core';
@@ -26,7 +25,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { FormsModule } from '@angular/forms';
 import {RatingModule} from 'primeng/components/rating/rating';
 import { ApplicantsAddNotesComponent } from 'app/applicants/applicants-add-notes/applicants-add-notes.component';
-import { TabViewModule, SpinnerModule } from 'primeng/primeng';
+import { TabViewModule, SpinnerModule, SplitButtonModule } from 'primeng/primeng';
 
 
 
@@ -55,18 +54,17 @@ import { TabViewModule, SpinnerModule } from 'primeng/primeng';
     RatingModule,
     ApplicantsRoutingModule,
     TabViewModule,
-    SpinnerModule
+    SpinnerModule,
+    SplitButtonModule
 
 
   ],
   declarations: [
-    ApplicantsSearchComponent,
     ApplicantsAddComponent,
     ApplicantsAddNotesComponent,
     ApplicantsFilterComponent
   ],
   exports: [
-    ApplicantsSearchComponent,
     ApplicantsFilterComponent
   ]
 })

@@ -50,14 +50,16 @@
               </ng-template>
             </p-column>
 
-        <p-column styleClass="col-size">
+        <p-column>
           <ng-template let-appl="rowData" pTemplate="body">
-            <button pButton icon="fa-balance-scale" pTooltip="Evaluation of the candidate" tooltipPosition="top" [routerLink]="['/applicantnotes', appl.code]"></button>
-            <button pButton icon="fa-calendar" pTooltip="Add the Applicant to an Interview Schedule" tooltipPosition="top" [routerLink]="['/schedules/newschedule', appl.applicant.fullname]"
+
+            <button pButton icon="fa-balance-scale" pTooltip="Evaluate {{appl.applicant.fullname}}" tooltipPosition="top" class="ui-button-success" [routerLink]="['/applicantnotes', appl.code]"></button>
+            <button pButton icon="fa-calendar" pTooltip="Add {{appl.applicant.fullname}} to an Interview Schedule" tooltipPosition="top" class="ui-button-info" [routerLink]="['/schedules/newschedule', appl.applicant.fullname]"
               [disabled]="!auth.havePermission('ROLE_ADD_SCHEDULE')"></button>
-            <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', appl.applicant.code]"
+            <button pButton icon="fa-pencil" pTooltip="Edit {{appl.applicant.fullname}}" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', appl.applicant.code]"
               [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
-            <button pButton icon="fa-trash" pTooltip="Delete" tooltipPosition="top" (click)="confirmationDeleteApplicant(appl)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')"
+
+            <button pButton icon="fa-trash" pTooltip="Delete {{appl.applicant.fullname}}" tooltipPosition="top" (click)="confirmationDeleteApplicant(appl)" [disabled]="!auth.havePermission('ROLE_REMOVE_APPLICANT')"
               class="ui-button-danger"></button>
           </ng-template>
         </p-column>
@@ -65,14 +67,16 @@
       </p-dataTable>
     </div>
 
-    <div class="ui-g-12">
-      <button pButton type="button" label="Back" (click)="backClicked()"></button>
-    </div>
 
   </div>
 
+  <div class="ui-g-12">
+    <button pButton icon="fa-arrow-circle-left" type="button" label="Back" (click)="backClicked()" class="ui-button-secondary"></button>
+  </div>
 
   <p-growl [(value)]="msgs"></p-growl>
 
 
 </div>
+
+

@@ -37,6 +37,7 @@ export class SchedulesSearchComponent implements OnInit {
   @ViewChild('table') grid;
 
   constructor(
+    private _location: Location,
     private schedulesService: SchedulesService,
     private toasty: ToastyService,
     private auth: AuthService,
@@ -80,6 +81,9 @@ export class SchedulesSearchComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
+  backClicked() {
+    this._location.back();
+  }
 
 
 }

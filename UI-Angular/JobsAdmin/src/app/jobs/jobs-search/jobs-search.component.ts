@@ -35,6 +35,7 @@ export class JobsSearchComponent implements OnInit {
   @ViewChild('table') grid;
 
   constructor(
+    private _location: Location,
     private jobsService: JobsService,
     private toasty: ToastyService,
     private auth: AuthService,
@@ -81,6 +82,10 @@ export class JobsSearchComponent implements OnInit {
         this.toasty.success('Deleted successfully!');
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
 }

@@ -85,7 +85,7 @@
             </div>
 
             <div class="ui-g-12">
-              <button pButton type="button" label="Back" (click)="backClicked()"></button>
+                <button pButton icon="fa-arrow-circle-left" type="button" label="Back" (click)="backClicked()" class="ui-button-secondary"></button>
               <button pButton type="submit" label="Save evaluation" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
             </div>
           </form>
@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="ui-g-12">
-                  <button pButton type="button" label="Back" (click)="backClicked()"></button>
+                    <button pButton icon="fa-arrow-circle-left" type="button" label="Back" (click)="backClicked()" class="ui-button-secondary"></button>
                   <button pButton type="submit" label="Save question" class="ui-button-info" [disabled]="formApplicantQuestions.invalid"></button>
                   <button pButton type="button" label="New question" class="ui-button-success" (click)="newQuestion()"></button>
                 </div>
