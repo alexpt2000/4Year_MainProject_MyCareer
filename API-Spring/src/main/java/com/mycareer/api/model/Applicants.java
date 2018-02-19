@@ -1,25 +1,15 @@
 package com.mycareer.api.model;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotNull;
-
-import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(name = "applicants")
@@ -38,9 +28,9 @@ public class Applicants {
 	private String phone_number;
 
 	private String profile_url;
-	
-	@Lob
-	private Blob upload_cv;
+
+//	@Lob
+//	private Blob upload_cv;
 
 	private String cover_letter;
 
@@ -48,18 +38,10 @@ public class Applicants {
 
 	private LocalDate applicant_date;
 
-	
-	
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "code_job")
 	private Jobs job;
-	
-	
-
-//	@OneToMany(mappedBy = "questions", orphanRemoval = true, cascade = CascadeType.PERSIST)
-//    private List<Questions> questions = new ArrayList<Questions>();
-	
 
 	public Long getCode() {
 		return code;
@@ -125,7 +107,6 @@ public class Applicants {
 		this.status = status;
 	}
 
-
 	public LocalDate getApplicant_date() {
 		return applicant_date;
 	}
@@ -133,7 +114,6 @@ public class Applicants {
 	public void setApplicant_date(LocalDate applicant_date) {
 		this.applicant_date = applicant_date;
 	}
-	
 
 	@Override
 	public int hashCode() {

@@ -9,7 +9,7 @@ import com.mycareer.api.model.Schedules;
 
 public interface SchedulesRepository extends JpaRepository<Schedules, Long> {
 
-	@Query(value = "SELECT * FROM Schedules", nativeQuery = true)
+	@Query(value = "SELECT * FROM schedules", nativeQuery = true)
 	public List<Schedules> findSchedules();
 
 }

@@ -14,13 +14,13 @@ public interface ApplicantRepository extends JpaRepository<Applicants, Long> {
 
 	public Page<Applicants> findByFullnameContaining(String fullname, Pageable pageable);
 
-	@Query(value = "SELECT * FROM Applicants a WHERE a.code_job = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM applicants a WHERE a.code_job = ?1", nativeQuery = true)
 	public List<Applicants> findByJobCode(Long code);
 
-	@Query(value = "select count(*) as total from Applicants", nativeQuery = true)
+	@Query(value = "select count(*) as total from applicants", nativeQuery = true)
 	public List<BigInteger> TotalApplicants();
 
-	@Query(value = "select count(*) as total from Applicants WHERE status like 'New applicant'", nativeQuery = true)
+	@Query(value = "select count(*) as total from applicants WHERE status like 'New applicant'", nativeQuery = true)
 	public List<BigInteger> TotalNewApplicants();
 
 }

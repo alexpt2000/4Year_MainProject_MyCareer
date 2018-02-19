@@ -19,14 +19,14 @@ public class ApplicantNotes {
 	private Long code;
 
 	@NotNull
-	@OneToOne(cascade=CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "code_applicant")
 	private Applicants applicant;
 
 	private long score;
 
 	private String notes;
-	
+
 	private long score_questions;
 
 	public Long getCode() {
@@ -45,8 +45,6 @@ public class ApplicantNotes {
 		this.applicant = applicant;
 	}
 
-	
-
 	public long getScore() {
 		return score;
 	}
@@ -58,8 +56,6 @@ public class ApplicantNotes {
 	public String getNotes() {
 		return notes;
 	}
-	
-	
 
 	public long getScore_questions() {
 		return score_questions;

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.api-mycareer</groupId>
-	<artifactId>api-mycareer</artifactId>
+	<artifactId>mycareer-api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>api-mycareer</name>
+	<name>mycareer-api</name>
 	<description>Project MyCareer</description>
 
 	<parent>

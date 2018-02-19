@@ -6,7 +6,6 @@ CREATE TABLE applicants (
 	phone_number VARCHAR(30),
 	profile_url VARCHAR(30),
 	cover_letter TEXT,
-	upload_cv MEDIUMBLOB,
 	status VARCHAR(30),
 	applicant_date DATE,
 	code_job BIGINT(20) NOT NULL,

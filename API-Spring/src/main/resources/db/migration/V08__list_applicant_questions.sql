@@ -5,7 +5,7 @@ CREATE TABLE questions (
 	notes TEXT,
 	score BIGINT(20),
 	code_applicant BIGINT(20) NOT NULL,
-	FOREIGN KEY (code_applicant) REFERENCES Applicants(code)
+	FOREIGN KEY (code_applicant) REFERENCES applicants(code)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

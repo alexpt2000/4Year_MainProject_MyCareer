@@ -1,17 +1,10 @@
 package com.mycareer.api.model;
 
-import java.math.BigInteger;
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.mysql.jdbc.Blob;
 
 @Entity
 @Table(name = "applicants")
@@ -23,54 +16,21 @@ public class ApplicantsScore {
 
 	private String fullname;
 
-//	private String email;
-//
-//	private String phone_number;
-//
-//	private String profile_url;
-//	
-//	private Blob upload_cv;
-//
-//	private String cover_letter;
-//
-//	private String status;
-//
-//	private LocalDate applicant_date;
-//
-//	@ManyToOne
-//	@JoinColumn(name = "code_job")
-//	private Jobs job;
-	
-//	private String score;
-//	
-//	private String score_questions;
-//
-
-	
-	
-	
-	
-
-	
 	public String getFullname() {
 		return fullname;
 	}
-
 
 	public Long getCode() {
 		return code;
 	}
 
-
 	public void setCode(Long code) {
 		this.code = code;
 	}
 
-
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -79,7 +39,6 @@ public class ApplicantsScore {
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -97,8 +56,5 @@ public class ApplicantsScore {
 			return false;
 		return true;
 	}
-
-
-
 
 }
