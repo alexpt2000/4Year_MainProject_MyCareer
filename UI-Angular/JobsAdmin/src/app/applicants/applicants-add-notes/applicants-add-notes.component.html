@@ -50,7 +50,7 @@
         </div>
 
         <div class="ui-g-12">
-            <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', applicant.applicant.code]"
+            <button pButton icon="fa-pencil" label="Edit" pTooltip="Edit applicant" tooltipPosition="top" class="ui-button-warning" [routerLink]="['/applicants', applicant.applicant.code]"
             [disabled]="!auth.havePermission('ROLE_ADD_APPLICANT')"></button>
         </div>
 
@@ -86,7 +86,7 @@
 
             <div class="ui-g-12">
                 <button pButton icon="fa-arrow-circle-left" type="button" label="Back" (click)="backClicked()" class="ui-button-secondary"></button>
-              <button pButton type="submit" label="Save evaluation" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
+              <button pButton type="submit" icon="fa-save" label="Save evaluation" class="ui-button-info" [disabled]="applicantForm.invalid"></button>
             </div>
           </form>
 
@@ -134,8 +134,8 @@
 
                 <div class="ui-g-12">
                     <button pButton icon="fa-arrow-circle-left" type="button" label="Back" (click)="backClicked()" class="ui-button-secondary"></button>
-                  <button pButton type="submit" label="Save question" class="ui-button-info" [disabled]="formApplicantQuestions.invalid"></button>
-                  <button pButton type="button" label="New question" class="ui-button-success" (click)="newQuestion()"></button>
+                  <button pButton type="submit" icon="fa-save" label="Save question" class="ui-button-info" [disabled]="formApplicantQuestions.invalid"></button>
+                  <button pButton type="button" icon="fa-plus" label="New question" class="ui-button-success" (click)="newQuestion()"></button>
                 </div>
 
               </form>
