@@ -92,6 +92,10 @@ label {
   text-align: center;
 }
 
+.col-size-jobtitle {
+  width: 400px;
+}
+
 
 .col-acoes {
   width: 90px;
