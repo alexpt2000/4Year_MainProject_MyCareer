@@ -28,6 +28,7 @@ export class JobswebSearchComponent implements OnInit {
   jobDescription = '';
   display;
   email = '';
+  msgs: any;
 
   constructor(
     private jobswebService: JobswebService,

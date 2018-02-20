@@ -3,14 +3,18 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class JobswebService {
 
-  apiUrl = 'http://localhost:8080';
+  apiUrl: string;
+  //apiUrl = 'http://localhost:8080';
   // http://localhost:8080/alertsweb
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    this.apiUrl = `${environment.apiUrl}`;
+  }
 
   loadJobs(): Promise<any> {
     return this.http.get(`${this.apiUrl}/jobsweb`)

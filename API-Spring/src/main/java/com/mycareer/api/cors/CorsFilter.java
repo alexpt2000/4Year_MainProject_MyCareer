@@ -24,7 +24,7 @@ public class CorsFilter implements Filter {
 
 	@Autowired
 	private MyCareerApiProperty mycareerApiProperty;
-	
+
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
@@ -32,10 +32,16 @@ public class CorsFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
+		
+		if(request.getHeader("Origin").equals("https://mycareer-webjobs.herokuapp.com") 
+				|| request.getHeader("Origin").equals("https://mycareer-webadmin.herokuapp.com")) {
+			mycareerApiProperty.setOriginAllowed(request.getHeader("Origin"));
+		}
+		
 		response.setHeader("Access-Control-Allow-Origin", mycareerApiProperty.getOriginAllowed());
         response.setHeader("Access-Control-Allow-Credentials", "true");
 		
-		if ("OPTIONS".equals(request.getMethod()) && mycareerApiProperty.getOriginAllowed().equals(request.getHeader("Origin"))) {
+		if ("OPTIONS".equals(request.getMethod()) && mycareerApiProperty.getOriginAllowed().equals(request.getHeader("Origin")) ) {
 			response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
         	response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
         	response.setHeader("Access-Control-Max-Age", "3600");
