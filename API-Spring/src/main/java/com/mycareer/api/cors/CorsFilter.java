@@ -32,12 +32,14 @@ public class CorsFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
+		mycareerApiProperty.setOriginAllowed(request.getHeader("Origin"));
 		
-		if(request.getHeader("Origin").equals("https://mycareer-webjobs.herokuapp.com") 
-		|| request.getHeader("Origin").equals("https://mycareer-webadmin.herokuapp.com")) 
-		{
-			mycareerApiProperty.setOriginAllowed(request.getHeader("Origin"));
-		}
+//		if(request.getHeader("Origin").equals("https://mycareer-webjobs.herokuapp.com") 
+//		|| request.getHeader("Origin").equals("https://mycareer-webadmin.herokuapp.com")
+//		|| request.getHeader("Origin").equals("https://mycareer-api.herokuapp.com")) 
+//		{
+//			mycareerApiProperty.setOriginAllowed(request.getHeader("Origin"));
+//		}
 		
 		response.setHeader("Access-Control-Allow-Origin", mycareerApiProperty.getOriginAllowed());
         response.setHeader("Access-Control-Allow-Credentials", "true");
