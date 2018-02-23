@@ -34,7 +34,8 @@ public class CorsFilter implements Filter {
 		
 		
 		if(request.getHeader("Origin").equals("https://mycareer-webjobs.herokuapp.com") 
-				|| request.getHeader("Origin").equals("https://mycareer-webadmin.herokuapp.com")) {
+		|| request.getHeader("Origin").equals("https://mycareer-webadmin.herokuapp.com")) 
+		{
 			mycareerApiProperty.setOriginAllowed(request.getHeader("Origin"));
 		}
 		
