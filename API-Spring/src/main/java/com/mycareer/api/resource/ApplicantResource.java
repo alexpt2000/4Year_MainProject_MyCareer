@@ -28,6 +28,9 @@ import com.mycareer.api.repository.ApplicantRepository;
 import com.mycareer.api.repository.QuestionsRepository;
 import com.mycareer.api.service.ApplicantService;
 
+/**
+ * The Class ApplicantResource.
+ */
 @RestController
 @RequestMapping("/applicants")
 public class ApplicantResource {
@@ -47,6 +50,13 @@ public class ApplicantResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
+	/**
+	 * Adds new applicant, from WebJobs
+	 *
+	 * @param applicant the applicant
+	 * @param response the response
+	 * @return the response entity
+	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
 	public ResponseEntity<Applicants> add(@Valid @RequestBody Applicants applicant, HttpServletResponse response) {
@@ -55,6 +65,12 @@ public class ApplicantResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveApplicant);
 	}
 
+	/**
+	 * Removes applicant, passing the applicant code and code questions.
+	 *
+	 * @param code the code
+	 * @param codeQ the code Q
+	 */
 	@DeleteMapping("/{code}/{codeQ}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_REMOVE_APPLICANT') and #oauth2.hasScope('write')")
@@ -65,6 +81,13 @@ public class ApplicantResource {
 		applicantNotesRepository.delete(code);
 	}
 
+	/**
+	 * update a applicant by code.
+	 *
+	 * @param code the code
+	 * @param applicant the applicant
+	 * @return the response entity
+	 */
 	@PutMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
 	public ResponseEntity<Applicants> update(@PathVariable Long code, @Valid @RequestBody Applicants applicant) {
@@ -72,6 +95,12 @@ public class ApplicantResource {
 		return ResponseEntity.ok(saveApplicant);
 	}
 
+	/**
+	 * Find a applicant by code
+	 *
+	 * @param code the code
+	 * @return the response entity
+	 */
 	@GetMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
 	public ResponseEntity<Applicants> findByCode(@PathVariable Long code) {
@@ -79,18 +108,34 @@ public class ApplicantResource {
 		return applicant != null ? ResponseEntity.ok(applicant) : ResponseEntity.notFound().build();
 	}
 
+	/**
+	 * Find a applicant by a job code.
+	 *
+	 * @param code the code
+	 * @return the list
+	 */
 	@GetMapping("/job/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
 	public List<ApplicantNotes> findJobByCode(@PathVariable Long code) {
 		return applicantNotesRepository.findByJobCode(code);
 	}
 
+	/**
+	 * List all applicants.
+	 *
+	 * @return the list
+	 */
 	@GetMapping("/list")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
 	public List<Applicants> listApplicants() {
 		return applicantRepository.findAll();
 	}
 
+	/**
+	 * Find score.
+	 *
+	 * @return the list
+	 */
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
 	public List<ApplicantNotes> findScore() {

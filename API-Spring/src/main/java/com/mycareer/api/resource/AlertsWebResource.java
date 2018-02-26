@@ -16,18 +16,31 @@ import com.mycareer.api.event.ResourceCreatedEvent;
 import com.mycareer.api.model.Alerts;
 import com.mycareer.api.repository.AlertsRepository;
 
+
+/**
+ * The Class AlertsWebResource.
+ * 
+ * @author Alexander Souza
+ */
 @RestController
 @RequestMapping("/alertsweb")
 public class AlertsWebResource {
 
+	/** The alerts repository. */
 	@Autowired
 	private AlertsRepository alertsRepository;
-	
 
+	/** The publisher. */
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
-	
+	/**
+	 * Save email for alerts
+	 *
+	 * @param alert the alert
+	 * @param response the response
+	 * @return the response entity
+	 */
 	@PostMapping
 	public ResponseEntity<Alerts> save(@Valid @RequestBody Alerts alert, HttpServletResponse response) {
 		Alerts saveAlert = alertsRepository.save(alert);

@@ -23,6 +23,12 @@ import com.mycareer.api.model.ApplicantNotes;
 import com.mycareer.api.repository.ApplicantNotesRepository;
 import com.mycareer.api.service.ApplicantNotesService;
 
+
+/**
+ * The Class ApplicantNotesResource.
+ * 
+ * @author Alexander Souza
+ */
 @RestController
 @RequestMapping("/applicants/applicantnotes")
 public class ApplicantNotesResource {
@@ -36,14 +42,27 @@ public class ApplicantNotesResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
+	/**
+	 * Add  a new note in applicant
+	 *
+	 * @param applicant the applicant
+	 * @param response the response
+	 * @return the response entity
+	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
-	public ResponseEntity<ApplicantNotes> add(@Valid @RequestBody ApplicantNotes applicant, HttpServletResponse response) {
+	public ResponseEntity<ApplicantNotes> add(@Valid @RequestBody ApplicantNotes applicant,
+			HttpServletResponse response) {
 		ApplicantNotes saveApplicant = applicantNotesRepository.save(applicant);
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveApplicant.getCode()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveApplicant);
 	}
 
+	/**
+	 * Removes notes for a applicant, passing by code
+	 *
+	 * @param code the code
+	 */
 	@DeleteMapping("/{code}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_REMOVE_APPLICANT') and #oauth2.hasScope('write')")
@@ -51,19 +70,32 @@ public class ApplicantNotesResource {
 		applicantNotesRepository.delete(code);
 	}
 
+	/**
+	 * Update note for a applicant.
+	 *
+	 * @param code the code
+	 * @param applicant the applicant
+	 * @return the response entity
+	 */
 	@PutMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
-	public ResponseEntity<ApplicantNotes> update(@PathVariable Long code, @Valid @RequestBody ApplicantNotes applicant) {
+	public ResponseEntity<ApplicantNotes> update(@PathVariable Long code,
+			@Valid @RequestBody ApplicantNotes applicant) {
 		ApplicantNotes saveApplicant = applicantNotesService.update(code, applicant);
 		return ResponseEntity.ok(saveApplicant);
 	}
 
+	/**
+	 * Find a note for applicant by code.
+	 *
+	 * @param code the code
+	 * @return the response entity
+	 */
 	@GetMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
 	public ResponseEntity<ApplicantNotes> findByCode(@PathVariable Long code) {
 		ApplicantNotes applicant = applicantNotesRepository.findOne(code);
 		return applicant != null ? ResponseEntity.ok(applicant) : ResponseEntity.notFound().build();
 	}
-
 
 }
