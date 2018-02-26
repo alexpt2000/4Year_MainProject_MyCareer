@@ -10,9 +10,17 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.mycareer.api.model.Applicants;
 
+/**
+ * The Interface ApplicantRepositoryScore.
+ */
 @Transactional
 public interface ApplicantRepositoryScore extends JpaRepository<Applicants, Long> {
 
+	/**
+	 * Applicants whit score.
+	 *
+	 * @return the list
+	 */
 	@Query(value = "select new map (a.fullname) from applicants a", nativeQuery = true)
 	public List<Map<String, Object>> applicantsWhitScore();
 

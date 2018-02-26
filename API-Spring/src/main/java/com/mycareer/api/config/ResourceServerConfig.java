@@ -18,9 +18,16 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ResourceServerConfig.
+ * 
+ * Spring Security OAuth provides support for using Spring Security with OAuth
+ * (1a) and OAuth2 using standard Spring and Spring Security programming models
+ * and configuration idioms.
+ * 
+ * Ref. http://projects.spring.io/spring-security-oauth/
+ * 
+ * @author Alexander Souza
  */
 @Profile("oauth-security")
 @Configuration
@@ -31,47 +38,50 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	/**
 	 * Configure.
 	 *
-	 * @param auth the auth
-	 * @throws Exception the exception
+	 * @param auth
+	 *            the auth
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
-	
+
 	// http://www.baeldung.com/security-none-filters-none-access-permitAll
-	/* (non-Javadoc)
-	 * @see org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.security.oauth2.config.annotation.web.configuration.
+	 * ResourceServerConfigurerAdapter#configure(org.springframework.security.config
+	 * .annotation.web.builders.HttpSecurity)
 	 */
 	// Get values from API address /jobsweb/** , ignore security in this resource.
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/jobsweb/**").permitAll()
-				.antMatchers("/applicantsweb/**").permitAll()
-				.antMatchers("/alertsweb/**").permitAll()
-				.antMatchers("/swagger-resources/**").permitAll()
-				.antMatchers("/v2/**").permitAll()
-				.antMatchers("/webjars/**").permitAll()
-				.antMatchers("/swagger-ui.html").permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.csrf().disable();
+		http.authorizeRequests().antMatchers("/jobsweb/**").permitAll().antMatchers("/applicantsweb/**").permitAll()
+				.antMatchers("/alertsweb/**").permitAll().antMatchers("/swagger-resources/**").permitAll()
+				.antMatchers("/v2/**").permitAll().antMatchers("/webjars/**").permitAll()
+				.antMatchers("/swagger-ui.html").permitAll().anyRequest().authenticated().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable();
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter#configure(org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.security.oauth2.config.annotation.web.configuration.
+	 * ResourceServerConfigurerAdapter#configure(org.springframework.security.oauth2
+	 * .config.annotation.web.configurers.ResourceServerSecurityConfigurer)
 	 */
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.stateless(true);
 	}
-	
+
 	/**
 	 * Password encoder.
 	 *
@@ -81,7 +91,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	/**
 	 * Creates the expression handler.
 	 *
@@ -91,5 +101,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public MethodSecurityExpressionHandler createExpressionHandler() {
 		return new OAuth2MethodSecurityExpressionHandler();
 	}
-	
+
 }

@@ -12,9 +12,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class BasicSecurityConfig.
+ * 
+ * Basic authentication Config
+ * 
+ * This config was raplace by Oath
+ * 
+ * @author Alexander Souza
  */
 @Profile("basic-security")
 @EnableWebSecurity

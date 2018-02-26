@@ -19,9 +19,15 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import com.mycareer.api.config.token.CustomTokenEnhancer;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class AuthorizationServerConfig.
+ * 
+ * Cofigure the access of client can access the API
+ * 
+ * Ref: https://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/config/annotation/configurers/ClientDetailsServiceConfigurer.html
+ * 
+ * @author Alexander Souza
  */
 @Profile("oauth-security")
 @Configuration
