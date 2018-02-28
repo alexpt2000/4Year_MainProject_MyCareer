@@ -42,7 +42,7 @@ public class AlertsWebResource {
 	 * @return the response entity
 	 */
 	@PostMapping
-	public ResponseEntity<Alerts> save(@Valid @RequestBody Alerts alert, HttpServletResponse response) {
+	public ResponseEntity<Alerts> saveEmail(@Valid @RequestBody Alerts alert, HttpServletResponse response) {
 		Alerts saveAlert = alertsRepository.save(alert);
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveAlert.getCode()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveAlert);

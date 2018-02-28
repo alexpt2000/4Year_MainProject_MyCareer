@@ -25,6 +25,13 @@ import com.mycareer.api.model.ListQuestions;
 import com.mycareer.api.repository.ListQuestionsRepository;
 import com.mycareer.api.service.ListQuestionsService;
 
+/**
+ * The Class ListQuestionsResource.
+ * 
+ * @author Alexander Souza
+ */
+
+
 @RestController
 @RequestMapping("/applicants/listquestions")
 public class ListQuestionsResource {
@@ -38,44 +45,69 @@ public class ListQuestionsResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
+	/**
+	 * Adds the new question.
+	 *
+	 * @param listQuestions the list questions
+	 * @param response the response
+	 * @return the response entity
+	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
-	public ResponseEntity<ListQuestions> add(@Valid @RequestBody ListQuestions listQuestions, HttpServletResponse response) {
+	public ResponseEntity<ListQuestions> addNewQuestion(@Valid @RequestBody ListQuestions listQuestions, HttpServletResponse response) {
 		ListQuestions saveListQuestions = listQuestionsRepository.save(listQuestions);
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveListQuestions.getCode()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveListQuestions);
 	}
 
+	/**
+	 * Removes the question.
+	 *
+	 * @param code the code
+	 */
 	@DeleteMapping("/{code}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_REMOVE_APPLICANT') and #oauth2.hasScope('write')")
-	public void remove(@PathVariable Long code) {
+	public void removeQuestion(@PathVariable Long code) {
 		listQuestionsRepository.delete(code);
 	}
 
+	/**
+	 * Update question.
+	 *
+	 * @param code the code
+	 * @param listQuestions the list questions
+	 * @return the response entity
+	 */
 	@PutMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
-	public ResponseEntity<ListQuestions> update(@PathVariable Long code, @Valid @RequestBody ListQuestions listQuestions) {
+	public ResponseEntity<ListQuestions> updateQuestion(@PathVariable Long code, @Valid @RequestBody ListQuestions listQuestions) {
 		ListQuestions saveListQuestions = listQuestionsService.update(code, listQuestions);
 		return ResponseEntity.ok(saveListQuestions);
 	}
 
+	/**
+	 * Find question by code.
+	 *
+	 * @param code the code
+	 * @return the response entity
+	 */
 	@GetMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public ResponseEntity<ListQuestions> findByCode(@PathVariable Long code) {
+	public ResponseEntity<ListQuestions> findQuestionByCode(@PathVariable Long code) {
 		ListQuestions listQuestions = listQuestionsRepository.findOne(code);
 		return listQuestions != null ? ResponseEntity.ok(listQuestions) : ResponseEntity.notFound().build();
 	}
 
-//	@GetMapping
-//	@PreAuthorize("hasAuthority('ROLE_READ_SCHEDULE') and #oauth2.hasScope('read')")
-//	public Page<Schedules> find(@RequestParam(required = false, defaultValue = "%") String title, Pageable pageable) {
-//		return schedulesRepository.findByTitleContaining(title, pageable);
-//	}
 
+	/**
+	 * List all question.
+	 *
+	 * @return the list
+	 */
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public List<ListQuestions> find() {
+	public List<ListQuestions> listAllQuestion() {
 		return listQuestionsRepository.findListQuestions();
 	}
 	

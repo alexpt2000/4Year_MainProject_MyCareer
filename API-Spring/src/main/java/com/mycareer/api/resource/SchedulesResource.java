@@ -25,6 +25,13 @@ import com.mycareer.api.model.Schedules;
 import com.mycareer.api.repository.SchedulesRepository;
 import com.mycareer.api.service.SchedulesService;
 
+
+/**
+ * The Class SchedulesResource.
+ * 
+ * @author Alexander Souza
+ */
+
 @RestController
 @RequestMapping("/schedules")
 public class SchedulesResource {
@@ -38,46 +45,69 @@ public class SchedulesResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
+	/**
+	 * Adds the new schedule.
+	 *
+	 * @param schedule the schedule
+	 * @param response the response
+	 * @return the response entity
+	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_ADD_SCHEDULE') and #oauth2.hasScope('write')")
-	public ResponseEntity<Schedules> add(@Valid @RequestBody Schedules schedule, HttpServletResponse response) {
+	public ResponseEntity<Schedules> addNewSchedule(@Valid @RequestBody Schedules schedule, HttpServletResponse response) {
 		Schedules saveSchedule = schedulesRepository.save(schedule);
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveSchedule.getCode()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveSchedule);
 	}
 
+	/**
+	 * Removes the schedule.
+	 *
+	 * @param code the code
+	 */
 	@DeleteMapping("/{code}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_REMOVE_SCHEDULE') and #oauth2.hasScope('write')")
-	public void remove(@PathVariable Long code) {
+	public void removeSchedule(@PathVariable Long code) {
 		schedulesRepository.delete(code);
 	}
 
+	/**
+	 * Update schedule.
+	 *
+	 * @param code the code
+	 * @param schedule the schedule
+	 * @return the response entity
+	 */
 	@PutMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_ADD_SCHEDULE') and #oauth2.hasScope('write')")
-	public ResponseEntity<Schedules> update(@PathVariable Long code, @Valid @RequestBody Schedules schedule) {
+	public ResponseEntity<Schedules> updateSchedule(@PathVariable Long code, @Valid @RequestBody Schedules schedule) {
 		Schedules saveSchedule = schedulesService.update(code, schedule);
 		return ResponseEntity.ok(saveSchedule);
 	}
 
+	/**
+	 * Find schedule by code.
+	 *
+	 * @param code the code
+	 * @return the response entity
+	 */
 	@GetMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_SCHEDULE') and #oauth2.hasScope('read')")
-	public ResponseEntity<Schedules> findByCode(@PathVariable Long code) {
+	public ResponseEntity<Schedules> findScheduleByCode(@PathVariable Long code) {
 		Schedules schedule = schedulesRepository.findOne(code);
 		return schedule != null ? ResponseEntity.ok(schedule) : ResponseEntity.notFound().build();
 	}
 
-	// @GetMapping
-	// @PreAuthorize("hasAuthority('ROLE_READ_SCHEDULE') and
-	// #oauth2.hasScope('read')")
-	// public Page<Schedules> find(@RequestParam(required = false, defaultValue =
-	// "%") String title, Pageable pageable) {
-	// return schedulesRepository.findByTitleContaining(title, pageable);
-	// }
 
+	/**
+	 * List all schedules.
+	 *
+	 * @return the list
+	 */
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_READ_SCHEDULE') and #oauth2.hasScope('read')")
-	public List<Schedules> find() {
+	public List<Schedules> listAllSchedules() {
 		return schedulesRepository.findSchedules();
 	}
 

@@ -30,6 +30,8 @@ import com.mycareer.api.service.ApplicantService;
 
 /**
  * The Class ApplicantResource.
+ * 
+ * @author Alexander Souza
  */
 @RestController
 @RequestMapping("/applicants")
@@ -132,7 +134,7 @@ public class ApplicantResource {
 	}
 
 	/**
-	 * Find score.
+	 * Find all applicants by notes table.
 	 *
 	 * @return the list
 	 */

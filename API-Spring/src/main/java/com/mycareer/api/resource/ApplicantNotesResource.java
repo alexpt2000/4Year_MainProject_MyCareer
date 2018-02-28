@@ -51,7 +51,7 @@ public class ApplicantNotesResource {
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
-	public ResponseEntity<ApplicantNotes> add(@Valid @RequestBody ApplicantNotes applicant,
+	public ResponseEntity<ApplicantNotes> addNoteToApplicant(@Valid @RequestBody ApplicantNotes applicant,
 			HttpServletResponse response) {
 		ApplicantNotes saveApplicant = applicantNotesRepository.save(applicant);
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveApplicant.getCode()));
@@ -66,7 +66,7 @@ public class ApplicantNotesResource {
 	@DeleteMapping("/{code}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_REMOVE_APPLICANT') and #oauth2.hasScope('write')")
-	public void remove(@PathVariable Long code) {
+	public void removeNote(@PathVariable Long code) {
 		applicantNotesRepository.delete(code);
 	}
 
@@ -79,7 +79,7 @@ public class ApplicantNotesResource {
 	 */
 	@PutMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_ADD_APPLICANT') and #oauth2.hasScope('write')")
-	public ResponseEntity<ApplicantNotes> update(@PathVariable Long code,
+	public ResponseEntity<ApplicantNotes> updateNote(@PathVariable Long code,
 			@Valid @RequestBody ApplicantNotes applicant) {
 		ApplicantNotes saveApplicant = applicantNotesService.update(code, applicant);
 		return ResponseEntity.ok(saveApplicant);
@@ -93,7 +93,7 @@ public class ApplicantNotesResource {
 	 */
 	@GetMapping("/{code}")
 	@PreAuthorize("hasAuthority('ROLE_READ_APPLICANT') and #oauth2.hasScope('read')")
-	public ResponseEntity<ApplicantNotes> findByCode(@PathVariable Long code) {
+	public ResponseEntity<ApplicantNotes> findNoteByCode(@PathVariable Long code) {
 		ApplicantNotes applicant = applicantNotesRepository.findOne(code);
 		return applicant != null ? ResponseEntity.ok(applicant) : ResponseEntity.notFound().build();
 	}

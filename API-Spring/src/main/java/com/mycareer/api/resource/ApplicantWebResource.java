@@ -22,6 +22,9 @@ import com.mycareer.api.model.Applicants;
 import com.mycareer.api.repository.ApplicantNotesRepository;
 import com.mycareer.api.repository.ApplicantRepository;
 
+/**
+ * The Class ApplicantWebResource.
+ */
 @RestController
 @RequestMapping("/applicantsweb")
 public class ApplicantWebResource {
@@ -35,14 +38,22 @@ public class ApplicantWebResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
-	@GetMapping
-	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname,
-			Pageable pageable) {
-		return applicantRepository.findByFullnameContaining(fullname, pageable);
-	}
 
+	//	@GetMapping
+	//	public Page<Applicants> find(@RequestParam(required = false, defaultValue = "%") String fullname,
+	//			Pageable pageable) {
+	//		return applicantRepository.findByFullnameContaining(fullname, pageable);
+	//	}
+
+	/**
+	 * Save applicant applied on web.
+	 *
+	 * @param applicant the applicant
+	 * @param response the response
+	 * @return the response entity
+	 */
 	@PostMapping
-	public ResponseEntity<Applicants> save(@Valid @RequestBody Applicants applicant, HttpServletResponse response) {
+	public ResponseEntity<Applicants> saveApplicant(@Valid @RequestBody Applicants applicant, HttpServletResponse response) {
 		Applicants saveApplicants = applicantRepository.save(applicant);
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, saveApplicants.getCode()));
 

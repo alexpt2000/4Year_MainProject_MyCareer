@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycareer.api.config.property.MyCareerApiProperty;
 
+/**
+ * The Class TokenResource.
+ * 
+ * @author Alexander Souza
+ */
+
 @Profile("oauth-security")
 @RestController
 @RequestMapping("/tokens")
@@ -21,6 +27,14 @@ public class TokenResource {
 	@Autowired
 	private MyCareerApiProperty mycareerApiProperty;
 
+	/**
+	 * Revoke token.
+	 * 
+	 * Will request a new to token and will return a empty cookie
+	 *
+	 * @param req the req
+	 * @param resp the resp
+	 */
 	@DeleteMapping("/revoke")
 	public void revoke(HttpServletRequest req, HttpServletResponse resp) {
 		Cookie cookie = new Cookie("refreshToken", null);

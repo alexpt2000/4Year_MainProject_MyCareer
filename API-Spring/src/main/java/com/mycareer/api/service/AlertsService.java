@@ -8,12 +8,25 @@ import org.springframework.stereotype.Service;
 import com.mycareer.api.model.Alerts;
 import com.mycareer.api.repository.AlertsRepository;
 
+/**
+ * The Class AlertsService.
+ * 
+ * @author Alexander Souza
+ */
+
 @Service
 public class AlertsService {
 	
 	@Autowired
 	private AlertsRepository alertsRepository;
 
+	/**
+	 * Update alert.
+	 *
+	 * @param code the code
+	 * @param alert the alert
+	 * @return the alerts
+	 */
 	public Alerts update(Long code, Alerts alert) {
 		Alerts saveAlert = findByCode(code);
 		
@@ -22,6 +35,12 @@ public class AlertsService {
 	}
 
 
+	/**
+	 * Find alert by code.
+	 *
+	 * @param code the code
+	 * @return the alerts
+	 */
 	public Alerts findByCode(Long code) {
 		Alerts saveAlert = alertsRepository.findOne(code);
 		if (saveAlert == null) {

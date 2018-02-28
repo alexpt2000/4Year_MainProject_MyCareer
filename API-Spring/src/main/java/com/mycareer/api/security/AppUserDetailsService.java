@@ -17,12 +17,21 @@ import com.mycareer.api.model.Users;
 import com.mycareer.api.repository.UserRepository;
 
 
+/**
+ * The Class AppUserDetailsService.
+ * 
+ * @author Alexander Souza
+ */
+
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Optional<Users> userOptional = userRepository.findByEmail(email);
