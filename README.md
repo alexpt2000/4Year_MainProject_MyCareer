@@ -2,6 +2,12 @@
 ### 45627 - APPLIED PROJECT AND MINOR DISSERTATION
 ![Screencast](Screencast/Logo.png)
 
+## [Project link: http://54.210.4.37/mycareer/](http://54.210.4.37/mycareer/index.php)
+
+ - User: admin@mycareer.com    
+ - Pass: admin
+
+## The project
  - My idea is an online system that would help in the process of recruiting and selecting candidates for position.
 - The System will have a public access page, where the candidates can apply for the job available, and thus initiate the registration of your CV and relevant data.
 - In the area of system administration, it would provide tools to manage job offers, manage CVs candidates, and manage the recruitment process by recruiters.

@@ -20,32 +20,44 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.mycareer.api.config.property.MyCareerApiProperty;
 
+
+/**
+ * The Class RefreshTokenPostProcessor.
+ * 
+ * @author Alexander Souza
+ */
 @Profile("oauth-security")
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
 
 	@Autowired
 	private MyCareerApiProperty mycareerApiProperty;
-	
+
+	/* (non-Javadoc)
+	 * @see org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice#supports(org.springframework.core.MethodParameter, java.lang.Class)
+	 */
 	@Override
 	public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
 		return returnType.getMethod().getName().equals("postAccessToken");
 	}
 
+	/* (non-Javadoc)
+	 * @see org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice#beforeBodyWrite(java.lang.Object, org.springframework.core.MethodParameter, org.springframework.http.MediaType, java.lang.Class, org.springframework.http.server.ServerHttpRequest, org.springframework.http.server.ServerHttpResponse)
+	 */
 	@Override
 	public OAuth2AccessToken beforeBodyWrite(OAuth2AccessToken body, MethodParameter returnType,
 			MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType,
 			ServerHttpRequest request, ServerHttpResponse response) {
-		
+
 		HttpServletRequest req = ((ServletServerHttpRequest) request).getServletRequest();
 		HttpServletResponse resp = ((ServletServerHttpResponse) response).getServletResponse();
-		
+
 		DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) body;
-		
+
 		String refreshToken = body.getRefreshToken().getValue();
 		adicionarRefreshTokenNoCookie(refreshToken, req, resp);
 		removerRefreshTokenDoBody(token);
-		
+
 		return body;
 	}
 

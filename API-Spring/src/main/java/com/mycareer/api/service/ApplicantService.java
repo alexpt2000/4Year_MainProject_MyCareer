@@ -8,12 +8,25 @@ import org.springframework.stereotype.Service;
 import com.mycareer.api.model.Applicants;
 import com.mycareer.api.repository.ApplicantRepository;
 
+
+/**
+ * The Class ApplicantService.
+ * 
+ * @author Alexander Souza
+ */
 @Service
 public class ApplicantService {
 	
 	@Autowired
 	private ApplicantRepository applicantRepository;
 
+	/**
+	 * Update Applicants.
+	 *
+	 * @param code the code
+	 * @param applicant the applicant
+	 * @return the applicants
+	 */
 	public Applicants update(Long code, Applicants applicant) {
 		Applicants saveApplicants = findByCode(code);
 		
@@ -22,6 +35,12 @@ public class ApplicantService {
 	}
 
 
+	/**
+	 * Find applicant by code.
+	 *
+	 * @param code the code
+	 * @return the applicants
+	 */
 	public Applicants findByCode(Long code) {
 		Applicants saveApplicants = applicantRepository.findOne(code);
 		if (saveApplicants == null) {

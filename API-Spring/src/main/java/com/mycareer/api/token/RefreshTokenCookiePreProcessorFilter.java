@@ -19,20 +19,28 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * The Class RefreshTokenCookiePreProcessorFilter.
+ * 
+ * @author Alexander Souza
+ */
 @Profile("oauth-security")
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class RefreshTokenCookiePreProcessorFilter implements Filter {
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		HttpServletRequest req = (HttpServletRequest) request;
-		
-		if ("/oauth/token".equalsIgnoreCase(req.getRequestURI()) 
-				&& "refresh_token".equals(req.getParameter("grant_type"))
-				&& req.getCookies() != null) {
+
+		if ("/oauth/token".equalsIgnoreCase(req.getRequestURI())
+				&& "refresh_token".equals(req.getParameter("grant_type")) && req.getCookies() != null) {
 			for (Cookie cookie : req.getCookies()) {
 				if (cookie.getName().equals("refreshToken")) {
 					String refreshToken = cookie.getValue();
@@ -40,29 +48,47 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 				}
 			}
 		}
-		
+
 		chain.doFilter(req, response);
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#destroy()
+	 */
 	@Override
 	public void destroy() {
-		
+
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
+	 */
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		
+
 	}
-	
+
+	/**
+	 * The Class MyServletRequestWrapper.
+	 */
 	static class MyServletRequestWrapper extends HttpServletRequestWrapper {
 
 		private String refreshToken;
-		
+
+		/**
+		 * Instantiates a new my servlet request wrapper.
+		 *
+		 * @param request the request
+		 * @param refreshToken the refresh token
+		 */
 		public MyServletRequestWrapper(HttpServletRequest request, String refreshToken) {
 			super(request);
 			this.refreshToken = refreshToken;
 		}
-		
+
+		/* (non-Javadoc)
+		 * @see javax.servlet.ServletRequestWrapper#getParameterMap()
+		 */
 		@Override
 		public Map<String, String[]> getParameterMap() {
 			ParameterMap<String, String[]> map = new ParameterMap<>(getRequest().getParameterMap());
@@ -70,7 +96,7 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 			map.setLocked(true);
 			return map;
 		}
-		
+
 	}
 
 }
