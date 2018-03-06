@@ -47,7 +47,8 @@ export class ApplicantsFilterComponent implements OnInit {
     private _location: Location,
   ) { }
 
-
+  /**
+   */
   ngOnInit() {
 
     this.items = [
@@ -64,7 +65,8 @@ export class ApplicantsFilterComponent implements OnInit {
 
     this.load();
   }
-
+  /**
+   */
   load() {
     if (this.codeJob) {
       this.loadApplicantByJob();
@@ -74,21 +76,25 @@ export class ApplicantsFilterComponent implements OnInit {
     }
   }
 
-
+  /**
+   */
   loadApplicantByJob() {
     this.applicantsService.findApplicanByJobCode(this.codeJob)
       .then(applicants => {
         this.applicants = applicants;
       });
   }
-
+  /**
+   */
   loadApplicants() {
     this.applicantsService.findApplicants()
       .then(applicants => {
         this.applicants = applicants;
       });
   }
-
+  /**
+   * @param  {any} applicant
+   */
   confirmationDeleteApplicant(applicant: any) {
     this.confirmation.confirm({
       message: 'Are you sure you want to delete?',
@@ -97,7 +103,9 @@ export class ApplicantsFilterComponent implements OnInit {
       }
     });
   }
-
+  /**
+   * @param  {any} applicant
+   */
   deleteApplicant(applicant: any) {
     this.applicantsService.deleteApplicant(applicant.code, applicant.applicant.code)
       .then(() => {
@@ -106,7 +114,8 @@ export class ApplicantsFilterComponent implements OnInit {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
-
+  /**
+   */
   backClicked() {
     this._location.back();
   }

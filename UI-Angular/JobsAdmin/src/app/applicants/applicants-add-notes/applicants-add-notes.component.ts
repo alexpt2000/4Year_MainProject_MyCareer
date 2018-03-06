@@ -27,8 +27,6 @@ export class ApplicantsAddNotesComponent implements OnInit {
   applicant = new ApplicantNotes();
   applicantNewQuestion = new ApplicantQuestions();
   applicantNewQuestionAverage = []
-  // outro = new ApplicantQuestions();
-
 
   applicantQuestions: any;
   titlePage = '';
@@ -58,10 +56,9 @@ export class ApplicantsAddNotesComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private auth: AuthService,
     private confirmation: ConfirmationService,
-  ) {
-
-  }
-
+  ) {  }
+  /**
+   */
   ngOnInit() {
     const codeApplicant = this.route.snapshot.params['code'];
     this.title.setTitle('Evaluate applicant');
@@ -70,21 +67,28 @@ export class ApplicantsAddNotesComponent implements OnInit {
     this.listTypeQuestions();
 
   }
-
+  /**
+   */
   newQuestion() {
     this.applicantNewQuestion = new ApplicantQuestions();
   }
-
+  /**
+   * @param  {} val
+   */
   onSelect(val) {
     this.questionFilter = this.question.filter(x => x.id === val);
   }
-
+  /**
+   */
   get editing() {
     return Boolean(this.applicant.code)
   }
 
-
-  // Load the list of Applicant notes
+  /**
+   * Load the list of Applicant notes
+   *
+   * @param  {number} code
+   */
   loadApplicantNotes(code: number) {
     this.applicantsService.findByCodeApplicantNotes(code)
       .then(applicant => {
@@ -96,7 +100,8 @@ export class ApplicantsAddNotesComponent implements OnInit {
       });
   }
 
-
+  /**
+   */
   addApplicantNotes() {
     const codeApplicant1 = this.route.snapshot.params['code'];
     this.applicant.applicant.code = codeApplicant1;
@@ -109,9 +114,11 @@ export class ApplicantsAddNotesComponent implements OnInit {
   }
 
 
-  // ************************************************************************
-  // ************************************************************************
-  // Load the list of Applicant QUestions
+  /**
+   * Load the list of Applicant QUestions
+   *
+   * @param  {number} code
+   */
   loadApplicantQuestinons(code: number) {
     this.applicantsService.findByCodeApplicantQuestions(code)
       .then(applicantQuestions => {
@@ -139,7 +146,8 @@ export class ApplicantsAddNotesComponent implements OnInit {
 
 
   }
-
+  /**
+   */
   updateApplicantScoreQuestions() {
     this.applicantsService.updateApplicantNotes(this.applicant)
       .then(applicant => {
@@ -150,7 +158,9 @@ export class ApplicantsAddNotesComponent implements OnInit {
   }
 
 
-
+  /**
+   * @param  {FormControl} form
+   */
   addApplicantQuestinons(form: FormControl) {
     const codeApplicantAdd = this.route.snapshot.params['code'];
     this.applicantNewQuestion.applicant.code = codeApplicantAdd;
@@ -162,7 +172,9 @@ export class ApplicantsAddNotesComponent implements OnInit {
       })
   }
 
-
+  /**
+   * @param  {any} code
+   */
   confirmationDeleteQuestion(code: any) {
     this.confirmation.confirm({
       message: 'Are you sure you want to delete?',
@@ -171,7 +183,9 @@ export class ApplicantsAddNotesComponent implements OnInit {
       }
     });
   }
-
+  /**
+   * @param  {any} code
+   */
   deleteQuestion(code: any) {
     const codeApplicantDel = this.route.snapshot.params['code'];
     this.applicantsService.deleteQuestion(code)
@@ -182,7 +196,9 @@ export class ApplicantsAddNotesComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-
+  /**
+   * @param  {any} code
+   */
   findByCodeQuestions(code: any) {
     this.applicantsService.findByCodeQuestions(code)
       .then(applicantQuestions => {
@@ -206,19 +222,24 @@ export class ApplicantsAddNotesComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-
+  /**
+   */
   updateTitle() {
     this.title.setTitle(`Evaluate: ${this.applicant.applicant.fullname}`);
     this.titlePage = this.applicant.applicant.fullname;
   }
 
-
+  /**
+   */
   backClicked() {
     this._location.back();
   }
 
 
-  // Load the list of Questions
+
+  /**
+   * Load the list of Questions
+   */
   listTypeQuestions() {
 
     this.applicantsService.listTypeQuestions()

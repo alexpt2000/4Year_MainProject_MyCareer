@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastyConfig } from 'ng2-toasty';
 
-// typedoc --out .\documentation\ --module core.module
+// typedoc --out .\documentation\ --module app.module
 
 @Component({
   selector: 'app-root',

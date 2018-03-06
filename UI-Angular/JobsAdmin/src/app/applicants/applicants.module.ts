@@ -27,10 +27,6 @@ import {RatingModule} from 'primeng/components/rating/rating';
 import { ApplicantsAddNotesComponent } from 'app/applicants/applicants-add-notes/applicants-add-notes.component';
 import { TabViewModule, SpinnerModule, SplitButtonModule } from 'primeng/primeng';
 
-
-
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -56,8 +52,6 @@ import { TabViewModule, SpinnerModule, SplitButtonModule } from 'primeng/primeng
     TabViewModule,
     SpinnerModule,
     SplitButtonModule
-
-
   ],
   declarations: [
     ApplicantsAddComponent,

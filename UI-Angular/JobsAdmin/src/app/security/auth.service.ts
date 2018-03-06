@@ -20,6 +20,15 @@ export class AuthService {
     this.loadToken();
   }
 
+
+  /**
+   * Pass login to access the aplication.
+   *
+   *
+   * @param  {string} user
+   * @param  {string} password
+   * @returns Promise
+   */
   login(user: string, password: string): Promise<void> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');

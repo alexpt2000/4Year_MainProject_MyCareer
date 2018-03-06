@@ -42,10 +42,7 @@ export class ApplicantsAddComponent implements OnInit {
     private title: Title,
     private errorHandler: ErrorHandlerService,
 
-  ) {
-
-
-  }
+  ) { }
 
   ngOnInit() {
     const codeApplicant = this.route.snapshot.params['code'];
@@ -62,7 +59,7 @@ export class ApplicantsAddComponent implements OnInit {
   }
 
   /**
-   * List all applicants
+   * Load just one applicant, pass the code and return all data.
    *
    * @param  {number} code
    */
@@ -75,7 +72,12 @@ export class ApplicantsAddComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-
+  /**
+   * Send the data from the form to save(add) or update
+   * pass the FromControl
+   *
+   * @param  {FormControl} form
+   */
   save(form: FormControl) {
     if (this.editing) {
       this.updateApplicant(form);
@@ -84,34 +86,50 @@ export class ApplicantsAddComponent implements OnInit {
     }
   }
 
+  /**
+   * Return to the previous page.
+   */
   backClicked() {
     this._location.back();
   }
 
+  /**
+   * Add a new applicant passing the FormControl
+   *
+   * @param  {FormControl} form
+   */
   addApplicant(form: FormControl) {
-    // this.applicant.job.code = this.router.snapshot.params['code'];
-    // this.job.applicant_date = this.nowDate;
-    // console.log(this.applicant.applicant_date);
     this.applicantsService.add(this.applicant)
       .then(() => {
         this.toasty.success(`Hi the ${this.applicant.fullname} job has been successfully save.`);
+
+        //Set a new object
         this.applicant = new Applicants();
+        // back the page
         this.backClicked();
-        // alert(`Email "${email}" now will receive alerts from MyCareer.`);
       })
   }
 
+  /**
+   * Update the applicant passing the FormControl
+   *
+   * @param  {FormControl} form
+   */
   updateApplicant(form: FormControl) {
     this.applicantsService.update(this.applicant)
       .then(applicant => {
         this.applicant = applicant;
 
+        // shows a toast on screen
         this.toasty.success('Successfully changed!');
         this.updateTitle();
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
 
+  /**
+   * Change the page title.
+   */
   updateTitle() {
     this.title.setTitle(`Edit: ${this.applicant.fullname}`);
   }

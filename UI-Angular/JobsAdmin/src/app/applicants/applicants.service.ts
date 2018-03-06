@@ -20,11 +20,17 @@ export class ApplicantsService {
 
   apiUrl: string;
 
-
+  /**
+   * @param  {AuthHttp} privatehttp
+   */
   constructor(private http: AuthHttp) {
     this.apiUrl = `${environment.apiUrl}/applicants`;
   }
 
+  /**
+   * @param  {ApplicantsFilter} filter
+   * @returns Promise
+   */
   search(filter: ApplicantsFilter): Promise<any> {
     const params = new URLSearchParams();
 
@@ -35,6 +41,10 @@ export class ApplicantsService {
       params.set('fullname', filter.fullname);
     }
 
+    /**
+     * @param  {} `${this.apiUrl}`
+     * @param  {params}} {search
+     */
     return this.http.get(`${this.apiUrl}`, { search: params })
       .toPromise()
       .then(response => {
@@ -50,13 +60,21 @@ export class ApplicantsService {
       })
   }
 
+  /**
+   * @returns Promise
+   */
   listAll(): Promise<any> {
     return this.http.get(this.apiUrl)
       .toPromise()
       .then(response => response.json().content);
   }
 
-// Return the list of applicats to serve the shedules dropdown
+
+  /**
+   * Return the list of applicats to serve the shedules dropdown
+   *
+   * @returns Promise
+   */
   listApplicants(): Promise<any> {
     return this.http.get(`${this.apiUrl}/list`)
       .toPromise()
@@ -66,20 +84,31 @@ export class ApplicantsService {
     });
   }
 
-
+  /**
+   * @param  {number} code
+   * @param  {number} codeQ
+   * @returns Promise
+   */
   deleteApplicant(code: number, codeQ: number): Promise<void> {
     return this.http.delete(`${this.apiUrl}/${code}/${codeQ}`)
       .toPromise()
       .then(() => null);
   }
 
+  /**
+   * @param  {Applicants} applicant
+   * @returns Promise
+   */
   add(applicant: Applicants): Promise<Applicants> {
     return this.http.post(this.apiUrl, JSON.stringify(applicant))
       .toPromise()
       .then(response => response.json());
   }
 
-
+  /**
+   * @param  {Applicants} applicant
+   * @returns Promise
+   */
   update(applicant: Applicants): Promise<Applicants> {
     return this.http.put(`${this.apiUrl}/${applicant.code}`,
       JSON.stringify(applicant))
@@ -93,20 +122,24 @@ export class ApplicantsService {
       });
   }
 
-
+  /**
+   * @param  {ApplicantNotes} applicant
+   * @returns Promise
+   */
   updateApplicantNotes(applicant: ApplicantNotes): Promise<ApplicantNotes> {
     return this.http.put(`${this.apiUrl}/applicantnotes/${applicant.code}`,
       JSON.stringify(applicant))
       .toPromise()
       .then(response => {
         const applicantChange = response.json() as ApplicantNotes;
-
-        // this.convertStringToDate([applicantChange]);
-
         return applicantChange;
       });
   }
 
+  /**
+   * @param  {number} code
+   * @returns Promise
+   */
   findByCode(code: number): Promise<Applicants> {
 
     return this.http.get(`${this.apiUrl}/${code}`)
@@ -120,13 +153,23 @@ export class ApplicantsService {
       });
   }
 
-  // Applocants Notes
+
+  /**
+   * Applocants Notes
+   *
+   * @param  {ApplicantNotes} applicant
+   * @returns Promise
+   */
   addApplicanNotes(applicant: ApplicantNotes): Promise<ApplicantNotes> {
     return this.http.post(`${this.apiUrl}/applicantnotes`, JSON.stringify(applicant))
       .toPromise()
       .then(response => response.json());
   }
 
+  /**
+   * @param  {number} code
+   * @returns Promise
+   */
   findByCodeApplicantNotes(code: number): Promise<ApplicantNotes> {
     return this.http.get(`${this.apiUrl}/applicantnotes/${code}`)
       .toPromise()
@@ -137,8 +180,11 @@ export class ApplicantsService {
       });
   }
 
-  // Applicants Questions
 
+  /**
+   * @param  {ApplicantQuestions} applicantQuestion
+   * @returns Promise
+   */
   addApplicanQuestion(applicantQuestion: ApplicantQuestions): Promise<ApplicantQuestions> {
 
     return this.http.post(`${this.apiUrl}/questions`, JSON.stringify(applicantQuestion))
@@ -146,6 +192,10 @@ export class ApplicantsService {
       .then(response => response.json());
   }
 
+  /**
+   * @param  {number} code
+   * @returns Promise
+   */
   findByCodeApplicantQuestions(code: number): Promise<ApplicantQuestions> {
     return this.http.get(`${this.apiUrl}/questions/${code}`)
       .toPromise()
@@ -156,33 +206,30 @@ export class ApplicantsService {
       });
   }
 
+
+  /**
+   * @param  {number} code
+   * @returns Promise
+   */
   deleteQuestion(code: number): Promise<void> {
     return this.http.delete(`${this.apiUrl}/questions/${code}`)
       .toPromise()
       .then(() => null);
   }
 
+  /**
+   * @param  {number} code
+   * @returns Promise
+   */
   findByCodeQuestions(code: number): Promise<ApplicantQuestions> {
     return this.http.get(`${this.apiUrl}/questions/question/${code}`)
       .toPromise()
       .then(response => response.json() as ApplicantQuestions);
   }
 
-
-  // // ****************************** Oiginal
-
-  // findByJobCode(code: number): Promise<any> {
-  //   return this.http.get(`${this.apiUrl}/job/${code}`)
-  //     .toPromise()
-  //     .then(response => {
-  //       const applicant = response.json() as Applicants;
-
-  //       this.convertStringToDate([applicant]);
-
-  //       return applicant;
-  //     });
-  // }
-
+  /**
+   * @param  {Applicants[]} applicants
+   */
   private convertStringToDate(applicants: Applicants[]) {
     for (const applicant of applicants) {
       applicant.applicant_date = moment(applicant.applicant_date,
@@ -193,32 +240,36 @@ export class ApplicantsService {
 
 
 
-    // ****************************** Applicants Notes
-
+  /**
+   * Applicants Notes
+   *
+   * @param  {number} code
+   * @returns Promise
+   */
   findApplicanByJobCode(code: number): Promise<any> {
     return this.http.get(`${this.apiUrl}/job/${code}`)
       .toPromise()
       .then(response => {
         const applicant = response.json() as ApplicantNotes;
-
-        // this.convertStringToDateNotes([applicant]);
-
         return applicant;
       });
   }
 
+  /**
+   * @returns Promise
+   */
   findApplicants(): Promise<any> {
     return this.http.get(`${this.apiUrl}`)
       .toPromise()
       .then(response => {
         const applicant = response.json() as ApplicantNotes;
-
-        // this.convertStringToDateNotes([applicant]);
-
         return applicant;
       });
   }
 
+  /**
+   * @param  {ApplicantNotes[]} applicants
+   */
   private convertStringToDateNotes(applicants: ApplicantNotes[]) {
     for (const appl of applicants) {
       appl.applicant.applicant_date = moment(appl.applicant.applicant_date,
@@ -228,7 +279,11 @@ export class ApplicantsService {
   }
 
 
-  // Load the list of Questions
+  /**
+   * Load the list of Questions
+   *
+   * @returns Promise
+   */
   listTypeQuestions(): Promise<any> {
     return this.http.get(`${this.apiUrl}/listquestions`)
       .toPromise()
