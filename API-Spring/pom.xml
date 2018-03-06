@@ -112,6 +112,13 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<!-- Nescessary dependency to create the JavaDOC -->
+		<dependency>
+			<groupId>javax.interceptor</groupId>
+			<artifactId>javax.interceptor-api</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -15,11 +15,11 @@ import com.mycareer.api.event.ResourceCreatedEvent;
  * The class that is interested in processing a resourceCreate
  * event implements this interface, and the object created
  * with that class is registered with a component using the
- * component's <code>addResourceCreateListener<code> method. When
+ * component's code addResourceCreateListener code method. When
  * the resourceCreate event occurs, that object's appropriate
  * method is invoked.
  *
- * @see ResourceCreateEvent
+ * 
  * 
  * @author Alexander Souza
  */

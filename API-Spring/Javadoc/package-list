@@ -1,0 +1,15 @@
+com.mycareer.api
+com.mycareer.api.config
+com.mycareer.api.config.property
+com.mycareer.api.config.token
+com.mycareer.api.cors
+com.mycareer.api.event
+com.mycareer.api.event.listener
+com.mycareer.api.exceptionhandler
+com.mycareer.api.model
+com.mycareer.api.repository
+com.mycareer.api.resource
+com.mycareer.api.security
+com.mycareer.api.security.util
+com.mycareer.api.service
+com.mycareer.api.token
