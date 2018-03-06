@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { ToastyConfig } from 'ng2-toasty';
 
+// typedoc --out .\documentation\ --module core.module
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

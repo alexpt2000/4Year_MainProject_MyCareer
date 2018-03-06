@@ -61,6 +61,11 @@ export class ApplicantsAddComponent implements OnInit {
     return Boolean(this.applicant.code)
   }
 
+  /**
+   * List all applicants
+   *
+   * @param  {number} code
+   */
   loadApplicant(code: number) {
     this.applicantsService.findByCode(code)
       .then(applicant => {
