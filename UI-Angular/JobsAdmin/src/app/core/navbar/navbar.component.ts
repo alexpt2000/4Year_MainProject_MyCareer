@@ -29,6 +29,9 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) { }
 
+
+  /**
+   */
   ngOnInit() {
     this.items = [
       {
@@ -58,7 +61,8 @@ export class NavbarComponent implements OnInit {
   }
 
 
-
+  /**
+   */
   logout() {
     this.logoutService.logout()
       .then(() => {

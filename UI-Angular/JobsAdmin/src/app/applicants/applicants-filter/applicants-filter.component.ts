@@ -65,6 +65,7 @@ export class ApplicantsFilterComponent implements OnInit {
 
     this.load();
   }
+
   /**
    */
   load() {
@@ -84,6 +85,7 @@ export class ApplicantsFilterComponent implements OnInit {
         this.applicants = applicants;
       });
   }
+
   /**
    */
   loadApplicants() {
@@ -92,6 +94,7 @@ export class ApplicantsFilterComponent implements OnInit {
         this.applicants = applicants;
       });
   }
+
   /**
    * @param  {any} applicant
    */
@@ -103,6 +106,7 @@ export class ApplicantsFilterComponent implements OnInit {
       }
     });
   }
+
   /**
    * @param  {any} applicant
    */
@@ -114,6 +118,7 @@ export class ApplicantsFilterComponent implements OnInit {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
+
   /**
    */
   backClicked() {

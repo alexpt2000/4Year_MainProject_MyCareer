@@ -31,7 +31,10 @@ export class DashboardService {
       .toPromise()
       .then(response => response.json());
   }
-
+  /**
+   * hgjhsgdjfsd
+   * @returns Promise
+   */
   totalNewApplicants(): Promise<any> {
     return this.http.get(`${this.apiUrl}/totalnewapplicants`)
       .toPromise()

@@ -57,6 +57,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
     private auth: AuthService,
     private confirmation: ConfirmationService,
   ) {  }
+
   /**
    */
   ngOnInit() {
@@ -67,11 +68,13 @@ export class ApplicantsAddNotesComponent implements OnInit {
     this.listTypeQuestions();
 
   }
+
   /**
    */
   newQuestion() {
     this.applicantNewQuestion = new ApplicantQuestions();
   }
+
   /**
    * @param  {} val
    */
@@ -143,9 +146,8 @@ export class ApplicantsAddNotesComponent implements OnInit {
       .catch(erro => {
 
       });
-
-
   }
+
   /**
    */
   updateApplicantScoreQuestions() {
@@ -154,7 +156,6 @@ export class ApplicantsAddNotesComponent implements OnInit {
         this.applicant = applicant;
         this.updateTitle();
       })
-      // .catch(erro => this.errorHandler.handle(erro));
   }
 
 
@@ -183,6 +184,7 @@ export class ApplicantsAddNotesComponent implements OnInit {
       }
     });
   }
+
   /**
    * @param  {any} code
    */
@@ -209,8 +211,9 @@ export class ApplicantsAddNotesComponent implements OnInit {
       });
   }
 
-
-  // *****************************************
+  /**
+   * @param  {FormControl} form
+   */
   updateApplicant(form: FormControl) {
     this.applicantsService.updateApplicantNotes(this.applicant)
       .then(applicant => {
