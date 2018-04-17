@@ -5,20 +5,21 @@
 
 
 ### Alexander Souza - G00317835@gmit.ie
+### Supervisor - Damien Costello
 
 ## The project
 
 ![Screencast](Screencast/project.png)
-- MyCareer is a system that fully supports the recruitment and selection process of HR, provides an internal system to manage resumes, jobs, and a tool that can be integrated with the current system of the company that will make the company's own website in an online recruiter of candidates.
+> MyCareer is a system that fully supports the recruitment and selection process of HR, provides an internal system to manage resumes, jobs, and a tool that can be integrated with the current system of the company that will make the company's own website in an online recruiter of candidates.
  
-- MyCareer is an application that, in addition to being scalable, uses the best in development, appearance, security and robustness frameworks.
+> MyCareer is an application that, in addition to being scalable, uses the best in development, appearance, security and robustness frameworks.
 
-Applicants
+#### Applicants
 - View available jobs.
 - Apply for the selected work through the website.
 - Submit the email to the job alert receipt
 
-Administrator
+#### Administrator
 - Manage all available jobs.
 - View all applicants.
 - View applicants per job.
@@ -32,28 +33,22 @@ Administrator
 
 #### Application deployed on AWS and Heroku:
 - http://54.210.4.37/mycareer/
-#### GitHub
-- https://github.com/alexpt2000gmit/4Year_MainProject_MyCareer
-#### YouTube video:
-- https://youtu.be/6NChE0NcoLw 
 
 #### User and Password
-Administrator user
 ```
-admin@mycareer.com
-admin
-```
+Administrator user:
+    admin@mycareer.com
+    admin
 
-Limited user
-```
-alex@mycareer.com
-alex
+Limited user:
+    alex@mycareer.com
+    alex
 ```
 
 
 ## Technology
 
-For this project I will use various technologies, techniques and tools, such as:
+> For this project I will use various technologies, techniques and tools, such as:
 
 ### IDE - Development environment
 - Spring Tool Suite
@@ -84,27 +79,27 @@ For this project I will use various technologies, techniques and tools, such as:
 
 
 ## UI - Website (Joomla)
-The system also demonstrates how the system can also be used on the company's current website, in which case it has been used by CMS Joomla, a powerful website development tool that allows users to manage website content from a backend.
+> The system also demonstrates how the system can also be used on the company's current website, in which case it has been used by CMS Joomla, a powerful website development tool that allows users to manage website content from a backend.
 
 ![Screencast](Screencast/website.gif)
 
-- Access URL for the Website page:
+#### Access URL for the Website page:
 - http://54.210.4.37/mycareer/ 
 
 
 ## UI - front-end (Angular)
 ### Applicants
-Through the job application module, the applicant can view a list of all available jobs on the page and also be able to submit their personal data to the selected position.
+> Through the job application module, the applicant can view a list of all available jobs on the page and also be able to submit their personal data to the selected position.
 
 ![Screencast](Screencast/applicant.gif)
 
-- Access URL for the front-end Applicants page:
+#### Access URL for the front-end Applicants page:
 - https://mycareer-webajobs.herokuapp.com/
 
 
 ## UI - MyCareer - Admin (Angular)
 ### Admin - Applicants
-Through this module, the administrator can manage the data provided by the API, such as:
+> Through this module, the administrator can manage the data provided by the API, such as:
 - Manage published work;
 - Manage applicants;
 - Manage the system agenda;
@@ -113,14 +108,14 @@ Through this module, the administrator can manage the data provided by the API, 
 
 ![Screencast](Screencast/mycareerAdmin.gif)
 
-- MyCareer Admin
+#### MyCareer Admin
 - https://mycareer-webadmin.herokuapp.com/
 
 
 ## API
 ### Spring boot
 
-For the MyCareer project, the API will serve as the data for the UI, the persistence of the data and also to ensure the security of the application.
+> For the MyCareer project, the API will serve as the data for the UI, the persistence of the data and also to ensure the security of the application.
 
 This is a RESTful API that uses the following technologies:
 - Spring Boot;
@@ -128,7 +123,7 @@ This is a RESTful API that uses the following technologies:
 - JWT;
 - Hibernate;
 
-API – Swagger UI
+#### API – Swagger UI
 - https://mycareer-api.herokuapp.com/swagger-ui.html
 
 ![Screencast](Screencast/api.png)
@@ -143,23 +138,19 @@ API – Swagger UI
 - https://github.com/alexpt2000
 - www.linkedin.com/in/souza-alexander
 
-```
-Supervisor
-Damien Costello
-```
 
 ## Links
-### GitHub
+#### GitHub
 - https://github.com/alexpt2000gmit/4Year_MainProject_MyCareer
-### YouTube screencast
+#### YouTube screencast
 - https://youtu.be/6NChE0NcoLw
-### Website
+#### Website
 - http://54.210.4.37/mycareer/
-### MyCareer Jobs
+#### MyCareer Jobs
 - https://mycareer-webjobs.herokuapp.com/
-### MyCareer Admin
+#### MyCareer Admin
 - https://mycareer-webadmin.herokuapp.com/
-### API – Swagger UI
+#### API – Swagger UI
 https://mycareer-api.herokuapp.com/swagger-ui.html
 
 ## References
