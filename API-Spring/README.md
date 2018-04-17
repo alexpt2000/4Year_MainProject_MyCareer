@@ -21,4 +21,4 @@ This is a RESTful API that uses the following technologies:
 - https://mycareer-api.herokuapp.com/swagger-ui.html
 
 ![Screencast](../Screencast/api.png)
-![Screencast](../Screencast/api.gif)
+![Screencast](../Screencast/API.gif)
