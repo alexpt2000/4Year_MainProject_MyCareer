@@ -11,6 +11,7 @@
 
 ![Screencast](Screencast/project.png)
 > MyCareer is a system that fully supports the recruitment and selection process of HR, provides an internal system to manage resumes, jobs, and a tool that can be integrated with the current system of the company that will make the company's own website in an online recruiter of candidates.
+
  
 > MyCareer is an application that, in addition to being scalable, uses the best in development, appearance, security and robustness frameworks.
 
@@ -140,18 +141,12 @@ This is a RESTful API that uses the following technologies:
 
 
 ## Links
-#### GitHub
-- https://github.com/alexpt2000gmit/4Year_MainProject_MyCareer
-#### YouTube screencast
-- https://youtu.be/6NChE0NcoLw
-#### Website
-- http://54.210.4.37/mycareer/
-#### MyCareer Jobs
-- https://mycareer-webjobs.herokuapp.com/
-#### MyCareer Admin
-- https://mycareer-webadmin.herokuapp.com/
-#### API – Swagger UI
-https://mycareer-api.herokuapp.com/swagger-ui.html
+- GitHub - https://github.com/alexpt2000gmit/4Year_MainProject_MyCareer
+- YouTube screencast - https://youtu.be/6NChE0NcoLw
+- Website - http://54.210.4.37/mycareer/
+- MyCareer Jobs - https://mycareer-webjobs.herokuapp.com/
+- MyCareer Admin - https://mycareer-webadmin.herokuapp.com/
+- API – Swagger UI - https://mycareer-api.herokuapp.com/swagger-ui.html
 
 ## References
 

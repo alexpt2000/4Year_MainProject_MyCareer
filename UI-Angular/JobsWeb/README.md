@@ -1,3 +1,10 @@
+# 4th Year - Final year project.
+### APPLIED PROJECT AND MINOR DISSERTATION
+![Screencast](../../Screencast/Logo.png)
+
+### Alexander Souza - G00317835@gmit.ie
+### Supervisor - Damien Costello
+
 # MyCareer - Web
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2.
