@@ -6,6 +6,9 @@
 
 ### Alexander Souza - G00317835@gmit.ie
 ### Supervisor - Damien Costello
+- Website - http://54.210.4.37/mycareer/
+- YouTube screencast - https://youtu.be/6NChE0NcoLw
+
 
 ## The project
 
