@@ -7,6 +7,8 @@
 ### Alexander Souza - G00317835@gmit.ie
 ### Supervisor - Damien Costello
 - Website - http://54.210.4.37/mycareer/
+- MyCareer WebJobs - https://mycareer-webjobs.herokuapp.com/
+- MyCareer Admin - https://mycareer-webadmin.herokuapp.com/
 - YouTube screencast - https://youtu.be/6NChE0NcoLw
 
 
@@ -98,7 +100,7 @@ Limited user:
 ![Screencast](Screencast/applicant.gif)
 
 #### Access URL for the front-end Applicants page:
-- https://mycareer-webajobs.herokuapp.com/
+- https://mycareer-webjobs.herokuapp.com/
 
 
 ## UI - MyCareer - Admin (Angular)
