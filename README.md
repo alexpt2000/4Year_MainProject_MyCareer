@@ -11,6 +11,16 @@
 - MyCareer Admin - https://mycareer-webadmin.herokuapp.com/
 - YouTube screencast - https://youtu.be/6NChE0NcoLw
 
+##### User and Password
+```
+Administrator user:
+    admin@mycareer.com
+    admin
+
+Limited user:
+    alex@mycareer.com
+    alex
+```
 
 ## The project
 
