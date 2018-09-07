@@ -9,6 +9,7 @@
 - Website - http://54.210.4.37/mycareer/
 - MyCareer WebJobs - https://mycareer-webjobs.herokuapp.com/
 - MyCareer Admin - https://mycareer-webadmin.herokuapp.com/
+- MyCareer API - https://mycareer-api.herokuapp.com/swagger-ui.html
 - YouTube screencast - https://youtu.be/6NChE0NcoLw
 
 ##### User and Password
